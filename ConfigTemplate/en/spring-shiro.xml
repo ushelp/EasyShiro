@@ -1,33 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
-	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.1.xsd
-		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd
-		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
 
-
-    <!-- SessionValidationScheduler 
-    # Sessions are only validated to see 
-    # if they have been stopped or expired at the time they are accessed, 
-    # A SessionValidationScheduler is responsible for validating sessions 
-    # at a periodic rate to ensure they are cleaned up as necessary.
-    # You can custom SessionValidationScheduler implementation class.
-    -->
+    <!-- SessionValidationScheduler (DEFAULT) -->
     <bean id="sessionValidationScheduler" class="org.apache.shiro.session.mgt.ExecutorServiceSessionValidationScheduler">
         <!-- Default is 3,600,000 millis = 1 hour -->
         <property name="interval" value="3600000"></property>
     </bean>
     
-    <!-- Session DAO -->
+    <!-- Session DAO (DEFAULT) -->
     <bean id="sessionDAO" class="org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO">
         <!-- This name matches a cache name in ehcache.xml -->
         <!-- <property name="activeSessionsCacheName" value="shiro-activeSessionsCache"></property> -->
     </bean>
     
-    <!-- Session Manager -->
+    <!-- Session Manager (DEFAULT) -->
     <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
         <!-- Session Timeout: 3,600,000 milliseconds = 1 hour-->
         <property name="globalSessionTimeout" value="3600000"></property> 
@@ -36,20 +26,21 @@
         <property name="sessionDAO" ref="sessionDAO"></property>
     </bean>
     
-    <!-- Cache: EhCache-->
-    <bean id="ehCacheManager"
-    class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+    <!-- Cache: EhCache (DEFAULT)-->
+    <bean id="ehCacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
         <property name="configLocation" value="classpath:/ehcache.xml" />
         <property name="shared" value="true" />
-        </bean>
-        <!-- <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+    </bean>
+    <!-- 
+	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
         <property name="cacheManager" ref="ehCacheManager" />
-        </bean> -->
-        <bean id="shiroCacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+    </bean> 
+	-->
+    <bean id="shiroCacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
         <property name="cacheManager" ref="ehCacheManager" />
     </bean>
     
-    <!-- RememberMeManager -->
+    <!-- RememberMeManager (DEFAULT) -->
     <bean id="cookie" class="org.apache.shiro.web.servlet.SimpleCookie">
         <!-- cookie name  -->
         <property name="name" value="rememberMe"></property>
@@ -57,13 +48,13 @@
         <property name="path" value="/"></property> 
         <!-- default is ONE_YEAR -->
         <property name="maxAge" value="31536000"></property> 
-        </bean>
-        <bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
+    </bean>
+    <bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
         <property name="cookie" ref="cookie"></property>
     </bean>
 
 	
-    	<!-- EasyJdbcRealm -->
+    <!--  EasyJdbcRealm (**USER DEFINED**) -->
     <bean id="jdbcRealm" class="cn.easyproject.easyshiro.EasyJdbcRealm">
         <property name="dataSource" ref="dataSource"></property>
         <!-- Authentication information query; default: select * from users where username = ? -->
@@ -78,19 +69,21 @@
         <!-- Permissions query (supports multiple username =?); default: select permission from user_roles_permissions where username = ?"  -->
         <property name="permissionsQuery" value="select action from sys_menu_permission where MENU_PERMISSION_ID in( select MENU_PERMISSION_ID from sys_role_menu_permission where ROLE_ID in(select role_id from sys_user_role where user_id=(select user_id from sys_user where name=?))) UNION select action from sys_operation_permission where OPERATION_PERMISSION_ID in(select OPERATION_PERMISSION_ID from sys_role_operation_permission where ROLE_ID in(select role_id from sys_user_role where user_id=(select user_id from sys_user where name=?)))"></property>
         <!-- EasyJdbcRealm Interceptor, after authentication and authorization information can be obtained, for SimpleAuthenticationInfo authentication and authorization information SimpleAuthorizationInfo additional processing -->
-        <!-- <property name="interceptor" ref="realmInterceptor"></property> -->
+        <!-- 
+		<property name="interceptor" ref="realmInterceptor"></property> 
+		-->
     </bean>
 	
-    <!-- EasyShiro Custom authentication process interceptors -->
+    <!-- EasyShiro Custom authentication process interceptors(**USER DEFINED**) -->
     <!-- EasyFormAuthenticationFilter 认证成功或失败拦截器 -->
     <bean id="authenticationInterceptor" class="cn.easyproject.easyee.ssh.sys.shiro.AuthenticationInterceptor"> </bean>
     <!-- EasyJdbcRealm Authentication and authorization information processing interceptor -->
     <bean id="realmInterceptor" class="cn.easyproject.easyee.ssh.sys.shiro.RealmInterceptor"> </bean>
 
-    <!-- auth Login Authentication -->
+    <!-- auth Login Authentication (**USER DEFINED**) -->
     <bean id="auth" class="cn.easyproject.easyshiro.EasyFormAuthenticationFilter">
     
-         <!-- ###### FormAuthenticationFilter Configuration ##### -->
+         <!-- ************ FormAuthenticationFilter Configuration ************ -->
          <!-- when request method is post execute login, else to login page view -->
          <property name="loginUrl" value="/toLogin.action"></property>
          <!-- redirect after successful login -->
@@ -103,7 +96,7 @@
          <!-- <property name="rememberMeParam" value="rememberMe"></property> -->
          
          
-         <!-- ###### EasyFormAuthenticationFilter Configuration ##### -->
+         <!-- ************ EasyFormAuthenticationFilter Configuration ************ -->
          <!-- ## Login Configuration ## -->
          <!-- Login is successful, the token is stored in the session key;default is 'TOKEN' -->
          <property name="sessionTokenKey" value="TOKEN"></property>
@@ -111,12 +104,12 @@
          <property name="loginFailureRedirectToLogin" value="true"></property>
          
          
-         <!-- ## User defined UsernamePasswordToken Configuration ## -->
+         <!-- ************ User defined UsernamePasswordToken Configuration ************ -->
          <!-- customize UsernamePasswordToken; Default is 'org.apache.shiro.auth.UsernamePasswordToken' -->
          <property name="tokenClassName" value="cn.easyproject.easyee.ssh.sys.shiro.UsernamePasswordEncodeToken"></property>
          
          
-         <!-- ## CAPTCHA Configuration ## -->
+         <!-- ************ CAPTCHA Configuration ************ -->
          <!-- Are open CAPTCHA verification; default 'true' -->
          <property name="enableCaptcha" value="true"></property>
          <!-- CAPTCHA parameter name; default 'captcha' -->
@@ -125,7 +118,7 @@
          <property name="sessionCaptchaKey" value="rand"></property>
          
          
-         <!-- ## AutoLogin Configuration ## -->
+         <!-- ************ AutoLogin Configuration ************ -->
          <!-- Are open Auto Login -->
          <property name="enableAutoLogin" value="false"></property>
          <!-- Auto Login parameter name -->
@@ -138,11 +131,12 @@
          <property name="autoLoginDomain" value=""></property>
          
          
-         <!-- ## LockLogin EhCache Configuration ## -->
-          <!-- ## LockLogin Configuration ## -->
-        <!-- Lock Login management lockout time period EHCache cache name, simply adjust timeToIdleSeconds-->
-        <!-- Reach the login lockout times, login lockout 2 Hours -->
-        <!-- <cache
+         <!-- ************ LockLogin Configuration ************ -->
+         <!-- ## ehcache.xml Configuration ## -->
+         <!-- Lock Login management lockout time period EHCache cache name, simply adjust timeToIdleSeconds-->
+         <!-- Reach the login lockout times, login lockout 2 Hours -->
+         <!-- 
+		 <cache
                name="shiro-lockLoginCache"
                maxElementsInMemory="100000"
                eternal="false"
@@ -152,11 +146,12 @@
                memoryStoreEvictionPolicy="LRU"
                overflowToDisk="true"
                diskPersistent="true" >
-        </cache>-->
-           
+        </cache>
+		-->
         <!--Lock Login login error statistics of the number of time periods EHCache cache name, simply adjust timeToIdleSeconds-->
         <!-- Count the number of errors in 10 minutes  -->
-        <!-- <cache
+        <!-- 
+		<cache
              name="shiro-lockCheckCache"
              maxElementsInMemory="100000"
              eternal="false"
@@ -164,9 +159,9 @@
              timeToLiveSeconds="600"
              diskExpiryThreadIntervalSeconds="600"
              memoryStoreEvictionPolicy="LRU">
-         <persistence strategy="localTempSwap"/>
-        </cache> -->
-           
+			<persistence strategy="localTempSwap"/>
+        </cache> 
+		--> 
          <!--Whether to open the LockLogin ; default is false, do not open -->
          <property name="enableLockLogin" value="false"></property>
          <!-- Shiro CacheManager -->
@@ -182,7 +177,8 @@
          <!-- The specified number of login errors, display codes; -1 does not control verification code display; the default is 1 -->
          <property name="showCaptcha" value="4"></property>
          
-         <!-- ## Logon failure related error messages ## -->
+		 
+         <!-- ************ Logon failure related error messages ************ -->
          <!-- Login failed message key  -->
          <property name="msgKey" value="MSG"></property>
          <!-- The message is stored session，session.setAttribute(MsgKey,xxxErrorMsg); default is 'false' -->
@@ -203,11 +199,11 @@
              </map>
          </property>
      	
-     	<!-- customize interceptor, implements EasyAuthenticationInterceptor interface -->
+     	<!-- ************ Customize interceptor, implements EasyAuthenticationInterceptor interface************ -->
      	<property name="interceptor" ref="authenticationInterceptor"></property>
     </bean>
     
-    <!-- specify LogoutFilter -->
+    <!-- Specify LogoutFilter  (**USER DEFINED**) -->
     <!-- Enables session security information (Subject / Session), RememberMe information and AutoLogin automatic login logoff information -->
     <bean id="logout" class="cn.easyproject.easyshiro.EasyLogoutFilter">
     	<!-- specify logout redirectUrl -->
@@ -216,7 +212,7 @@
     	<property name="easyFormAuthenticationFilter" ref="auth"></property>
     </bean>
     
-    <!-- perms -->
+    <!-- perms  (**USER DEFINED**) -->
     <bean id="perms" class="cn.easyproject.easyshiro.EasyURLPermissionFilter">
     	<!-- Authentication failed steering url -->
     	<property name="unauthorizedUrl" value="/toLogin.action"></property>
@@ -236,7 +232,7 @@
     	<property name="authenticationTimeoutMsg" value="Your login has expired, please login again!"></property>
     </bean>
     
-    <!-- Shiro Native SessionManager -->
+    <!-- Shiro Native SessionManager  (DEFAULT) -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
     	<!-- <property name="sessionMode" value="native"></property> -->
     	<property name="sessionManager" ref="sessionManager"></property>
@@ -250,7 +246,7 @@
     	</property>
     </bean>
     
-    <!-- shiroFilter -->
+    <!-- shiroFilter (**USER DEFINED**) -->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"/>
         <!-- override these for application-specific URLs if you like:-->
@@ -279,5 +275,6 @@
         </property>
     </bean>
     
+	<!-- DEFAULT -->
     <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
 </beans>

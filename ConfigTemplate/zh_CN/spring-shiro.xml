@@ -1,34 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
-	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.1.xsd
-		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd
-		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
 
-
-    <!-- Session 过期验证移除 -->
-    <!-- SessionValidationScheduler 
-    # Sessions are only validated to see 
-    # if they have been stopped or expired at the time they are accessed, 
-    # A SessionValidationScheduler is responsible for validating sessions 
-    # at a periodic rate to ensure they are cleaned up as necessary.
-    # You can custom SessionValidationScheduler implementation class.
-    -->
+    <!-- Session 过期验证移除 (DEFAULT) -->
     <bean id="sessionValidationScheduler" class="org.apache.shiro.session.mgt.ExecutorServiceSessionValidationScheduler">
         <!-- Default is 3,600,000 millis = 1 hour -->
         <property name="interval" value="3600000"></property>
     </bean>
     
-    <!-- Session DAO -->
+    <!-- Session DAO (DEFAULT) -->
     <bean id="sessionDAO" class="org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO">
         <!-- This name matches a cache name in ehcache.xml -->
         <!-- <property name="activeSessionsCacheName" value="shiro-activeSessionsCache"></property> -->
     </bean>
     
-    <!-- Session Manager -->
+    <!-- Session Manager (DEFAULT)-->
     <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
         <!-- Session Timeout: 3,600,000 milliseconds = 1 hour-->
         <property name="globalSessionTimeout" value="3600000"></property> 
@@ -37,20 +26,21 @@
         <property name="sessionDAO" ref="sessionDAO"></property>
     </bean>
     
-    <!-- Cache: EhCache-->
-    <bean id="ehCacheManager"
-    class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+    <!-- Cache: EhCache (DEFAULT)-->
+    <bean id="ehCacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
         <property name="configLocation" value="classpath:/ehcache.xml" />
         <property name="shared" value="true" />
     </bean>
-        <!-- <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+    <!-- 
+	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
         <property name="cacheManager" ref="ehCacheManager" />
-        </bean> -->
+    </bean> 
+	-->
     <bean id="shiroCacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
         <property name="cacheManager" ref="ehCacheManager" />
     </bean>
     
-    <!-- RememberMeManager -->
+    <!-- RememberMeManager (DEFAULT) -->
     <bean id="cookie" class="org.apache.shiro.web.servlet.SimpleCookie">
         <!-- cookie name  -->
         <property name="name" value="rememberMe"></property>
@@ -58,13 +48,13 @@
         <property name="path" value="/"></property> 
         <!-- default is ONE_YEAR -->
         <property name="maxAge" value="31536000"></property> 
-        </bean>
-        <bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
+	</bean>
+	<bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
         <property name="cookie" ref="cookie"></property>
     </bean>
 
 	
-    	<!-- EasyJdbcRealm -->
+    <!-- EasyJdbcRealm  (**USER DEFINED**) -->
     <bean id="jdbcRealm" class="cn.easyproject.easyshiro.EasyJdbcRealm">
         <property name="dataSource" ref="dataSource"></property>
         <!-- 认证信息查询语句; default: select * from users where username = ? -->
@@ -79,19 +69,21 @@
         <!-- 权限查询语句(支持多个username=?); default: select permission from user_roles_permissions where username = ?"  -->
         <property name="permissionsQuery" value="select permission from user_roles_permissions where username = ?"></property>
         <!-- EasyJdbcRealm 拦截器，可以认证和授权信息获得后，对SimpleAuthenticationInfo认证和SimpleAuthorizationInfo授权信息进行额外处理 -->
-        <!-- <property name="interceptor" ref="realmInterceptor"></property> -->
+        <!-- 
+		<property name="interceptor" ref="realmInterceptor"></property> 
+		-->
     </bean>
 	
-    <!-- EasyShiro 自定义认证处理拦截器 -->
+    <!-- EasyShiro 自定义认证处理拦截器 (**USER DEFINED**)-->
     <!-- EasyFormAuthenticationFilter 认证成功或失败拦截器 -->
     <bean id="authenticationInterceptor" class="cn.easyproject.easyee.ssh.sys.shiro.AuthenticationInterceptor"> </bean>
     <!-- EasyJdbcRealm 认证与授权信息处理拦截器 -->
     <bean id="realmInterceptor" class="cn.easyproject.easyee.ssh.sys.shiro.RealmInterceptor"> </bean>
 
-    <!-- auth Login Authentication -->
+    <!-- auth Login Authentication (**USER DEFINED**)-->
     <bean id="auth" class="cn.easyproject.easyshiro.EasyFormAuthenticationFilter">
     
-         <!-- ###### FormAuthenticationFilter Configuration ##### -->
+         <!-- ************ FormAuthenticationFilter Configuration ************ -->
          <!-- when request method is post execute login, else to login page view -->
          <property name="loginUrl" value="/toLogin.action"></property>
          <!-- redirect after successful login -->
@@ -104,7 +96,7 @@
          <!-- <property name="rememberMeParam" value="rememberMe"></property> -->
          
          
-         <!-- ###### EasyFormAuthenticationFilter Configuration ##### -->
+         <!-- ************ EasyFormAuthenticationFilter Configuration ************ -->
          <!-- ## Login Configuration ## -->
          <!--  登录成功，将 token 存入 session 的 key; default is 'TOKEN' -->
          <property name="sessionTokenKey" value="TOKEN"></property>
@@ -112,12 +104,12 @@
          <property name="loginFailureRedirectToLogin" value="true"></property>
          
          
-         <!-- ## User defined UsernamePasswordToken Configuration ## -->
+         <!-- ************ User defined UsernamePasswordToken Configuration ************ -->
          <!-- 自定义 UsernamePasswordToken; Default is 'org.apache.shiro.auth.UsernamePasswordToken' -->
          <property name="tokenClassName" value="cn.easyproject.easyee.ssh.sys.shiro.UsernamePasswordEncodeToken"></property>
          
          
-         <!-- ## CAPTCHA Configuration ## -->
+         <!-- ************ CAPTCHA Configuration ************ -->
          <!-- 是否开启验证码验证; default 'true' -->
          <property name="enableCaptcha" value="true"></property>
          <!-- 验证码参数名; default 'captcha' -->
@@ -126,7 +118,7 @@
          <property name="sessionCaptchaKey" value="rand"></property>
          
          
-         <!-- ## AutoLogin Configuration ## -->
+         <!-- ************ AutoLogin Configuration ************ -->
          <!-- 是否开启自动登录 -->
          <property name="enableAutoLogin" value="false"></property>
          <!-- 自动登录参数数名 -->
@@ -139,11 +131,12 @@
          <property name="autoLoginDomain" value=""></property>
          
          
-         <!-- ## LockLogin EhCache Configuration ## -->
-          <!-- ## LockLogin Configuration ## -->
-        <!-- LockLogin 管理锁定时间周期的 EHCache 缓存名称，只需调整timeToIdleSeconds -->
-        <!-- 达到登录锁定次数，登录锁定  2 Hours -->
-        <!-- <cache
+         <!-- ************ LockLogin Configuration ************ -->
+         <!-- ##  ehcache.xml Configuration ## -->
+         <!-- LockLogin 管理锁定时间周期的 EHCache 缓存名称，只需调整timeToIdleSeconds -->
+         <!-- 达到登录锁定次数，登录锁定  2 Hours -->
+         <!-- 
+		 <cache
                name="shiro-lockLoginCache"
                maxElementsInMemory="100000"
                eternal="false"
@@ -153,11 +146,12 @@
                memoryStoreEvictionPolicy="LRU"
                overflowToDisk="true"
                diskPersistent="true" >
-        </cache>-->
-           
-        <!-- LockLogin 统计登录错误次数时间周期的 EHCache 缓存名称，只需调整timeToIdleSeconds -->
-        <!-- 统计 10 分钟内的错误次数  -->
-        <!-- <cache
+         </cache>
+		 -->
+         <!-- LockLogin 统计登录错误次数时间周期的 EHCache 缓存名称，只需调整timeToIdleSeconds -->
+         <!-- 统计 10 分钟内的错误次数  -->
+         <!-- 
+		 <cache
              name="shiro-lockCheckCache"
              maxElementsInMemory="100000"
              eternal="false"
@@ -165,9 +159,9 @@
              timeToLiveSeconds="600"
              diskExpiryThreadIntervalSeconds="600"
              memoryStoreEvictionPolicy="LRU">
-         <persistence strategy="localTempSwap"/>
-        </cache> -->
-           
+             <persistence strategy="localTempSwap"/>
+         </cache> 
+		 -->
          <!-- 是否开启LockLogin用户登录锁定；默认为false，不开启 -->
          <property name="enableLockLogin" value="false"></property>
          <!-- Shiro CacheManager -->
@@ -183,7 +177,7 @@
          <!-- 达到指定登录错误次数，显示验证码；-1为不控制验证码显示；默认为1 -->
          <property name="showCaptcha" value="4"></property>
          
-         <!-- ## 登录失败相关错误消息 ## -->
+         <!-- ************ 登录失败相关错误消息 ************ -->
          <!-- 登录失败，消息 key  -->
          <property name="msgKey" value="MSG"></property>
          <!-- 将消息存入session，session.setAttribute(MsgKey,xxxErrorMsg); default is 'false' -->
@@ -204,11 +198,11 @@
              </map>
          </property>
      	
-     	<!-- 自定义拦截器，实现 EasyAuthenticationInterceptor 接口 -->
+     	<!-- ************自定义拦截器，实现 EasyAuthenticationInterceptor 接口************ -->
      	<property name="interceptor" ref="authenticationInterceptor"></property>
     </bean>
     
-    <!-- specify LogoutFilter -->
+    <!-- specify LogoutFilter  (**USER DEFINED**) -->
     <!-- 能够实现会话安全信息(Subjec/Session)，RememberMe信息和AutoLogin自动登录信息的注销 -->
     <bean id="logout" class="cn.easyproject.easyshiro.EasyLogoutFilter">
     	<!-- specify logout redirectUrl -->
@@ -217,7 +211,7 @@
     	<property name="easyFormAuthenticationFilter" ref="auth"></property>
     </bean>
     
-    <!-- perms -->
+    <!-- perms  (**USER DEFINED**) -->
     <bean id="perms" class="cn.easyproject.easyshiro.EasyURLPermissionFilter">
     	<!-- 权限验证失败，转向的url -->
     	<property name="unauthorizedUrl" value="/toLogin.action"></property>
@@ -237,7 +231,7 @@
     	<property name="authenticationTimeoutMsg" value="您的登录已过期，请重新登录！"></property>
     </bean>
     
-    <!-- Shiro Native SessionManager -->
+    <!-- Shiro Native SessionManager (DEFAULT)-->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
     	<!-- <property name="sessionMode" value="native"></property> -->
     	<property name="sessionManager" ref="sessionManager"></property>
@@ -251,7 +245,7 @@
     	</property>
     </bean>
     
-    <!-- shiroFilter -->
+    <!-- shiroFilter  (**USER DEFINED**) -->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"/>
         <!-- override these for application-specific URLs if you like:-->
@@ -280,7 +274,6 @@
         </property>
     </bean>
     
-    
-    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
-    	
+    <!-- DEFAULT -->
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>   	
 </beans>

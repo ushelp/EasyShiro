@@ -2,24 +2,37 @@
 
 ---------------
 
+
+EasyShiro is a security extension components based Shiro. Based on the RBAC (Role Based Access Control) Web permission model based on database rights management and **Web URL authorization**, provides general Shiro security management support, as well as richer and more powerful function options.
+
+Least version:  `2.4.0-RELEASE`
+
 ## Introduction
+
 - **Apache Shiro**
 
   [Apache Shiro](http://shiro.apache.org/ " Apache Shiro ") is the most powerful and comprehensive Java security management framework that provides user authentication, authorization (based on roles and permissions), Session management, encryption, Web and third-party integration, and so on. But Apache Shiro just a security engine, not a rights management system, rights management system daily projects still need to achieve their own, different projects often need to customize a number of different security components, and the configuration is complicated.
 
 - **EasyShiro**
 
-  EasyShiro based Shiro is a security extension components. Based rights management database and **Web URL authorization** RBAC (Role Based Access Control) Web permissions model provides a common Shiro security management support.
-
-  Use EasyShiro, only a simple configuration can be applied to the power of Shiro projects go, Shiro reduce complexity, simplify security integration, and enhance its capabilities to provide **CAPTCHA**, **auto login**, **login is locked**,**configuration error message**, **interceptor**,** Ajax response** etc. support.
-
-  EasyShiro provides a complete **generic configuration template** ( `shiro.ini`,` spring-shiro.xml`), only added to the jar package, on request adjusting section configuration options to complete the integration, to enjoy the full support of Shiro.
+ EasyShiro based Shiro is a security extension components. Based rights management database and **Web URL authorization** RBAC (Role Based Access Control) Web permissions model provides a common Shiro security management support.
 
 
 
+## EasyShiro Featuter
 
-## Main feature
+1. Support RBAC rights management based on database rights management and **Web URL** authorizations
 
+2. Enhanced simplified Shiro unified component support. Provide common **CAPTCHA**, **Automatic login**, **Login lock**, **Error message configuration**, **Interceptor**, **Ajax response**, etc. support
+
+3. Simplifies configuration and simplifies security integration, reducing Shiro's complexity. Just add the `jar` package and adjust some of the configuration( `Shiro.ini`,` spring-shiro.xml`)  options as required to complete the integration and enjoy the complete Shiro stand by
+
+4. **LockLogin** login lock based on `User` and` IP` and provides login lock management system **LockLoginManagement**
+
+
+
+
+## Main module
 
 ### 1. Enhanced Simplified Shiro unified component support
 
@@ -39,10 +52,12 @@
 
 
 ### 2. LockLoginManagement
+
  ![LockLogin](images/locklogin1.png)
 
 
 ## RBCA Model
+
 The following display and provides a common database authorization based rights management, menus, Web URL authorization RBAC (Role Based Access Control) Web permissions model.
 
  ![RBCA](images/rbca-en.png)
@@ -51,14 +66,60 @@ The following display and provides a common database authorization based rights 
 
 ## Steps for usage
 
-### 1. Add jar
+1. Add `jar` dependency
+
+2. Configure the Filter in `web.xml`
+
+3. Use `Spring` or `INI` configure the `Shiro`
+
+### 1. Add jar dependency
+
 ```XML
 <dependency>
     <groupId>cn.easyproject</groupId>
     <artifactId>easyshiro</artifactId>
-    <version>2.3.0-RELEASE</version>
+    <version>2.4.0-RELEASE</version>
 </dependency>
 ```
+
+### 2. Configure the Filter in `web.xml`
+
+```
+<!-- Shiro Spring Intergation -->
+<!-- The filter-name matches name of a 'shiroFilter' bean inside applicationContext.xml -->
+<filter>
+    <filter-name>shiroFilter</filter-name>
+    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    <init-param>
+        <param-name>targetFilterLifecycle</param-name>
+        <param-value>true</param-value>
+    </init-param>
+</filter>
+
+<!-- Shiro Web Intergation(shiro.ini, not spring) -->
+<!--  
+<listener>
+    <listener-class>org.apache.shiro.web.env.EnvironmentLoaderListener</listener-class>
+</listener>
+<filter>
+    <filter-name>shiroFilter</filter-name>
+    <filter-class>org.apache.shiro.web.servlet.ShiroFilter</filter-class>
+</filter> 
+--> 
+	
+<!-- Make sure any request you want accessible to Shiro is filtered. /* catches all -->
+<!-- requests. Usually this filter mapping is defined first (before all others) to -->
+<!-- ensure that Shiro works in subsequent filters in the filter chain: -->
+<filter-mapping>
+    <filter-name>shiroFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+    <dispatcher>REQUEST</dispatcher>
+    <dispatcher>FORWARD</dispatcher>
+    <dispatcher>INCLUDE</dispatcher>
+    <dispatcher>ERROR</dispatcher>
+</filter-mapping>
+```
+
 
 ### 2. Configuration Templates
 
@@ -117,34 +178,24 @@ The following display and provides a common database authorization based rights 
 ```XML
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
-	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.1.xsd
-		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd
-		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
 
-
-    <!-- SessionValidationScheduler 
-    # Sessions are only validated to see 
-    # if they have been stopped or expired at the time they are accessed, 
-    # A SessionValidationScheduler is responsible for validating sessions 
-    # at a periodic rate to ensure they are cleaned up as necessary.
-    # You can custom SessionValidationScheduler implementation class.
-    -->
+    <!-- SessionValidationScheduler (DEFAULT) -->
     <bean id="sessionValidationScheduler" class="org.apache.shiro.session.mgt.ExecutorServiceSessionValidationScheduler">
         <!-- Default is 3,600,000 millis = 1 hour -->
         <property name="interval" value="3600000"></property>
     </bean>
     
-    <!-- Session DAO -->
+    <!-- Session DAO (DEFAULT) -->
     <bean id="sessionDAO" class="org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO">
         <!-- This name matches a cache name in ehcache.xml -->
         <!-- <property name="activeSessionsCacheName" value="shiro-activeSessionsCache"></property> -->
     </bean>
     
-    <!-- Session Manager -->
+    <!-- Session Manager (DEFAULT) -->
     <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
         <!-- Session Timeout: 3,600,000 milliseconds = 1 hour-->
         <property name="globalSessionTimeout" value="3600000"></property> 
@@ -153,20 +204,21 @@ The following display and provides a common database authorization based rights 
         <property name="sessionDAO" ref="sessionDAO"></property>
     </bean>
     
-    <!-- Cache: EhCache-->
-    <bean id="ehCacheManager"
-    class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+    <!-- Cache: EhCache (DEFAULT)-->
+    <bean id="ehCacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
         <property name="configLocation" value="classpath:/ehcache.xml" />
         <property name="shared" value="true" />
-        </bean>
-        <!-- <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+    </bean>
+    <!-- 
+    <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
         <property name="cacheManager" ref="ehCacheManager" />
-        </bean> -->
-        <bean id="shiroCacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+    </bean> 
+	   -->
+    <bean id="shiroCacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
         <property name="cacheManager" ref="ehCacheManager" />
     </bean>
     
-    <!-- RememberMeManager -->
+    <!-- RememberMeManager (DEFAULT) -->
     <bean id="cookie" class="org.apache.shiro.web.servlet.SimpleCookie">
         <!-- cookie name  -->
         <property name="name" value="rememberMe"></property>
@@ -174,13 +226,13 @@ The following display and provides a common database authorization based rights 
         <property name="path" value="/"></property> 
         <!-- default is ONE_YEAR -->
         <property name="maxAge" value="31536000"></property> 
-        </bean>
-        <bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
+    </bean>
+    <bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
         <property name="cookie" ref="cookie"></property>
     </bean>
 
 	
-    	<!-- EasyJdbcRealm -->
+    <!--  EasyJdbcRealm (**USER DEFINED**) -->
     <bean id="jdbcRealm" class="cn.easyproject.easyshiro.EasyJdbcRealm">
         <property name="dataSource" ref="dataSource"></property>
         <!-- Authentication information query; default: select * from users where username = ? -->
@@ -195,19 +247,21 @@ The following display and provides a common database authorization based rights 
         <!-- Permissions query (supports multiple username =?); default: select permission from user_roles_permissions where username = ?"  -->
         <property name="permissionsQuery" value="select action from sys_menu_permission where MENU_PERMISSION_ID in( select MENU_PERMISSION_ID from sys_role_menu_permission where ROLE_ID in(select role_id from sys_user_role where user_id=(select user_id from sys_user where name=?))) UNION select action from sys_operation_permission where OPERATION_PERMISSION_ID in(select OPERATION_PERMISSION_ID from sys_role_operation_permission where ROLE_ID in(select role_id from sys_user_role where user_id=(select user_id from sys_user where name=?)))"></property>
         <!-- EasyJdbcRealm Interceptor, after authentication and authorization information can be obtained, for SimpleAuthenticationInfo authentication and authorization information SimpleAuthorizationInfo additional processing -->
-        <!-- <property name="interceptor" ref="realmInterceptor"></property> -->
+        <!-- 
+     		<property name="interceptor" ref="realmInterceptor"></property> 
+     		-->
     </bean>
 	
-    <!-- EasyShiro Custom authentication process interceptors -->
+    <!-- EasyShiro Custom authentication process interceptors(**USER DEFINED**) -->
     <!-- EasyFormAuthenticationFilter 认证成功或失败拦截器 -->
     <bean id="authenticationInterceptor" class="cn.easyproject.easyee.ssh.sys.shiro.AuthenticationInterceptor"> </bean>
     <!-- EasyJdbcRealm Authentication and authorization information processing interceptor -->
     <bean id="realmInterceptor" class="cn.easyproject.easyee.ssh.sys.shiro.RealmInterceptor"> </bean>
 
-    <!-- auth Login Authentication -->
+    <!-- auth Login Authentication (**USER DEFINED**) -->
     <bean id="auth" class="cn.easyproject.easyshiro.EasyFormAuthenticationFilter">
     
-         <!-- ###### FormAuthenticationFilter Configuration ##### -->
+         <!-- ************ FormAuthenticationFilter Configuration ************ -->
          <!-- when request method is post execute login, else to login page view -->
          <property name="loginUrl" value="/toLogin.action"></property>
          <!-- redirect after successful login -->
@@ -220,7 +274,7 @@ The following display and provides a common database authorization based rights 
          <!-- <property name="rememberMeParam" value="rememberMe"></property> -->
          
          
-         <!-- ###### EasyFormAuthenticationFilter Configuration ##### -->
+         <!-- ************ EasyFormAuthenticationFilter Configuration ************ -->
          <!-- ## Login Configuration ## -->
          <!-- Login is successful, the token is stored in the session key;default is 'TOKEN' -->
          <property name="sessionTokenKey" value="TOKEN"></property>
@@ -228,12 +282,12 @@ The following display and provides a common database authorization based rights 
          <property name="loginFailureRedirectToLogin" value="true"></property>
          
          
-         <!-- ## User defined UsernamePasswordToken Configuration ## -->
+         <!-- ************ User defined UsernamePasswordToken Configuration ************ -->
          <!-- customize UsernamePasswordToken; Default is 'org.apache.shiro.auth.UsernamePasswordToken' -->
          <property name="tokenClassName" value="cn.easyproject.easyee.ssh.sys.shiro.UsernamePasswordEncodeToken"></property>
          
          
-         <!-- ## CAPTCHA Configuration ## -->
+         <!-- ************ CAPTCHA Configuration ************ -->
          <!-- Are open CAPTCHA verification; default 'true' -->
          <property name="enableCaptcha" value="true"></property>
          <!-- CAPTCHA parameter name; default 'captcha' -->
@@ -242,7 +296,7 @@ The following display and provides a common database authorization based rights 
          <property name="sessionCaptchaKey" value="rand"></property>
          
          
-         <!-- ## AutoLogin Configuration ## -->
+         <!-- ************ AutoLogin Configuration ************ -->
          <!-- Are open Auto Login -->
          <property name="enableAutoLogin" value="false"></property>
          <!-- Auto Login parameter name -->
@@ -255,35 +309,37 @@ The following display and provides a common database authorization based rights 
          <property name="autoLoginDomain" value=""></property>
          
          
-        	    <!-- ## LockLogin Configuration ## -->
-	    <!-- LockLogin name cache management locks EHCache time period-->
-	    <!-- Simply adjust timeToIdleSeconds, the default number of times to reach the login lockout, login lockout 2 Hours-->
-	    <!-- <cache
-	       	    name="shiro-lockLoginCache"
-	            maxElementsInMemory="100000"
-	            eternal="false"
-	            timeToIdleSeconds="0"
-	            timeToLiveSeconds="7200"
-	            diskExpiryThreadIntervalSeconds="600"
-	            memoryStoreEvictionPolicy="LRU"
-	            overflowToDisk="true"
-	            diskPersistent="true">
-	    </cache> -->
-       
-       <!-- EHCache caching name Lock Login login error statistics of the number of time periods -->
-       <!-- Simply adjust timeToIdleSeconds, default statistics the number of errors in 10 minutes -->
-       <!-- <cache
-       	    name="shiro-lockCheckCache"
-            maxElementsInMemory="100000"
-            eternal="false"
-            timeToIdleSeconds="0"
-            timeToLiveSeconds="600"
-            diskExpiryThreadIntervalSeconds="600"
-            memoryStoreEvictionPolicy="LRU"
-            overflowToDisk="true"
-            diskPersistent="true">
-    	</cache> -->
-           
+         <!-- ************ LockLogin Configuration ************ -->
+         <!-- ## ehcache.xml Configuration ## -->
+         <!-- Lock Login management lockout time period EHCache cache name, simply adjust timeToIdleSeconds-->
+         <!-- Reach the login lockout times, login lockout 2 Hours -->
+         <!-- 
+     		 <cache
+                    name="shiro-lockLoginCache"
+                    maxElementsInMemory="100000"
+                    eternal="false"
+                    timeToIdleSeconds="0"
+                    timeToLiveSeconds="7200"
+                    diskExpiryThreadIntervalSeconds="600"
+                    memoryStoreEvictionPolicy="LRU"
+                    overflowToDisk="true"
+                    diskPersistent="true" >
+             </cache>
+     		-->
+        <!--Lock Login login error statistics of the number of time periods EHCache cache name, simply adjust timeToIdleSeconds-->
+        <!-- Count the number of errors in 10 minutes  -->
+        <!-- 
+      		<cache
+                   name="shiro-lockCheckCache"
+                   maxElementsInMemory="100000"
+                   eternal="false"
+                   timeToIdleSeconds="0"
+                   timeToLiveSeconds="600"
+                   diskExpiryThreadIntervalSeconds="600"
+                   memoryStoreEvictionPolicy="LRU">
+      			<persistence strategy="localTempSwap"/>
+              </cache> 
+      		--> 
          <!--Whether to open the LockLogin ; default is false, do not open -->
          <property name="enableLockLogin" value="false"></property>
          <!-- Shiro CacheManager -->
@@ -299,7 +355,8 @@ The following display and provides a common database authorization based rights 
          <!-- The specified number of login errors, display codes; -1 does not control verification code display; the default is 1 -->
          <property name="showCaptcha" value="4"></property>
          
-         <!-- ## Logon failure related error messages ## -->
+		 
+         <!-- ************ Logon failure related error messages ************ -->
          <!-- Login failed message key  -->
          <property name="msgKey" value="MSG"></property>
          <!-- The message is stored session，session.setAttribute(MsgKey,xxxErrorMsg); default is 'false' -->
@@ -320,11 +377,11 @@ The following display and provides a common database authorization based rights 
              </map>
          </property>
      	
-     	<!-- customize interceptor, implements EasyAuthenticationInterceptor interface -->
+     	<!-- ************ Customize interceptor, implements EasyAuthenticationInterceptor interface************ -->
      	<property name="interceptor" ref="authenticationInterceptor"></property>
     </bean>
     
-    <!-- specify LogoutFilter -->
+    <!-- Specify LogoutFilter  (**USER DEFINED**) -->
     <!-- Enables session security information (Subject / Session), RememberMe information and AutoLogin automatic login logoff information -->
     <bean id="logout" class="cn.easyproject.easyshiro.EasyLogoutFilter">
     	<!-- specify logout redirectUrl -->
@@ -333,7 +390,7 @@ The following display and provides a common database authorization based rights 
     	<property name="easyFormAuthenticationFilter" ref="auth"></property>
     </bean>
     
-    <!-- perms -->
+    <!-- perms  (**USER DEFINED**) -->
     <bean id="perms" class="cn.easyproject.easyshiro.EasyURLPermissionFilter">
     	<!-- Authentication failed steering url -->
     	<property name="unauthorizedUrl" value="/toLogin.action"></property>
@@ -353,7 +410,7 @@ The following display and provides a common database authorization based rights 
     	<property name="authenticationTimeoutMsg" value="Your login has expired, please login again!"></property>
     </bean>
     
-    <!-- Shiro Native SessionManager -->
+    <!-- Shiro Native SessionManager  (DEFAULT) -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
     	<!-- <property name="sessionMode" value="native"></property> -->
     	<property name="sessionManager" ref="sessionManager"></property>
@@ -367,7 +424,7 @@ The following display and provides a common database authorization based rights 
     	</property>
     </bean>
     
-    <!-- shiroFilter -->
+    <!-- shiroFilter (**USER DEFINED**) -->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"/>
         <!-- override these for application-specific URLs if you like:-->
@@ -396,13 +453,14 @@ The following display and provides a common database authorization based rights 
         </property>
     </bean>
     
+    <!-- DEFAULT -->
     <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
 </beans>
 ```
 
 
 
-#### 2.2 Shiro INI Configuration Templates shiro.ini
+#### 3.2 Shiro INI Configuration Templates shiro.ini
 ```properties
 # -----------------------------------------------------------------------------
 # Users and their (optional) assigned roles
@@ -429,15 +487,15 @@ The following display and provides a common database authorization based rights 
 # -----------------------------------------------------------------------------
 
 [main]
-#- Session Manager
+#- Session Manager (DEFAULT)
 # securityManager.sessionManager.xxxx=xxxx
 
-#-- Shiro Native SessionManager
+#-- Shiro Native SessionManager (DEFAULT)
 sessionManager = org.apache.shiro.web.session.mgt.DefaultWebSessionManager
 # Use the configured native session manager:
 securityManager.sessionManager = $sessionManager
 
-#-- Session Timeout
+#-- Session Timeout (DEFAULT)
 # 3,600,000 milliseconds = 1 hour
 securityManager.sessionManager.globalSessionTimeout = 3600000
 
@@ -456,7 +514,7 @@ securityManager.sessionManager.globalSessionTimeout = 3600000
 #securityManager.sessionManager.sessionDAO.sessionIdGenerator = $sessionIdGenerator
 
 
-#-- SessionValidationScheduler
+#-- SessionValidationScheduler (DEFAULT)
 # Sessions are only validated to see 
 # if they have been stopped or expired at the time they are accessed, 
 # A SessionValidationScheduler is responsible for validating sessions 
@@ -469,7 +527,7 @@ securityManager.sessionManager.sessionValidationScheduler = $sessionValidationSc
 #securityManager.sessionManager.sessionValidationSchedulerEnabled = false
 
 
-#-- Session DAO
+#-- Session DAO (DEFAULT)
 # cache in the CacheManager should be used to store active sessions:
 sessionDAO = org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO
 securityManager.sessionManager.sessionDAO = $sessionDAO
@@ -481,14 +539,14 @@ securityManager.sessionManager.sessionDAO = $sessionDAO
 #- Cache
 # securityManager.cacheManager
 
-#-- EhCache
+#-- EhCache (DEFAULT)
 cacheManager = org.apache.shiro.cache.ehcache.EhCacheManager
 cacheManager.cacheManagerConfigFile = classpath:ehcache.xml
 ##-- in-memory-only Cache
 #cacheManager = org.apache.shiro.cache.MemoryConstrainedCacheManager
 securityManager.cacheManager = $cacheManager
 
-#- RememeberMe(org.apache.shiro.web.mgt.CookieRememberMeManager)
+#- RememeberMe(org.apache.shiro.web.mgt.CookieRememberMeManager) (DEFAULT)
 securityManager.rememberMeManager.cookie.name = rememberMe
 # default is /request.getContextPath()
 securityManager.rememberMeManager.cookie.path = /
@@ -513,7 +571,7 @@ securityManager.rememberMeManager.cookie.maxAge = 31536000
 
 #- Realm
 
-#-- DataSource
+#-- DataSource (**USER DEFINED**) 
 dataSource=com.alibaba.druid.pool.DruidDataSource  
 dataSource.url=jdbc:mysql://127.0.0.1:3306/easyssh
 dataSource.username=root  
@@ -531,7 +589,7 @@ dataSource.testOnReturn=false
 dataSource.poolPreparedStatements=false
 dataSource.maxPoolPreparedStatementPerConnectionSize=20
 
-#-- EasyJdbcRealm
+#-- EasyJdbcRealm (**USER DEFINED**) 
 #jdbcRealm=org.apache.shiro.realm.jdbc.JdbcRealm
 jdbcRealm=cn.easyproject.easyshiro.EasyJdbcRealm
 jdbcRealm.dataSource=$dataSource  
@@ -554,7 +612,7 @@ jdbcRealm.interceptor=$realmInterceptor
 securityManager.realms=$jdbcRealm 
 
 
-#- auth Login Authentication
+#- auth Login Authentication (**USER DEFINED**) 
 
 #-- customize auth
 #auth=cn.easyproject.easyshiro.EasyFormAuthenticationFilter
@@ -571,7 +629,7 @@ auth.passwordParam = password
 # does the user wish to be remembered?; if not present filter assumes 'rememberMe'
 auth.rememberMeParam = rememberMe
 
-#-- EasyFormAuthenticationFilter customize Extended Attributes 
+#-- EasyFormAuthenticationFilter customize Extended Attributes  (**USER DEFINED**) 
 #---- Login Configuration
 #Login is successful, the token is stored in the session key;default is 'TOKEN'
 # session.setAttribute(sessionTokenName,tokenObject); 
@@ -579,11 +637,11 @@ auth.sessionTokenKey= TOKEN
 # Whether to use the login fails to redirect the way to jump back to the login page;default is 'false'
 auth.loginFailureRedirectToLogin = true
 
-#---- User defined UsernamePasswordToken Configuration
+#---- User defined UsernamePasswordToken Configuration (**USER DEFINED**) 
 # customize UsernamePasswordToken; Default is 'org.apache.shiro.auth.UsernamePasswordToken'
 auth.tokenClassName=cn.easyproject.easyee.ssh.sys.shiro.UsernamePasswordEncodeToken
 
-#---- CAPTCHA Configuration
+#---- CAPTCHA Configuration (**USER DEFINED**) 
 # Whether to open the CAPTCHA; default 'true'
 auth.enableCaptcha=true
 # CAPTCHA parameter name default 'captcha'
@@ -592,7 +650,7 @@ auth.captchaParam = captcha
 auth.sessionCaptchaKey = rand
 
 
-#---------  AutoLogin Configuration 
+#---------  AutoLogin Configuration  (**USER DEFINED**) 
 # Are open Auto Login 
 auth.enableAutoLogin=false
 # Auto Login parameter name 
@@ -604,7 +662,7 @@ auth.autoLoginPath=/
 # Cookie domain，empty or default is your current domain name 
 #auth.autoLoginDomain=
 
-#---- LockLogin Configuration Logon failure related error messages
+#---- LockLogin Configuration Logon failure related error messages (**USER DEFINED**) 
 # Are oepn LockLogin; default is false,off
 auth.enableLockLogin=false
 # Shiro CacheManager 
@@ -620,7 +678,7 @@ auth.ipLock=6
 # The specified number of login errors, display codes; -1 does not control verification code display; the default is 1 
 auth.showCaptcha=2
 
-#---- Logon failure related error messages
+#---- Logon failure related error messages (**USER DEFINED**) 
 # Login failed message key 
 auth.msgKey = MSG
 # The message is stored session，session.setAttribute(MsgKey,xxxErrorMsg); default is 'false'
@@ -631,16 +689,16 @@ auth.requestMsg = true
 # ExceptionClassName:"Message", ExceptionClassName2:"Message2", ...
 auth.exceptionMsg = LockedAccountException:"Account lockout, please contact the administrator to unlock.", AuthenticationException:"User name or password is incorrect!", EasyIncorrectCaptchaException:"CAPTCHA is incorrect!", EasyLockUserException:"User temporarily locking two hours, please try again later.", EasyLockIPException:"IP temporarily locking two hours, please try again later."
 
-#---- customize EasyJdbcRealmInterceptor  interceptor, You can customize the code after the authentication process succeeds or fails
+#---- customize EasyJdbcRealmInterceptor  interceptor, You can customize the code after the authentication process succeeds or fails (**USER DEFINED**) 
 authenticationInterceptor=cn.easyproject.easyee.ssh.sys.shiro.AuthenticationInterceptor
 auth.interceptor=$authenticationInterceptor
 
 
-#- user Authentication
+#- user Authentication (**USER DEFINED**) 
 # user filter, if not remeberMe redirected to the url, default is '/login.jsp'
 user.loginUrl=/login.jsp
 
-#- Logout
+#- Logout (**USER DEFINED**) 
 # specify LogoutFilter
 # logout = org.apache.shiro.web.filter.authc.LogoutFilter
 # specify logout redirectUrl
@@ -649,7 +707,7 @@ logout.redirectUrl = /login.jsp
 # EasyFormAuthenticationFilter
 logout.easyFormAuthenticationFilter=$auth
 
-#- perms 
+#- perms  (**USER DEFINED**) 
 ## Authorization filter rules based on URL
 perms=cn.easyproject.easyshiro.EasyURLPermissionFilter
 # Authentication failed steering url
@@ -657,7 +715,7 @@ perms.unauthorizedUrl=/login.jsp
 # Login timeout detection is turned on; default is 'true'
 perms.authenticationTimeoutCheck= true
 
-## Authorization failed related error messages
+## Authorization failed related error messages (**USER DEFINED**) 
 # Authentication failed message key; default is 'msg' 
 perms.msgKey = msg
 # Authentication failed status code key: 301, login timeout; 401 Permission Denied; default is 'statusCode' 
@@ -677,7 +735,7 @@ perms.authenticationTimeoutMsg = Your login has expired, please login again!
 # URL_Ant_Path_Expression = Path_Specific_Filter_Chain
 # filter1[optional_config1], filter2[optional_config2], ..., filterN[optional_configN]
 # -----------------------------------------------------------------------------
-[urls]
+[urls] (**USER DEFINED**) 
  # anonymous
 /checkCaptcha.action = anon
 /notFound.action = anon
