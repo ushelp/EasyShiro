@@ -270,7 +270,7 @@
     			
     			# need to permission
     			/toMain.action = auth
-    			/*.action =  perms
+    			/**.action =  perms
             </value>
         </property>
     </bean>
