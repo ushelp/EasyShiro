@@ -5,7 +5,7 @@
 
 EasyShiro 是一个基于 Shiro 的安全扩展组件。为基于数据库权限管理和 **Web URL 授权** 的 RBAC（Role Based Access Control） Web 权限模型，提供通用的 Shiro 安全管理支持，以及更加丰富强大的功能选项。
 
-最新版本:  `2.5.0-RELEASE`
+最新版本:  `2.5.1-RELEASE`
 
 
 ## 简介
@@ -79,7 +79,7 @@ EasyShiro 是一个基于 Shiro 的安全扩展组件。为基于数据库权限
 <dependency>
     <groupId>cn.easyproject</groupId>
     <artifactId>easyshiro</artifactId>
-    <version>2.5.0-RELEASE</version>
+    <version>2.5.1-RELEASE</version>
 </dependency>
 ```
 

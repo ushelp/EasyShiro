@@ -9,7 +9,7 @@ EasyShiro is a security extension components based Shiro. Based on the RBAC (Rol
 
 ## Latest Version
 
-- Least version:  `2.5.0-RELEASE`
+- Least version:  `2.5.1-RELEASE`
 
 
 
@@ -60,7 +60,7 @@ Supports lock control based on `User` and `IP`, and IP-based `whether CAPTCHA di
 <dependency>
     <groupId>cn.easyproject</groupId>
     <artifactId>easyshiro</artifactId>
-    <version>2.5.0-RELEASE</version>
+    <version>2.5.1-RELEASE</version>
 </dependency>
 ```
 
