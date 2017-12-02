@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- RedisTemplate Start -->
+	<!-- JedisPool -->
+	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+		<property name="maxTotal" value="${redis.pool.maxTotal}"></property>
+		<property name="maxIdle" value="${redis.pool.maxIdle}"></property>
+		<property name="maxWaitMillis" value="${redis.pool.maxWaitMillis}"></property>
+		<property name="testOnBorrow" value="${redis.pool.testOnBorrow}"></property>
+		<property name="testOnReturn" value="${redis.pool.testOnReturn}"></property>
+	</bean>
+	
+	<bean id="jedisConnFactory"
+		class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
+		p:use-pool="true">
+		<property name="hostName" value="${redis.host}"></property>
+		<property name="port" value="${redis.port}"></property>
+		<property name="database" value="${redis.database}"></property>
+		<!-- <property name="password" value="pwd456"></property> -->
+		<property name="poolConfig" ref="jedisPoolConfig"></property>
+	</bean>
+	
+	<!-- Redis template definition -->
+	<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate"
+		p:connection-factory-ref="jedisConnFactory">
+		
+		<!-- !IMPORTANT: key is must 'StringRedisSerializer' -->
+		<property name="keySerializer">
+			<bean class="org.springframework.data.redis.serializer.StringRedisSerializer"></bean>
+		</property>
+		<property name="hashKeySerializer">
+			<bean class="org.springframework.data.redis.serializer.StringRedisSerializer"></bean>
+		</property>
+		<property name="valueSerializer">
+			<bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"></bean>
+		</property>
+		<property name="hashValueSerializer">
+			<bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"></bean>
+		</property>
+	</bean>
+	<!-- RedisTemplate End-->
+	
+
+	<!-- shiro redisManager -->
+<!-- 	<bean id="redisManager" class="cn.easyproject.shirorediscache.RedisManager">
+		<property name="host" value="127.0.0.1"/>
+		<property name="port" value="6379"/>
+		optional properties:
+		<property name="timeout" value="10000"/>
+		<property name="password" value="123456"/>
+	</bean> -->
+	
+	
+    <!-- SessionValidationScheduler (DEFAULT) -->
+    <bean id="sessionValidationScheduler" class="org.apache.shiro.session.mgt.ExecutorServiceSessionValidationScheduler">
+        <!-- Default is 3,600,000 millis = 1 hour -->
+        <property name="interval" value="3600000"></property>
+    </bean>
+    
+	<!-- Session DAO （Redis）-->
+	<bean id="sessionDAO" class="cn.easyproject.shirorediscache.RedisSessionDAO">
+		<!--  0 - never expire -->
+		<property name="expire" value="1800"/>
+		<property name="redisTemplate" ref="redisTemplate"></property>
+	<!-- 	<property name="redisManager" ref="redisManager"></property> -->
+	</bean>
+    
+    
+    <!-- Session Manager (Redis) -->
+    <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+        <!-- Session Timeout: 3,600,000 milliseconds = 1 hour-->
+        <property name="globalSessionTimeout" value="3600000"></property> 
+        <property name="sessionValidationScheduler" ref="sessionValidationScheduler"></property>
+        <property name="sessionValidationSchedulerEnabled" value="true"></property>
+        <property name="sessionDAO" ref="sessionDAO"></property>
+    </bean>
+    
+    <!-- Cache: EhCache(LoginLock)-->
+    <bean id="ehCacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+        <property name="configLocation" value="classpath:/ehcache.xml" />
+        <property name="shared" value="true" />
+    </bean>
+    <!-- 
+	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+        <property name="cacheManager" ref="ehCacheManager" />
+    </bean> 
+	-->
+    <bean id="shiroCacheManagerEhCache" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+        <property name="cacheManager" ref="ehCacheManager" />
+    </bean>
+	
+	<!-- Cache: Redis (securityManager) -->
+	<bean id="shiroCacheManager" class="cn.easyproject.shirorediscache.RedisCacheManager">
+		<property name="redisTemplate" ref="redisTemplate"></property>
+<!-- 		<property name="redisManager" ref="redisManager"></property> -->
+	</bean>
+	
+    
+    <!-- RememberMeManager (DEFAULT) -->
+    <bean id="cookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+        <!-- cookie name  -->
+        <property name="name" value="rememberMe"></property>
+        <!--  default is /request.getContextPath() -->
+        <property name="path" value="/"></property> 
+        <!-- default is ONE_YEAR -->
+        <property name="maxAge" value="31536000"></property> 
+    </bean>
+    <bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
+        <property name="cookie" ref="cookie"></property>
+    </bean>
+
+	
+    <!--  EasyJdbcRealm (**USER DEFINED**) -->
+    <bean id="jdbcRealm" class="cn.easyproject.easyshiro.EasyJdbcRealm">
+        <property name="dataSource" ref="dataSource"></property>
+        <!-- Authentication information query; default: select * from users where username = ? -->
+        <!-- status: 1 on; 2 lock; 3 delete -->
+        <property name="authenticationQuery" value="select user_id as userid,name,password,status,real_name as realname from sys_user where name=? and status in(0,1)"></property>
+        <!-- Password columns Column name;  default: password -->
+        <property name="passwordColumn" value="password"></property>
+        <!-- Roles query (supports multiple username =?); default: select role_name from user_roles where username = ?  -->
+        <property name="userRolesQuery" value="select name from sys_role where role_id in (select role_id from sys_user_role where user_id=(select user_id from sys_user where name=?)) and status=0"></property>
+        <!-- Whether to execute permissions Query permission to query; default: true -->
+        <property name="permissionsLookupEnabled" value="true"></property>
+        <!-- Permissions query (supports multiple username =?); default: select permission from user_roles_permissions where username = ?"  -->
+        <property name="permissionsQuery" value="select action from sys_menu_permission where MENU_PERMISSION_ID in( select MENU_PERMISSION_ID from sys_role_menu_permission where ROLE_ID in(select role_id from sys_user_role where user_id=(select user_id from sys_user where name=?))) UNION select action from sys_operation_permission where OPERATION_PERMISSION_ID in(select OPERATION_PERMISSION_ID from sys_role_operation_permission where ROLE_ID in(select role_id from sys_user_role where user_id=(select user_id from sys_user where name=?)))"></property>
+        <!-- EasyJdbcRealm Interceptor, after authentication and authorization information can be obtained, for SimpleAuthenticationInfo authentication and authorization information SimpleAuthorizationInfo additional processing -->
+        <!-- 
+		<property name="interceptor" ref="realmInterceptor"></property> 
+		-->
+    </bean>
+	
+    <!-- EasyShiro Custom authentication process interceptors(**USER DEFINED**) -->
+    <!-- EasyFormAuthenticationFilter 认证成功或失败拦截器 -->
+    <bean id="authenticationInterceptor" class="cn.easyproject.easyee.ssh.sys.shiro.AuthenticationInterceptor"> </bean>
+    <!-- EasyJdbcRealm Authentication and authorization information processing interceptor -->
+    <bean id="realmInterceptor" class="cn.easyproject.easyee.ssh.sys.shiro.RealmInterceptor"> </bean>
+
+    <!-- auth Login Authentication (**USER DEFINED**) -->
+    <bean id="auth" class="cn.easyproject.easyshiro.EasyFormAuthenticationFilter">
+    
+         <!-- ************ FormAuthenticationFilter Configuration ************ -->
+         <!-- when request method is post execute login, else to login page view -->
+         <property name="loginUrl" value="/toLogin.action"></property>
+         <!-- redirect after successful login -->
+         <property name="successUrl" value="/toMain.action"></property>
+         <!-- name of request parameter with username; if not present filter assumes 'username' -->
+         <property name="usernameParam" value="name"></property>
+         <!-- name of request parameter with password; if not present filter assumes 'password' -->
+         <property name="passwordParam" value="password"></property>
+         <!-- does the user wish to be remembered?; if not present filter assumes 'rememberMe' -->
+         <!-- <property name="rememberMeParam" value="rememberMe"></property> -->
+         
+         
+         <!-- ************ EasyFormAuthenticationFilter Configuration ************ -->
+         <!-- ## Login Configuration ## -->
+         <!-- Login is successful, the token is stored in the session key;default is 'TOKEN' -->
+         <property name="sessionTokenKey" value="TOKEN"></property>
+         <!-- Whether to use the login fails to redirect the way to jump back to the login page;default is 'false' -->
+         <property name="loginFailureRedirectToLogin" value="true"></property>
+         
+         
+         <!-- ************ User defined UsernamePasswordToken Configuration ************ -->
+         <!-- customize UsernamePasswordToken; Default is 'org.apache.shiro.auth.UsernamePasswordToken' -->
+         <property name="tokenClassName" value="cn.easyproject.easyee.ssh.sys.shiro.UsernamePasswordEncodeToken"></property>
+         
+         
+         <!-- ************ CAPTCHA Configuration ************ -->
+         <!-- Are open CAPTCHA verification; default 'true' -->
+         <property name="enableCaptcha" value="true"></property>
+         <!-- CAPTCHA parameter name; default 'captcha' -->
+         <property name="captchaParam" value="captcha"></property>
+         <!--key Session codes stored value; default 'captcha' -->
+         <property name="sessionCaptchaKey" value="rand"></property>
+         
+         
+         <!-- ************ AutoLogin Configuration ************ -->
+         <!-- Are open Auto Login -->
+         <property name="enableAutoLogin" value="false"></property>
+         <!-- Auto Login parameter name -->
+         <property name="autoLoginParam" value="autoLogin"></property>
+         <!-- Cookie maxAge ，default is ONE_YEAR -->
+         <property name="autoLoginMaxAge" value="31536000"></property>
+         <!-- Cookie path，default is "" -->
+         <property name="autoLoginPath" value="/"></property>
+         <!-- Cookie domain，empty or default is your current domain name -->
+         <property name="autoLoginDomain" value=""></property>
+         
+         
+         <!-- ************ LockLogin Configuration ************ -->
+         <!-- ## ehcache.xml Configuration ## -->
+         <!-- Lock Login management lockout time period EHCache cache name, simply adjust timeToIdleSeconds-->
+         <!-- Reach the login lockout times, login lockout 2 Hours -->
+         <!-- 
+		 <cache
+               name="shiro-lockLoginCache"
+               maxElementsInMemory="100000"
+               eternal="false"
+               timeToIdleSeconds="0"
+               timeToLiveSeconds="7200"
+               diskExpiryThreadIntervalSeconds="600"
+               memoryStoreEvictionPolicy="LRU"
+               overflowToDisk="true"
+               diskPersistent="true" >
+        </cache>
+		-->
+        <!--Lock Login login error statistics of the number of time periods EHCache cache name, simply adjust timeToIdleSeconds-->
+        <!-- Count the number of errors in 10 minutes  -->
+        <!-- 
+		<cache
+             name="shiro-lockCheckCache"
+             maxElementsInMemory="100000"
+             eternal="false"
+             timeToIdleSeconds="0"
+             timeToLiveSeconds="600"
+             diskExpiryThreadIntervalSeconds="600"
+             memoryStoreEvictionPolicy="LRU">
+			<persistence strategy="localTempSwap"/>
+        </cache> 
+		--> 
+         <!--Whether to open the LockLogin ; default is false, do not open -->
+         <property name="enableLockLogin" value="false"></property>
+         <!-- Shiro CacheManager -->
+         <property name="ehCacheManager" ref="shiroCacheManagerEhCache"></property>
+         <!-- LockLogin Management locked EHCache name cache time period; default shiro-lockLoginCache -->
+         <property name="lockLoginCacheName" value="shiro-lockLoginCache"></property>
+         <!-- LockLogin Statistics Log error count time period EHCache cache name; defaults to shiro-lockCheckCache -->
+         <property name="lockCheckCacheName" value="shiro-lockCheckCache"></property>
+         <!--To achieve the same user name to log the number of login errors, login lockout; 0 for no limit; default is 6 -->
+         <property name="userLock" value="4"></property>
+         <!-- Login achieve the same IP number of errors, login lockout; 0 for no limit; default is 15 -->
+         <property name="ipLock" value="6"></property>
+         <!-- The specified number of login errors, display codes; -1 does not control verification code display; the default is 1 -->
+         <property name="showCaptcha" value="4"></property>
+         
+		 
+         <!-- ************ Logon failure related error messages ************ -->
+         <!-- Login failed message key  -->
+         <property name="msgKey" value="MSG"></property>
+         <!-- The message is stored session，session.setAttribute(MsgKey,xxxErrorMsg); default is 'false' -->
+         <property name="sessionMsg" value="true"></property>
+         <!-- The message is stored request，request.setAttribute(MsgKey,xxxErrorMsg); default is 'false' -->
+         <property name="requestMsg" value="true"></property>
+         <!-- # Login error, an exception in content Map-->
+         <property name="exceptionMsg">
+             <map>
+                 <!-- ExceptionClassName:"Message", ExceptionClassName2:"Message2", ... -->
+                 <entry key="LockedAccountException" value="Account lockout, please contact the administrator to unlock."></entry>
+                 
+                 <entry key="AuthenticationException" value="Username or password is incorrect!"></entry>
+                 
+                 <entry key="EasyIncorrectCaptchaException" value="CAPTCHA is incorrect!"></entry>
+                 <entry key="EasyLockUserException" value="User temporarily locking two hours, please try again later."></entry>
+                 <entry key="EasyLockIPException" value="IP temporarily locking two hours, please try again later."></entry>
+             </map>
+         </property>
+     	
+     	<!-- ************ Customize interceptor, implements EasyAuthenticationInterceptor interface************ -->
+     	<property name="interceptor" ref="authenticationInterceptor"></property>
+    </bean>
+    
+    <!-- Specify LogoutFilter  (**USER DEFINED**) -->
+    <!-- Enables session security information (Subject / Session), RememberMe information and AutoLogin automatic login logoff information -->
+    <bean id="logout" class="cn.easyproject.easyshiro.EasyLogoutFilter">
+    	<!-- specify logout redirectUrl -->
+    	<property name="redirectUrl" value="/toLogin.action"></property>
+    	<!-- EasyFormAuthenticationFilter -->
+    	<property name="easyFormAuthenticationFilter" ref="auth"></property>
+    </bean>
+    
+    <!-- perms  (**USER DEFINED**) -->
+    <bean id="perms" class="cn.easyproject.easyshiro.EasyURLPermissionFilter">
+    	<!-- Authentication failed steering url -->
+    	<property name="unauthorizedUrl" value="/toLogin.action"></property>
+    	<!-- Login timeout detection is turned on; default is 'true'-->
+    	<property name="authenticationTimeoutCheck" value="true"></property>
+    	<!-- Authentication failed message key; default is 'MSG'  -->
+    	<property name="msgKey" value="msg"></property>
+    	<!-- Authentication failed status code key: 301, login timeout; 401 Permission Denied; default is 'statusCode'  -->
+    	<property name="statusCode" value="statusCode"></property>
+    	<!-- The message is stored session，session.setAttribute(MsgKey,xxxErrorMsg); default is 'false' -->
+    	<property name="sessionMsg" value="true"></property>
+    	<!-- The message is stored request，request.setAttribute(MsgKey,xxxErrorMsg); default is 'false' -->
+    	<property name="requestMsg" value="true"></property>
+    	<!-- Authentication failed Tips content;  default is 'Permission denied!' -->
+    	<property name="permissionDeniedMsg" value="You do not have permission!"></property>
+    	<!-- Login timeout prompt content; default is 'Your login has expired, please login again!' -->
+    	<property name="authenticationTimeoutMsg" value="Your login has expired, please login again!"></property>
+    </bean>
+    
+    <!-- Shiro Native SessionManager  (DEFAULT) -->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+    	<!-- <property name="sessionMode" value="native"></property> -->
+    	<property name="sessionManager" ref="sessionManager"></property>
+    	<!-- Cache: EhCache-->
+    	<property name="cacheManager" ref="shiroCacheManager"></property>
+    	<property name="rememberMeManager" ref="rememberMeManager"></property>
+    	<property name="realms">
+    		<list>
+    			<ref bean="jdbcRealm"/>
+    		</list>
+    	</property>
+    </bean>
+    
+    <!-- shiroFilter (**USER DEFINED**) -->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"/>
+        <!-- override these for application-specific URLs if you like:-->
+        <property name="loginUrl" value="/toLogin.action"/>
+        <property name="successUrl" value="/toMain.action"/>
+        <property name="unauthorizedUrl" value="/toLogin.action"/> 
+        <property name="filterChainDefinitions">
+            <value>
+                # anonymous
+    			/checkCaptcha.action = anon
+    			/notFound.action = anon
+    			
+                # requests to /DoLogout will be handled by the ‘logout’ filter
+    			/logout.action = logout
+    			
+    			# requests to /toLogin.action will be handled by the ‘auth’ filter
+    			/toLogin.action = auth
+    			
+    			# doc page need auth
+    			/doc/** = auth
+    			
+    			# need to permission
+    			/toMain.action = auth
+    			/**.action =  perms
+            </value>
+        </property>
+    </bean>
+    
+	<!-- DEFAULT -->
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+</beans>

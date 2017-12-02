@@ -2,10 +2,7 @@
 
 ---------------
 
-
 EasyShiro 是一个基于 Shiro 的安全扩展组件。为基于数据库权限管理和 **Web URL 授权** 的 RBAC（Role Based Access Control） Web 权限模型，提供通用的 Shiro 安全管理支持，以及更加丰富强大的功能选项。
-
-最新版本:  `2.5.1-RELEASE`
 
 
 ## 简介
@@ -16,8 +13,11 @@ EasyShiro 是一个基于 Shiro 的安全扩展组件。为基于数据库权限
 
 - **EasyShiro**
 
- EasyShiro 是一个基于 Shiro 的安全扩展组件。为基于数据库权限管理和 **Web URL 授权**的RBAC（Role Based Access Control） Web 权限模型，提供通用的 Shiro 安全管理支持。
+   EasyShiro 是一个基于 Shiro 的安全扩展组件。为基于数据库权限管理和 **Web URL 授权**的RBAC（Role Based Access Control） Web 权限模型，提供通用的 Shiro 安全管理支持。
 
+- **EasyShiro-Redis-Cache**
+
+    基于 Redis 的 Shrio 缓存，支持 Jedis 直连和  Spring-Data-Redis RedisTemplate。https://github.com/ushelp/EasyShiro-Redis-Cache
 
 ## EasyShiro 特点
 
@@ -79,7 +79,7 @@ EasyShiro 是一个基于 Shiro 的安全扩展组件。为基于数据库权限
 <dependency>
     <groupId>cn.easyproject</groupId>
     <artifactId>easyshiro</artifactId>
-    <version>2.5.1-RELEASE</version>
+    <version>2.6.0-RELEASE</version>
 </dependency>
 ```
 
@@ -847,6 +847,107 @@ perms.authenticationTimeoutMsg = 您的登录已过期，请重新登录！
 - `EasyJdbcRealmInterceptor`， 认证与授权信息拦截器（例如，可以在获取授权或认证信息后，对进行二次处理，如对特定字符分割的权限字符串进行分割后重新存入 `StringPermissions` 等等。）
 
 
+
+## 基于 Redis 的 Session 缓存管理
+
+[EasyShiro-Redis-Cache](https://github.com/ushelp/EasyShiro-Redis-Cache) 是一个基于 Redis 的 Shrio 缓存，支持 Jedis 直连和  Spring-Data-Redis RedisTemplate。
+
+
+### Maven
+
+```XML
+<dependency>
+	<groupId>cn.easyproject</groupId>
+	<artifactId>easyshiro-redis-cache</artifactId>
+	<version>2.6.0-RELEASE</version>
+</dependency>
+```
+
+### 配置 
+配置 RedisManager(Jedis) 或 RedisTemplate 连接。
+
+```XML
+	<!-- RedisTemplate Start -->
+	<!-- JedisPool -->
+	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+		<property name="maxTotal" value="${redis.pool.maxTotal}"></property>
+		<property name="maxIdle" value="${redis.pool.maxIdle}"></property>
+		<property name="maxWaitMillis" value="${redis.pool.maxWaitMillis}"></property>
+		<property name="testOnBorrow" value="${redis.pool.testOnBorrow}"></property>
+		<property name="testOnReturn" value="${redis.pool.testOnReturn}"></property>
+	</bean>
+	
+	<bean id="jedisConnFactory"
+		class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
+		p:use-pool="true">
+		<property name="hostName" value="${redis.host}"></property>
+		<property name="port" value="${redis.port}"></property>
+		<property name="database" value="${redis.database}"></property>
+		<!-- <property name="password" value="pwd456"></property> -->
+		<property name="poolConfig" ref="jedisPoolConfig"></property>
+	</bean>
+	
+	<!-- Redis template definition -->
+	<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate"
+		p:connection-factory-ref="jedisConnFactory">
+		
+		<!-- !IMPORTANT: key is must 'StringRedisSerializer' -->
+		<property name="keySerializer">
+			<bean class="org.springframework.data.redis.serializer.StringRedisSerializer"></bean>
+		</property>
+		<property name="hashKeySerializer">
+			<bean class="org.springframework.data.redis.serializer.StringRedisSerializer"></bean>
+		</property>
+		<property name="valueSerializer">
+			<bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"></bean>
+		</property>
+		<property name="hashValueSerializer">
+			<bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"></bean>
+		</property>
+	</bean>
+	<!-- RedisTemplate End-->
+	
+
+	<!-- shiro redisManager -->
+<!-- 	<bean id="redisManager" class="cn.easyproject.shirorediscache.RedisManager">
+		<property name="host" value="127.0.0.1"/>
+		<property name="port" value="6379"/>
+		optional properties:
+		<property name="timeout" value="10000"/>
+		<property name="password" value="123456"/>
+	</bean> -->
+	
+	
+	<!-- Session DAO (Redis) -->
+	<bean id="sessionDAO" class="cn.easyproject.shirorediscache.RedisSessionDAO">
+		<!--  0 - never expire -->
+		<property name="expire" value="1800"/>
+		<property name="redisTemplate" ref="redisTemplate"></property>
+	<!-- 	<property name="redisManager" ref="redisManager"></property> -->
+	</bean>
+	
+	<!-- Cache: Redis (securityManager) -->
+	<bean id="shiroCacheManagerRedis" class="cn.easyproject.shirorediscache.RedisCacheManager">
+		<property name="redisTemplate" ref="redisTemplate"></property>
+<!-- 		<property name="redisManager" ref="redisManager"></property> -->
+	</bean>
+	
+	<!-- SecurityManager -->
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<!-- <property name="sessionMode" value="native"></property> -->
+		<property name="sessionManager" ref="sessionManager"></property>
+		<!-- Cache: Redis-->
+		<property name="cacheManager" ref="shiroCacheManagerRedis"></property>
+		<property name="rememberMeManager" ref="rememberMeManager"></property>
+		<property name="realms">
+			<list>
+				<ref bean="jdbcRealm"/>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- ... -->
+````
 
 
 ## 其他功能配置

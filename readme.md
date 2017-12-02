@@ -7,11 +7,6 @@ EasyShiro 是一个基于 Shiro 的安全扩展组件。为基于数据库权限
 
 EasyShiro is a security extension components based Shiro. Based on the RBAC (Role Based Access Control) Web permission model based on database rights management and **Web URL authorization**, provides general Shiro security management support, as well as richer and more powerful function options.
 
-## Latest Version
-
-- Least version:  `2.5.1-RELEASE`
-
-
 
 ## Featuter/特点
 
@@ -60,7 +55,7 @@ Supports lock control based on `User` and `IP`, and IP-based `whether CAPTCHA di
 <dependency>
     <groupId>cn.easyproject</groupId>
     <artifactId>easyshiro</artifactId>
-    <version>2.5.1-RELEASE</version>
+    <version>2.6.0-RELEASE</version>
 </dependency>
 ```
 

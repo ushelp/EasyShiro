@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>D:\workspace-sts-3.8.1.RELEASE\easyshiro\github\doc\.readme-en.md.html</title>
+<title>R:\Cloud\360Cloud\Easy Project\EasyProject\项目\EasyShiro\easyshiro\github\doc\.readme-en.md.html</title>
 
 
 <style type="text/css">
@@ -642,29 +642,29 @@ function setDocumentScrollTop(ypos)
 <h1> <a id="easyshiro" class="anchor" href="#easyshiro" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>EasyShiro</h1> 
 <hr /> 
 <p>EasyShiro is a security extension components based Shiro. Based on the RBAC (Role Based Access Control) Web permission model based on database rights management and <strong>Web URL authorization</strong>, provides general Shiro security management support, as well as richer and more powerful function options.</p> 
-<p>Least version: <code>2.5.1-RELEASE</code></p> 
 <h2> <a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Introduction</h2> 
 <ul> 
- <li> <p><strong>Apache Shiro</strong></p> <p><a href="http://shiro.apache.org/" title=" Apache Shiro ">Apache Shiro</a> is the most powerful and comprehensive Java security management framework that provides user authentication, authorization (based on roles and permissions), Session management, encryption, Web and third-party integration, and so on. But Apache Shiro just a security engine, not a rights management system, rights management system daily projects still need to achieve their own, different projects often need to customize a number of different security components, and the configuration is complicated.</p> </li> 
+ <li> <p><strong>Apache Shiro</strong></p> <p><a href="http://shiro.apache.org/" title=" Apache Shiro " rel="nofollow">Apache Shiro</a> is the most powerful and comprehensive Java security management framework that provides user authentication, authorization (based on roles and permissions), Session management, encryption, Web and third-party integration, and so on. But Apache Shiro just a security engine, not a rights management system, rights management system daily projects still need to achieve their own, different projects often need to customize a number of different security components, and the configuration is complicated.</p> </li> 
  <li> <p><strong>EasyShiro</strong></p> <p>EasyShiro based Shiro is a security extension components. Based rights management database and <strong>Web URL authorization</strong> RBAC (Role Based Access Control) Web permissions model provides a common Shiro security management support.</p> </li> 
+ <li> <p><strong>EasyShiro-Redis-Cache</strong></p> <p>An implement of redis cache can be used by shiro, Support Jedis direct connect and Spring-Data-Redis RedisTemplate.<a href="https://github.com/ushelp/EasyShiro-Redis-Cache">https://github.com/ushelp/EasyShiro-Redis-Cache</a></p> </li> 
 </ul> 
 <h2> <a id="easyshiro-featuter" class="anchor" href="#easyshiro-featuter" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>EasyShiro Featuter</h2> 
 <ol> 
- <li><p>Support RBAC rights management based on database rights management and <strong>Web URL</strong> authorizations</p></li> 
- <li><p>Enhanced simplified Shiro unified component support. Provide common <strong>CAPTCHA</strong>, <strong>Automatic login</strong>, <strong>Login lock</strong>, <strong>Error message configuration</strong>, <strong>Interceptor</strong>, <strong>Ajax response</strong>, etc. support</p></li> 
- <li><p>Simplifies configuration and simplifies security integration, reducing Shiro's complexity. Just add the <code>jar</code> package and adjust some of the configuration( <code>Shiro.ini</code>,<code>spring-shiro.xml</code>) options as required to complete the integration and enjoy the complete Shiro stand by</p></li> 
- <li><p><strong>LockLogin</strong> login lock based on <code>User</code> and<code>IP</code> and provides login lock management system <strong>LockLoginManagement</strong></p></li> 
+ <li> <p>Support RBAC rights management based on database rights management and <strong>Web URL</strong> authorizations</p> </li> 
+ <li> <p>Enhanced simplified Shiro unified component support. Provide common <strong>CAPTCHA</strong>, <strong>Automatic login</strong>, <strong>Login lock</strong>, <strong>Error message configuration</strong>, <strong>Interceptor</strong>, <strong>Ajax response</strong>, etc. support</p> </li> 
+ <li> <p>Simplifies configuration and simplifies security integration, reducing Shiro's complexity. Just add the <code>jar</code> package and adjust some of the configuration( <code>Shiro.ini</code>,<code>spring-shiro.xml</code>) options as required to complete the integration and enjoy the complete Shiro stand by</p> </li> 
+ <li> <p><strong>LockLogin</strong> login lock based on <code>User</code> and<code>IP</code> and provides login lock management system <strong>LockLoginManagement</strong></p> </li> 
 </ol> 
 <h2> <a id="main-module" class="anchor" href="#main-module" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Main module</h2> 
 <h3> <a id="1-enhanced-simplified-shiro-unified-component-support" class="anchor" href="#1-enhanced-simplified-shiro-unified-component-support" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1. Enhanced Simplified Shiro unified component support</h3> 
 <ul> 
- <li><p>*<em>Auth *</em>: <code>EasyFormAuthenticationFilter</code>, full-featured authentication filter, a verification code (CAPTCHA), automatic login (AutoLogin), the login lockout (LockLogin), custom exception message (exceptionMsg), redirect the jump, block , a function of multiple logins, etc.</p></li> 
- <li><p>** Realm **: <code>EasyJdbcRealm</code>, based Realm database to automatically obtain authentication and authorization data from the database, support rights to refresh</p></li> 
- <li><p>** Perms **: <code>EasyURLPermissionFilter</code>, Authorization Manager filters, Web-based management URL requesting authorization to support Ajax response</p></li> 
- <li><p>** Logout **: <code>EasyLogoutFilter</code>, the user logs off the filter to provide automatic login-related write-offs</p></li> 
- <li><p>** Interceptor **: Certification and Realm interceptors support ( <code>EasyAuthenticationInterceptor</code>,<code>EasyJdbcRealmInterceptor</code>), support to expand when the authentication success or failure</p></li> 
- <li><p><strong>EasyUsernamePasswordEndcodeToken</strong>: Simplified and more flexible password encryption scheme Token, implement <code>encodePassword ()</code>, returns the result of the encrypted password</p></li> 
- <li><p>** Exception **: custom login authentication related exception ( <code>EasyIncorrectCaptchaException</code>,<code>EasyLockIPException</code>, <code>EasyLockUserException</code>,<code>EasyLockLoginException</code>)</p></li> 
+ <li> <p>**Auth **: <code>EasyFormAuthenticationFilter</code>, full-featured authentication filter, a verification code (CAPTCHA), automatic login (AutoLogin), the login lockout (LockLogin), custom exception message (exceptionMsg), redirect the jump, block , a function of multiple logins, etc.</p> </li> 
+ <li> <p>** Realm **: <code>EasyJdbcRealm</code>, based Realm database to automatically obtain authentication and authorization data from the database, support rights to refresh</p> </li> 
+ <li> <p>** Perms **: <code>EasyURLPermissionFilter</code>, Authorization Manager filters, Web-based management URL requesting authorization to support Ajax response</p> </li> 
+ <li> <p>** Logout **: <code>EasyLogoutFilter</code>, the user logs off the filter to provide automatic login-related write-offs</p> </li> 
+ <li> <p>** Interceptor **: Certification and Realm interceptors support ( <code>EasyAuthenticationInterceptor</code>,<code>EasyJdbcRealmInterceptor</code>), support to expand when the authentication success or failure</p> </li> 
+ <li> <p><strong>EasyUsernamePasswordEndcodeToken</strong>: Simplified and more flexible password encryption scheme Token, implement <code>encodePassword ()</code>, returns the result of the encrypted password</p> </li> 
+ <li> <p>** Exception **: custom login authentication related exception ( <code>EasyIncorrectCaptchaException</code>,<code>EasyLockIPException</code>, <code>EasyLockUserException</code>,<code>EasyLockLoginException</code>)</p> </li> 
 </ul> 
 <h3> <a id="2-lockloginmanagement" class="anchor" href="#2-lockloginmanagement" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2. LockLoginManagement</h3> 
 <p><a href="images/locklogin1.png" target="_blank"><img src="images/locklogin1.png" alt="LockLogin" style="max-width:100%;" /></a></p> 
@@ -673,16 +673,16 @@ function setDocumentScrollTop(ypos)
 <p><a href="images/rbca-en.png" target="_blank"><img src="images/rbca-en.png" alt="RBCA" style="max-width:100%;" /></a></p> 
 <h2> <a id="steps-for-usage" class="anchor" href="#steps-for-usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Steps for usage</h2> 
 <ol> 
- <li><p>Add <code>jar</code> dependency</p></li> 
- <li><p>Configure the Filter in <code>web.xml</code></p></li> 
- <li><p>Use <code>Spring</code> or <code>INI</code> configure the <code>Shiro</code></p></li> 
+ <li> <p>Add <code>jar</code> dependency</p> </li> 
+ <li> <p>Configure the Filter in <code>web.xml</code></p> </li> 
+ <li> <p>Use <code>Spring</code> or <code>INI</code> configure the <code>Shiro</code></p> </li> 
 </ol> 
 <h3> <a id="1-add-jar-dependency" class="anchor" href="#1-add-jar-dependency" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1. Add jar dependency</h3> 
 <div class="highlight highlight-text-xml">
  <pre>&lt;<span class="pl-ent">dependency</span>&gt;
     &lt;<span class="pl-ent">groupId</span>&gt;cn.easyproject&lt;/<span class="pl-ent">groupId</span>&gt;
     &lt;<span class="pl-ent">artifactId</span>&gt;easyshiro&lt;/<span class="pl-ent">artifactId</span>&gt;
-    &lt;<span class="pl-ent">version</span>&gt;2.5.1-RELEASE&lt;/<span class="pl-ent">version</span>&gt;
+    &lt;<span class="pl-ent">version</span>&gt;2.6.0-RELEASE&lt;/<span class="pl-ent">version</span>&gt;
 &lt;/<span class="pl-ent">dependency</span>&gt;</pre>
 </div> 
 <h3> <a id="2-configure-the-filter-in-webxml" class="anchor" href="#2-configure-the-filter-in-webxml" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2. Configure the Filter in <code>web.xml</code> </h3> 
@@ -707,7 +707,7 @@ function setDocumentScrollTop(ypos)
     &lt;filter-class&gt;org.apache.shiro.web.servlet.ShiroFilter&lt;/filter-class&gt;
 &lt;/filter&gt; 
 --&gt; 
-
+	
 &lt;!-- Make sure any request you want accessible to Shiro is filtered. /* catches all --&gt;
 &lt;!-- requests. Usually this filter mapping is defined first (before all others) to --&gt;
 &lt;!-- ensure that Shiro works in subsequent filters in the filter chain: --&gt;
@@ -723,197 +723,191 @@ function setDocumentScrollTop(ypos)
 <h3> <a id="2-configuration-templates" class="anchor" href="#2-configuration-templates" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2. Configuration Templates</h3> 
 <h4> <a id="21-extended-configuration-adjust-as-needed" class="anchor" href="#21-extended-configuration-adjust-as-needed" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2.1 Extended configuration, adjust as needed</h4> 
 <ul> 
- <li> <p><strong>EasyJdbcRealm</strong></p> 
-  <ul> 
-   <li> Configuring the Password column (<code>passwordColumn</code>)</li> 
-   <li> Authentication SQL Query(<code>authenticationQuery</code>)</li> 
-   <li> Role SQL Query(<code>userRolesQuery</code>)</li> 
-   <li> Permissions SQL Query(<code>permissionsQuery</code>)</li> 
-   <li> Query support multiple <code>?</code> Placeholder (in favor of <code>union</code> query).</li> 
-  </ul> </li> 
- <li> <p><strong>EasyFormAuthenticationFilter</strong></p> 
-  <ul> 
-   <li><strong>Extended basic configuration</strong></li> 
-   <li>Successful login into the session's Token name (<code>sessionTokenKey</code>)</li> 
-   <li>Whether to open the Login redirection(<code>loginFailureRedirectToLogin</code>)</li> 
-   <li>Extended Token class log in using the fully qualified name (<code>tokenClassName</code>)</li> 
-   <li>Authentication success or failure of the custom interceptor(<code>interceptor</code>), need implements <code>EasyAuthenticationInterceptor</code> interface</li> 
-   <li> <strong>CAPTCHA configuration</strong> </li> 
-   <li>Whether to open the captcha(<code>enableCaptcha</code>)</li> 
-   <li>Captchar param name(<code>captchaParam</code>)</li> 
-   <li>Session codes stored in name (<code>sessionCaptchaKey</code>)</li> 
-   <li> <strong>AutoLogin configuration</strong> </li> 
-   <li>Whether to open the Auto Login(<code>enableAutoLogin</code>)</li> 
-   <li>Auto login param name(<code>autoLoginParam</code>)</li> 
-   <li>Auto login Cookie maxage(<code>autoLoginMaxAge</code>)</li> 
-   <li>Auto login Cookie path(<code>autoLoginPath</code>)</li> 
-   <li>Auto login Cookie domain(<code>autoLoginDomain</code>)</li> 
-   <li><strong>LockLogin configuration</strong></li> 
-   <li>Whether to open the Lock Login(<code>enableLockLogin</code>)</li> 
-   <li>LockLogin Shiro EhCache Manager(<code>ehCacheManager</code>)</li> 
-   <li>Lock check EhCache name(<code>lockCheckCacheName</code>)</li> 
-   <li>Lock Login EhCache name(<code>lockLoginCacheName</code>)</li> 
-   <li>Username locking reached the maximum number of login errors(<code>userLock</code>)</li> 
-   <li>IP locking reached the maximum number of login errors(<code>ipLock</code>)</li> 
-   <li>Based on the specified number of incorrect login IP, and display codes(<code>showCaptcha</code>)</li> 
-   <li><strong>Logon failure related error messages</strong></li> 
-   <li>Name request message or session storage(<code>msgKey</code>)</li> 
-   <li>Whether the message is stored session(<code>sessionMsg</code>)</li> 
-   <li>Whether the message is stored request(<code>requestMsg</code>)</li> 
-   <li>Exception Message Map (<code>exceptionMsg</code>), format: <code>ExceptionSimpleClassName=Message</code> </li> 
-  </ul> </li> 
- <li> <p><strong>EasyURLPermissionFilter</strong></p> 
-  <ul> 
-   <li> Login timeout detection is turned on(<code>authenticationTimeoutCheck</code>)</li> 
-   <li> Authorization failed, Ajax message key(<code>msg</code>)</li> 
-   <li> Authorization failed, Ajax status code key(<code>statusCode</code>)</li> 
-   <li> Whether the message is stored session(<code>sessionMsg</code>)</li> 
-   <li> Whether the message is stored request(<code>requestMsg</code>)</li> 
-   <li> Authorization failed prompt content(<code>permissionDeniedMsg</code>)</li> 
-   <li> Tip the contents of the login timeout(<code>authenticationTimeoutMsg</code>)</li> 
-  </ul> </li> 
+ <li> <p><strong>EasyJdbcRealm</strong></p> </li> 
+ <li> <p>Configuring the Password column (<code>passwordColumn</code>)</p> </li> 
+ <li> <p>Authentication SQL Query(<code>authenticationQuery</code>)</p> </li> 
+ <li> <p>Role SQL Query(<code>userRolesQuery</code>)</p> </li> 
+ <li> <p>Permissions SQL Query(<code>permissionsQuery</code>)</p> </li> 
+ <li> <p>Query support multiple <code>?</code> Placeholder (in favor of <code>union</code> query).</p> </li> 
+ <li> <p><strong>EasyFormAuthenticationFilter</strong></p> </li> 
+ <li> <p><strong>Extended basic configuration</strong></p> </li> 
+ <li> <p>Successful login into the session's Token name (<code>sessionTokenKey</code>)</p> </li> 
+ <li> <p>Whether to open the Login redirection(<code>loginFailureRedirectToLogin</code>)</p> </li> 
+ <li> <p>Extended Token class log in using the fully qualified name (<code>tokenClassName</code>)</p> </li> 
+ <li> <p>Authentication success or failure of the custom interceptor(<code>interceptor</code>), need implements <code>EasyAuthenticationInterceptor</code> interface</p> </li> 
+ <li> <p><strong>CAPTCHA configuration</strong></p> </li> 
+ <li> <p>Whether to open the captcha(<code>enableCaptcha</code>)</p> </li> 
+ <li> <p>Captchar param name(<code>captchaParam</code>)</p> </li> 
+ <li> <p>Session codes stored in name (<code>sessionCaptchaKey</code>)</p> </li> 
+ <li> <p><strong>AutoLogin configuration</strong></p> </li> 
+ <li> <p>Whether to open the Auto Login(<code>enableAutoLogin</code>)</p> </li> 
+ <li> <p>Auto login param name(<code>autoLoginParam</code>)</p> </li> 
+ <li> <p>Auto login Cookie maxage(<code>autoLoginMaxAge</code>)</p> </li> 
+ <li> <p>Auto login Cookie path(<code>autoLoginPath</code>)</p> </li> 
+ <li> <p>Auto login Cookie domain(<code>autoLoginDomain</code>)</p> </li> 
+ <li> <p><strong>LockLogin configuration</strong></p> </li> 
+ <li> <p>Whether to open the Lock Login(<code>enableLockLogin</code>)</p> </li> 
+ <li> <p>LockLogin Shiro EhCache Manager(<code>ehCacheManager</code>)</p> </li> 
+ <li> <p>Lock check EhCache name(<code>lockCheckCacheName</code>)</p> </li> 
+ <li> <p>Lock Login EhCache name(<code>lockLoginCacheName</code>)</p> </li> 
+ <li> <p>Username locking reached the maximum number of login errors(<code>userLock</code>)</p> </li> 
+ <li> <p>IP locking reached the maximum number of login errors(<code>ipLock</code>)</p> </li> 
+ <li> <p>Based on the specified number of incorrect login IP, and display codes(<code>showCaptcha</code>)</p> </li> 
+ <li> <p><strong>Logon failure related error messages</strong></p> </li> 
+ <li> <p>Name request message or session storage(<code>msgKey</code>)</p> </li> 
+ <li> <p>Whether the message is stored session(<code>sessionMsg</code>)</p> </li> 
+ <li> <p>Whether the message is stored request(<code>requestMsg</code>)</p> </li> 
+ <li> <p>Exception Message Map (<code>exceptionMsg</code>), format: <code>ExceptionSimpleClassName=Message</code></p> </li> 
+ <li> <p><strong>EasyURLPermissionFilter</strong></p> </li> 
+ <li> <p>Login timeout detection is turned on(<code>authenticationTimeoutCheck</code>)</p> </li> 
+ <li> <p>Authorization failed, Ajax message key(<code>msg</code>)</p> </li> 
+ <li> <p>Authorization failed, Ajax status code key(<code>statusCode</code>)</p> </li> 
+ <li> <p>Whether the message is stored session(<code>sessionMsg</code>)</p> </li> 
+ <li> <p>Whether the message is stored request(<code>requestMsg</code>)</p> </li> 
+ <li> <p>Authorization failed prompt content(<code>permissionDeniedMsg</code>)</p> </li> 
+ <li> <p>Tip the contents of the login timeout(<code>authenticationTimeoutMsg</code>)</p> </li> 
 </ul> 
 <h4> <a id="22-spring-configuration-templates-spring-shiroxml" class="anchor" href="#22-spring-configuration-templates-spring-shiroxml" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2.2 Spring Configuration Templates spring-shiro.xml</h4> 
 <div class="highlight highlight-text-xml">
  <pre>&lt;?<span class="pl-ent">xml</span><span class="pl-e"> version</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>1.0<span class="pl-pds">&quot;</span></span><span class="pl-e"> encoding</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>UTF-8<span class="pl-pds">&quot;</span></span>?&gt;
 &lt;<span class="pl-ent">beans</span> <span class="pl-e">xmlns</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>http://www.springframework.org/schema/beans<span class="pl-pds">&quot;</span></span>
-    <span class="pl-e">xmlns</span><span class="pl-e">:</span><span class="pl-e">xsi</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>http://www.w3.org/2001/XMLSchema-instance<span class="pl-pds">&quot;</span></span>
-    <span class="pl-e">xmlns</span><span class="pl-e">:</span><span class="pl-e">p</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>http://www.springframework.org/schema/p<span class="pl-pds">&quot;</span></span>
-    <span class="pl-e">xsi</span><span class="pl-e">:</span><span class="pl-e">schemaLocation</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd<span class="pl-pds">&quot;</span></span>&gt;
+	xmlns:xsi=<span class="pl-s"><span class="pl-pds">&quot;</span>http://www.w3.org/2001/XMLSchema-instance<span class="pl-pds">&quot;</span></span>
+	xmlns:p=<span class="pl-s"><span class="pl-pds">&quot;</span>http://www.springframework.org/schema/p<span class="pl-pds">&quot;</span></span>
+	xsi:schemaLocation=<span class="pl-s"><span class="pl-pds">&quot;</span>http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd<span class="pl-pds">&quot;</span></span>&gt;
+	
 
-
-    <span class="pl-c">&lt;!-- SessionValidationScheduler (DEFAULT) --&gt;</span>
+    <span class="pl-c"><span class="pl-c">&lt;!--</span> SessionValidationScheduler (DEFAULT) <span class="pl-c">--&gt;</span></span>
     &lt;<span class="pl-ent">bean</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>sessionValidationScheduler<span class="pl-pds">&quot;</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>org.apache.shiro.session.mgt.ExecutorServiceSessionValidationScheduler<span class="pl-pds">&quot;</span></span>&gt;
-        <span class="pl-c">&lt;!-- Default is 3,600,000 millis = 1 hour --&gt;</span>
+        <span class="pl-c"><span class="pl-c">&lt;!--</span> Default is 3,600,000 millis = 1 hour <span class="pl-c">--&gt;</span></span>
         &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>interval<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>3600000<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
     &lt;/<span class="pl-ent">bean</span>&gt;
-
-    <span class="pl-c">&lt;!-- Session DAO (DEFAULT) --&gt;</span>
+    
+    <span class="pl-c"><span class="pl-c">&lt;!--</span> Session DAO (DEFAULT) <span class="pl-c">--&gt;</span></span>
     &lt;<span class="pl-ent">bean</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>sessionDAO<span class="pl-pds">&quot;</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO<span class="pl-pds">&quot;</span></span>&gt;
-        <span class="pl-c">&lt;!-- This name matches a cache name in ehcache.xml --&gt;</span>
-        <span class="pl-c">&lt;!-- &lt;property name=&quot;activeSessionsCacheName&quot; value=&quot;shiro-activeSessionsCache&quot;&gt;&lt;/property&gt; --&gt;</span>
+        <span class="pl-c"><span class="pl-c">&lt;!--</span> This name matches a cache name in ehcache.xml <span class="pl-c">--&gt;</span></span>
+        <span class="pl-c"><span class="pl-c">&lt;!--</span> &lt;property name=&quot;activeSessionsCacheName&quot; value=&quot;shiro-activeSessionsCache&quot;&gt;&lt;/property&gt; <span class="pl-c">--&gt;</span></span>
     &lt;/<span class="pl-ent">bean</span>&gt;
-
-    <span class="pl-c">&lt;!-- Session Manager (DEFAULT) --&gt;</span>
+    
+    <span class="pl-c"><span class="pl-c">&lt;!--</span> Session Manager (DEFAULT) <span class="pl-c">--&gt;</span></span>
     &lt;<span class="pl-ent">bean</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>sessionManager<span class="pl-pds">&quot;</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>org.apache.shiro.web.session.mgt.DefaultWebSessionManager<span class="pl-pds">&quot;</span></span>&gt;
-        <span class="pl-c">&lt;!-- Session Timeout: 3,600,000 milliseconds = 1 hour--&gt;</span>
+        <span class="pl-c"><span class="pl-c">&lt;!--</span> Session Timeout: 3,600,000 milliseconds = 1 hour<span class="pl-c">--&gt;</span></span>
         &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>globalSessionTimeout<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>3600000<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt; 
         &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>sessionValidationScheduler<span class="pl-pds">&quot;</span></span> <span class="pl-e">ref</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>sessionValidationScheduler<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
         &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>sessionValidationSchedulerEnabled<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>true<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
         &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>sessionDAO<span class="pl-pds">&quot;</span></span> <span class="pl-e">ref</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>sessionDAO<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
     &lt;/<span class="pl-ent">bean</span>&gt;
-
-    <span class="pl-c">&lt;!-- Cache: EhCache (DEFAULT)--&gt;</span>
+    
+    <span class="pl-c"><span class="pl-c">&lt;!--</span> Cache: EhCache (DEFAULT)<span class="pl-c">--&gt;</span></span>
     &lt;<span class="pl-ent">bean</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>ehCacheManager<span class="pl-pds">&quot;</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>org.springframework.cache.ehcache.EhCacheManagerFactoryBean<span class="pl-pds">&quot;</span></span>&gt;
         &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>configLocation<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>classpath:/ehcache.xml<span class="pl-pds">&quot;</span></span> /&gt;
         &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>shared<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>true<span class="pl-pds">&quot;</span></span> /&gt;
     &lt;/<span class="pl-ent">bean</span>&gt;
-    <span class="pl-c">&lt;!-- </span>
+    <span class="pl-c"><span class="pl-c">&lt;!--</span> </span>
 <span class="pl-c">    &lt;bean id=&quot;cacheManager&quot; class=&quot;org.springframework.cache.ehcache.EhCacheCacheManager&quot;&gt;</span>
 <span class="pl-c">        &lt;property name=&quot;cacheManager&quot; ref=&quot;ehCacheManager&quot; /&gt;</span>
 <span class="pl-c">    &lt;/bean&gt; </span>
-<span class="pl-c">       --&gt;</span>
+<span class="pl-c">	   <span class="pl-c">--&gt;</span></span>
     &lt;<span class="pl-ent">bean</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>shiroCacheManager<span class="pl-pds">&quot;</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>org.apache.shiro.cache.ehcache.EhCacheManager<span class="pl-pds">&quot;</span></span>&gt;
         &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>cacheManager<span class="pl-pds">&quot;</span></span> <span class="pl-e">ref</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>ehCacheManager<span class="pl-pds">&quot;</span></span> /&gt;
     &lt;/<span class="pl-ent">bean</span>&gt;
-
-    <span class="pl-c">&lt;!-- RememberMeManager (DEFAULT) --&gt;</span>
+    
+    <span class="pl-c"><span class="pl-c">&lt;!--</span> RememberMeManager (DEFAULT) <span class="pl-c">--&gt;</span></span>
     &lt;<span class="pl-ent">bean</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>cookie<span class="pl-pds">&quot;</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>org.apache.shiro.web.servlet.SimpleCookie<span class="pl-pds">&quot;</span></span>&gt;
-        <span class="pl-c">&lt;!-- cookie name  --&gt;</span>
+        <span class="pl-c"><span class="pl-c">&lt;!--</span> cookie name  <span class="pl-c">--&gt;</span></span>
         &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>name<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>rememberMe<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
-        <span class="pl-c">&lt;!--  default is /request.getContextPath() --&gt;</span>
+        <span class="pl-c"><span class="pl-c">&lt;!--</span>  default is /request.getContextPath() <span class="pl-c">--&gt;</span></span>
         &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>path<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>/<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt; 
-        <span class="pl-c">&lt;!-- default is ONE_YEAR --&gt;</span>
+        <span class="pl-c"><span class="pl-c">&lt;!--</span> default is ONE_YEAR <span class="pl-c">--&gt;</span></span>
         &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>maxAge<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>31536000<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt; 
     &lt;/<span class="pl-ent">bean</span>&gt;
     &lt;<span class="pl-ent">bean</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>rememberMeManager<span class="pl-pds">&quot;</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>org.apache.shiro.web.mgt.CookieRememberMeManager<span class="pl-pds">&quot;</span></span>&gt;
         &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>cookie<span class="pl-pds">&quot;</span></span> <span class="pl-e">ref</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>cookie<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
     &lt;/<span class="pl-ent">bean</span>&gt;
 
-
-    <span class="pl-c">&lt;!--  EasyJdbcRealm (**USER DEFINED**) --&gt;</span>
+	
+    <span class="pl-c"><span class="pl-c">&lt;!--</span>  EasyJdbcRealm (**USER DEFINED**) <span class="pl-c">--&gt;</span></span>
     &lt;<span class="pl-ent">bean</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>jdbcRealm<span class="pl-pds">&quot;</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>cn.easyproject.easyshiro.EasyJdbcRealm<span class="pl-pds">&quot;</span></span>&gt;
         &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>dataSource<span class="pl-pds">&quot;</span></span> <span class="pl-e">ref</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>dataSource<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
-        <span class="pl-c">&lt;!-- Authentication information query; default: select * from users where username = ? --&gt;</span>
-        <span class="pl-c">&lt;!-- status: 1 on; 2 lock; 3 delete --&gt;</span>
+        <span class="pl-c"><span class="pl-c">&lt;!--</span> Authentication information query; default: select * from users where username = ? <span class="pl-c">--&gt;</span></span>
+        <span class="pl-c"><span class="pl-c">&lt;!--</span> status: 1 on; 2 lock; 3 delete <span class="pl-c">--&gt;</span></span>
         &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>authenticationQuery<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>select user_id as userid,name,password,status,real_name as realname from sys_user where name=? and status in(0,1)<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
-        <span class="pl-c">&lt;!-- Password columns Column name;  default: password --&gt;</span>
+        <span class="pl-c"><span class="pl-c">&lt;!--</span> Password columns Column name;  default: password <span class="pl-c">--&gt;</span></span>
         &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>passwordColumn<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>password<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
-        <span class="pl-c">&lt;!-- Roles query (supports multiple username =?); default: select role_name from user_roles where username = ?  --&gt;</span>
+        <span class="pl-c"><span class="pl-c">&lt;!--</span> Roles query (supports multiple username =?); default: select role_name from user_roles where username = ?  <span class="pl-c">--&gt;</span></span>
         &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>userRolesQuery<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>select name from sys_role where role_id in (select role_id from sys_user_role where user_id=(select user_id from sys_user where name=?)) and status=0<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
-        <span class="pl-c">&lt;!-- Whether to execute permissions Query permission to query; default: true --&gt;</span>
+        <span class="pl-c"><span class="pl-c">&lt;!--</span> Whether to execute permissions Query permission to query; default: true <span class="pl-c">--&gt;</span></span>
         &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>permissionsLookupEnabled<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>true<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
-        <span class="pl-c">&lt;!-- Permissions query (supports multiple username =?); default: select permission from user_roles_permissions where username = ?&quot;  --&gt;</span>
+        <span class="pl-c"><span class="pl-c">&lt;!--</span> Permissions query (supports multiple username =?); default: select permission from user_roles_permissions where username = ?&quot;  <span class="pl-c">--&gt;</span></span>
         &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>permissionsQuery<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>select action from sys_menu_permission where MENU_PERMISSION_ID in( select MENU_PERMISSION_ID from sys_role_menu_permission where ROLE_ID in(select role_id from sys_user_role where user_id=(select user_id from sys_user where name=?))) UNION select action from sys_operation_permission where OPERATION_PERMISSION_ID in(select OPERATION_PERMISSION_ID from sys_role_operation_permission where ROLE_ID in(select role_id from sys_user_role where user_id=(select user_id from sys_user where name=?)))<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
-        <span class="pl-c">&lt;!-- EasyJdbcRealm Interceptor, after authentication and authorization information can be obtained, for SimpleAuthenticationInfo authentication and authorization information SimpleAuthorizationInfo additional processing --&gt;</span>
-        <span class="pl-c">&lt;!-- </span>
-<span class="pl-c">            &lt;property name=&quot;interceptor&quot; ref=&quot;realmInterceptor&quot;&gt;&lt;/property&gt; </span>
-<span class="pl-c">            --&gt;</span>
+        <span class="pl-c"><span class="pl-c">&lt;!--</span> EasyJdbcRealm Interceptor, after authentication and authorization information can be obtained, for SimpleAuthenticationInfo authentication and authorization information SimpleAuthorizationInfo additional processing <span class="pl-c">--&gt;</span></span>
+        <span class="pl-c"><span class="pl-c">&lt;!--</span> </span>
+<span class="pl-c">     		&lt;property name=&quot;interceptor&quot; ref=&quot;realmInterceptor&quot;&gt;&lt;/property&gt; </span>
+<span class="pl-c">     		<span class="pl-c">--&gt;</span></span>
     &lt;/<span class="pl-ent">bean</span>&gt;
-
-    <span class="pl-c">&lt;!-- EasyShiro Custom authentication process interceptors(**USER DEFINED**) --&gt;</span>
-    <span class="pl-c">&lt;!-- EasyFormAuthenticationFilter 认证成功或失败拦截器 --&gt;</span>
+	
+    <span class="pl-c"><span class="pl-c">&lt;!--</span> EasyShiro Custom authentication process interceptors(**USER DEFINED**) <span class="pl-c">--&gt;</span></span>
+    <span class="pl-c"><span class="pl-c">&lt;!--</span> EasyFormAuthenticationFilter 认证成功或失败拦截器 <span class="pl-c">--&gt;</span></span>
     &lt;<span class="pl-ent">bean</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>authenticationInterceptor<span class="pl-pds">&quot;</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>cn.easyproject.easyee.ssh.sys.shiro.AuthenticationInterceptor<span class="pl-pds">&quot;</span></span>&gt; &lt;/<span class="pl-ent">bean</span>&gt;
-    <span class="pl-c">&lt;!-- EasyJdbcRealm Authentication and authorization information processing interceptor --&gt;</span>
+    <span class="pl-c"><span class="pl-c">&lt;!--</span> EasyJdbcRealm Authentication and authorization information processing interceptor <span class="pl-c">--&gt;</span></span>
     &lt;<span class="pl-ent">bean</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>realmInterceptor<span class="pl-pds">&quot;</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>cn.easyproject.easyee.ssh.sys.shiro.RealmInterceptor<span class="pl-pds">&quot;</span></span>&gt; &lt;/<span class="pl-ent">bean</span>&gt;
 
-    <span class="pl-c">&lt;!-- auth Login Authentication (**USER DEFINED**) --&gt;</span>
+    <span class="pl-c"><span class="pl-c">&lt;!--</span> auth Login Authentication (**USER DEFINED**) <span class="pl-c">--&gt;</span></span>
     &lt;<span class="pl-ent">bean</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>auth<span class="pl-pds">&quot;</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>cn.easyproject.easyshiro.EasyFormAuthenticationFilter<span class="pl-pds">&quot;</span></span>&gt;
-
-         <span class="pl-c">&lt;!-- ************ FormAuthenticationFilter Configuration ************ --&gt;</span>
-         <span class="pl-c">&lt;!-- when request method is post execute login, else to login page view --&gt;</span>
+    
+         <span class="pl-c"><span class="pl-c">&lt;!--</span> ************ FormAuthenticationFilter Configuration ************ <span class="pl-c">--&gt;</span></span>
+         <span class="pl-c"><span class="pl-c">&lt;!--</span> when request method is post execute login, else to login page view <span class="pl-c">--&gt;</span></span>
          &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>loginUrl<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>/toLogin.action<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
-         <span class="pl-c">&lt;!-- redirect after successful login --&gt;</span>
+         <span class="pl-c"><span class="pl-c">&lt;!--</span> redirect after successful login <span class="pl-c">--&gt;</span></span>
          &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>successUrl<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>/toMain.action<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
-         <span class="pl-c">&lt;!-- name of request parameter with username; if not present filter assumes 'username' --&gt;</span>
+         <span class="pl-c"><span class="pl-c">&lt;!--</span> name of request parameter with username; if not present filter assumes 'username' <span class="pl-c">--&gt;</span></span>
          &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>usernameParam<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>name<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
-         <span class="pl-c">&lt;!-- name of request parameter with password; if not present filter assumes 'password' --&gt;</span>
+         <span class="pl-c"><span class="pl-c">&lt;!--</span> name of request parameter with password; if not present filter assumes 'password' <span class="pl-c">--&gt;</span></span>
          &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>passwordParam<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>password<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
-         <span class="pl-c">&lt;!-- does the user wish to be remembered?; if not present filter assumes 'rememberMe' --&gt;</span>
-         <span class="pl-c">&lt;!-- &lt;property name=&quot;rememberMeParam&quot; value=&quot;rememberMe&quot;&gt;&lt;/property&gt; --&gt;</span>
-
-
-         <span class="pl-c">&lt;!-- ************ EasyFormAuthenticationFilter Configuration ************ --&gt;</span>
-         <span class="pl-c">&lt;!-- ## Login Configuration ## --&gt;</span>
-         <span class="pl-c">&lt;!-- Login is successful, the token is stored in the session key;default is 'TOKEN' --&gt;</span>
+         <span class="pl-c"><span class="pl-c">&lt;!--</span> does the user wish to be remembered?; if not present filter assumes 'rememberMe' <span class="pl-c">--&gt;</span></span>
+         <span class="pl-c"><span class="pl-c">&lt;!--</span> &lt;property name=&quot;rememberMeParam&quot; value=&quot;rememberMe&quot;&gt;&lt;/property&gt; <span class="pl-c">--&gt;</span></span>
+         
+         
+         <span class="pl-c"><span class="pl-c">&lt;!--</span> ************ EasyFormAuthenticationFilter Configuration ************ <span class="pl-c">--&gt;</span></span>
+         <span class="pl-c"><span class="pl-c">&lt;!--</span> ## Login Configuration ## <span class="pl-c">--&gt;</span></span>
+         <span class="pl-c"><span class="pl-c">&lt;!--</span> Login is successful, the token is stored in the session key;default is 'TOKEN' <span class="pl-c">--&gt;</span></span>
          &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>sessionTokenKey<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>TOKEN<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
-         <span class="pl-c">&lt;!-- Whether to use the login fails to redirect the way to jump back to the login page;default is 'false' --&gt;</span>
+         <span class="pl-c"><span class="pl-c">&lt;!--</span> Whether to use the login fails to redirect the way to jump back to the login page;default is 'false' <span class="pl-c">--&gt;</span></span>
          &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>loginFailureRedirectToLogin<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>true<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
-
-
-         <span class="pl-c">&lt;!-- ************ User defined UsernamePasswordToken Configuration ************ --&gt;</span>
-         <span class="pl-c">&lt;!-- customize UsernamePasswordToken; Default is 'org.apache.shiro.auth.UsernamePasswordToken' --&gt;</span>
+         
+         
+         <span class="pl-c"><span class="pl-c">&lt;!--</span> ************ User defined UsernamePasswordToken Configuration ************ <span class="pl-c">--&gt;</span></span>
+         <span class="pl-c"><span class="pl-c">&lt;!--</span> customize UsernamePasswordToken; Default is 'org.apache.shiro.auth.UsernamePasswordToken' <span class="pl-c">--&gt;</span></span>
          &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>tokenClassName<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>cn.easyproject.easyee.ssh.sys.shiro.UsernamePasswordEncodeToken<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
-
-
-         <span class="pl-c">&lt;!-- ************ CAPTCHA Configuration ************ --&gt;</span>
-         <span class="pl-c">&lt;!-- Are open CAPTCHA verification; default 'true' --&gt;</span>
+         
+         
+         <span class="pl-c"><span class="pl-c">&lt;!--</span> ************ CAPTCHA Configuration ************ <span class="pl-c">--&gt;</span></span>
+         <span class="pl-c"><span class="pl-c">&lt;!--</span> Are open CAPTCHA verification; default 'true' <span class="pl-c">--&gt;</span></span>
          &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>enableCaptcha<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>true<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
-         <span class="pl-c">&lt;!-- CAPTCHA parameter name; default 'captcha' --&gt;</span>
+         <span class="pl-c"><span class="pl-c">&lt;!--</span> CAPTCHA parameter name; default 'captcha' <span class="pl-c">--&gt;</span></span>
          &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>captchaParam<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>captcha<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
-         <span class="pl-c">&lt;!--key Session codes stored value; default 'captcha' --&gt;</span>
+         <span class="pl-c"><span class="pl-c">&lt;!--</span>key Session codes stored value; default 'captcha' <span class="pl-c">--&gt;</span></span>
          &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>sessionCaptchaKey<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>rand<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
-
-
-         <span class="pl-c">&lt;!-- ************ AutoLogin Configuration ************ --&gt;</span>
-         <span class="pl-c">&lt;!-- Are open Auto Login --&gt;</span>
+         
+         
+         <span class="pl-c"><span class="pl-c">&lt;!--</span> ************ AutoLogin Configuration ************ <span class="pl-c">--&gt;</span></span>
+         <span class="pl-c"><span class="pl-c">&lt;!--</span> Are open Auto Login <span class="pl-c">--&gt;</span></span>
          &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>enableAutoLogin<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>false<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
-         <span class="pl-c">&lt;!-- Auto Login parameter name --&gt;</span>
+         <span class="pl-c"><span class="pl-c">&lt;!--</span> Auto Login parameter name <span class="pl-c">--&gt;</span></span>
          &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>autoLoginParam<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>autoLogin<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
-         <span class="pl-c">&lt;!-- Cookie maxAge ，default is ONE_YEAR --&gt;</span>
+         <span class="pl-c"><span class="pl-c">&lt;!--</span> Cookie maxAge ，default is ONE_YEAR <span class="pl-c">--&gt;</span></span>
          &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>autoLoginMaxAge<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>31536000<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
-         <span class="pl-c">&lt;!-- Cookie path，default is &quot;&quot; --&gt;</span>
+         <span class="pl-c"><span class="pl-c">&lt;!--</span> Cookie path，default is &quot;&quot; <span class="pl-c">--&gt;</span></span>
          &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>autoLoginPath<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>/<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
-         <span class="pl-c">&lt;!-- Cookie domain，empty or default is your current domain name --&gt;</span>
+         <span class="pl-c"><span class="pl-c">&lt;!--</span> Cookie domain，empty or default is your current domain name <span class="pl-c">--&gt;</span></span>
          &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>autoLoginDomain<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span><span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
-
-
-         <span class="pl-c">&lt;!-- ************ LockLogin Configuration ************ --&gt;</span>
-         <span class="pl-c">&lt;!-- ## ehcache.xml Configuration ## --&gt;</span>
-         <span class="pl-c">&lt;!-- Lock Login management lockout time period EHCache cache name, simply adjust timeToIdleSeconds--&gt;</span>
-         <span class="pl-c">&lt;!-- Reach the login lockout times, login lockout 2 Hours --&gt;</span>
-         <span class="pl-c">&lt;!-- </span>
-<span class="pl-c">             &lt;cache</span>
+         
+         
+         <span class="pl-c"><span class="pl-c">&lt;!--</span> ************ LockLogin Configuration ************ <span class="pl-c">--&gt;</span></span>
+         <span class="pl-c"><span class="pl-c">&lt;!--</span> ## ehcache.xml Configuration ## <span class="pl-c">--&gt;</span></span>
+         <span class="pl-c"><span class="pl-c">&lt;!--</span> Lock Login management lockout time period EHCache cache name, simply adjust timeToIdleSeconds<span class="pl-c">--&gt;</span></span>
+         <span class="pl-c"><span class="pl-c">&lt;!--</span> Reach the login lockout times, login lockout 2 Hours <span class="pl-c">--&gt;</span></span>
+         <span class="pl-c"><span class="pl-c">&lt;!--</span> </span>
+<span class="pl-c">     		 &lt;cache</span>
 <span class="pl-c">                    name=&quot;shiro-lockLoginCache&quot;</span>
 <span class="pl-c">                    maxElementsInMemory=&quot;100000&quot;</span>
 <span class="pl-c">                    eternal=&quot;false&quot;</span>
@@ -924,11 +918,11 @@ function setDocumentScrollTop(ypos)
 <span class="pl-c">                    overflowToDisk=&quot;true&quot;</span>
 <span class="pl-c">                    diskPersistent=&quot;true&quot; &gt;</span>
 <span class="pl-c">             &lt;/cache&gt;</span>
-<span class="pl-c">            --&gt;</span>
-        <span class="pl-c">&lt;!--Lock Login login error statistics of the number of time periods EHCache cache name, simply adjust timeToIdleSeconds--&gt;</span>
-        <span class="pl-c">&lt;!-- Count the number of errors in 10 minutes  --&gt;</span>
-        <span class="pl-c">&lt;!-- </span>
-<span class="pl-c">            &lt;cache</span>
+<span class="pl-c">     		<span class="pl-c">--&gt;</span></span>
+        <span class="pl-c"><span class="pl-c">&lt;!--</span>Lock Login login error statistics of the number of time periods EHCache cache name, simply adjust timeToIdleSeconds<span class="pl-c">--&gt;</span></span>
+        <span class="pl-c"><span class="pl-c">&lt;!--</span> Count the number of errors in 10 minutes  <span class="pl-c">--&gt;</span></span>
+        <span class="pl-c"><span class="pl-c">&lt;!--</span> </span>
+<span class="pl-c">      		&lt;cache</span>
 <span class="pl-c">                   name=&quot;shiro-lockCheckCache&quot;</span>
 <span class="pl-c">                   maxElementsInMemory=&quot;100000&quot;</span>
 <span class="pl-c">                   eternal=&quot;false&quot;</span>
@@ -936,238 +930,238 @@ function setDocumentScrollTop(ypos)
 <span class="pl-c">                   timeToLiveSeconds=&quot;600&quot;</span>
 <span class="pl-c">                   diskExpiryThreadIntervalSeconds=&quot;600&quot;</span>
 <span class="pl-c">                   memoryStoreEvictionPolicy=&quot;LRU&quot;&gt;</span>
-<span class="pl-c">                &lt;persistence strategy=&quot;localTempSwap&quot;/&gt;</span>
+<span class="pl-c">      			&lt;persistence strategy=&quot;localTempSwap&quot;/&gt;</span>
 <span class="pl-c">              &lt;/cache&gt; </span>
-<span class="pl-c">            --&gt;</span> 
-         <span class="pl-c">&lt;!--Whether to open the LockLogin ; default is false, do not open --&gt;</span>
+<span class="pl-c">      		<span class="pl-c">--&gt;</span></span> 
+         <span class="pl-c"><span class="pl-c">&lt;!--</span>Whether to open the LockLogin ; default is false, do not open <span class="pl-c">--&gt;</span></span>
          &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>enableLockLogin<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>false<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
-         <span class="pl-c">&lt;!-- Shiro CacheManager --&gt;</span>
+         <span class="pl-c"><span class="pl-c">&lt;!--</span> Shiro CacheManager <span class="pl-c">--&gt;</span></span>
          &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>ehCacheManager<span class="pl-pds">&quot;</span></span> <span class="pl-e">ref</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>shiroCacheManager<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
-         <span class="pl-c">&lt;!-- LockLogin Management locked EHCache name cache time period; default shiro-lockLoginCache --&gt;</span>
+         <span class="pl-c"><span class="pl-c">&lt;!--</span> LockLogin Management locked EHCache name cache time period; default shiro-lockLoginCache <span class="pl-c">--&gt;</span></span>
          &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>lockLoginCacheName<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>shiro-lockLoginCache<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
-         <span class="pl-c">&lt;!-- LockLogin Statistics Log error count time period EHCache cache name; defaults to shiro-lockCheckCache --&gt;</span>
+         <span class="pl-c"><span class="pl-c">&lt;!--</span> LockLogin Statistics Log error count time period EHCache cache name; defaults to shiro-lockCheckCache <span class="pl-c">--&gt;</span></span>
          &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>lockCheckCacheName<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>shiro-lockCheckCache<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
-         <span class="pl-c">&lt;!--To achieve the same user name to log the number of login errors, login lockout; 0 for no limit; default is 6 --&gt;</span>
+         <span class="pl-c"><span class="pl-c">&lt;!--</span>To achieve the same user name to log the number of login errors, login lockout; 0 for no limit; default is 6 <span class="pl-c">--&gt;</span></span>
          &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>userLock<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>4<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
-         <span class="pl-c">&lt;!-- Login achieve the same IP number of errors, login lockout; 0 for no limit; default is 15 --&gt;</span>
+         <span class="pl-c"><span class="pl-c">&lt;!--</span> Login achieve the same IP number of errors, login lockout; 0 for no limit; default is 15 <span class="pl-c">--&gt;</span></span>
          &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>ipLock<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>6<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
-         <span class="pl-c">&lt;!-- The specified number of login errors, display codes; -1 does not control verification code display; the default is 1 --&gt;</span>
+         <span class="pl-c"><span class="pl-c">&lt;!--</span> The specified number of login errors, display codes; -1 does not control verification code display; the default is 1 <span class="pl-c">--&gt;</span></span>
          &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>showCaptcha<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>4<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
-
-
-         <span class="pl-c">&lt;!-- ************ Logon failure related error messages ************ --&gt;</span>
-         <span class="pl-c">&lt;!-- Login failed message key  --&gt;</span>
+         
+		 
+         <span class="pl-c"><span class="pl-c">&lt;!--</span> ************ Logon failure related error messages ************ <span class="pl-c">--&gt;</span></span>
+         <span class="pl-c"><span class="pl-c">&lt;!--</span> Login failed message key  <span class="pl-c">--&gt;</span></span>
          &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>msgKey<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>MSG<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
-         <span class="pl-c">&lt;!-- The message is stored session，session.setAttribute(MsgKey,xxxErrorMsg); default is 'false' --&gt;</span>
+         <span class="pl-c"><span class="pl-c">&lt;!--</span> The message is stored session，session.setAttribute(MsgKey,xxxErrorMsg); default is 'false' <span class="pl-c">--&gt;</span></span>
          &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>sessionMsg<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>true<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
-         <span class="pl-c">&lt;!-- The message is stored request，request.setAttribute(MsgKey,xxxErrorMsg); default is 'false' --&gt;</span>
+         <span class="pl-c"><span class="pl-c">&lt;!--</span> The message is stored request，request.setAttribute(MsgKey,xxxErrorMsg); default is 'false' <span class="pl-c">--&gt;</span></span>
          &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>requestMsg<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>true<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
-         <span class="pl-c">&lt;!-- # Login error, an exception in content Map--&gt;</span>
+         <span class="pl-c"><span class="pl-c">&lt;!--</span> # Login error, an exception in content Map<span class="pl-c">--&gt;</span></span>
          &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>exceptionMsg<span class="pl-pds">&quot;</span></span>&gt;
              &lt;<span class="pl-ent">map</span>&gt;
-                 <span class="pl-c">&lt;!-- ExceptionClassName:&quot;Message&quot;, ExceptionClassName2:&quot;Message2&quot;, ... --&gt;</span>
+                 <span class="pl-c"><span class="pl-c">&lt;!--</span> ExceptionClassName:&quot;Message&quot;, ExceptionClassName2:&quot;Message2&quot;, ... <span class="pl-c">--&gt;</span></span>
                  &lt;<span class="pl-ent">entry</span> <span class="pl-e">key</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>LockedAccountException<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>Account lockout, please contact the administrator to unlock.<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">entry</span>&gt;
-
+                 
                  &lt;<span class="pl-ent">entry</span> <span class="pl-e">key</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>AuthenticationException<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>Username or password is incorrect!<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">entry</span>&gt;
-
+                 
                  &lt;<span class="pl-ent">entry</span> <span class="pl-e">key</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>EasyIncorrectCaptchaException<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>CAPTCHA is incorrect!<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">entry</span>&gt;
                  &lt;<span class="pl-ent">entry</span> <span class="pl-e">key</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>EasyLockUserException<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>User temporarily locking two hours, please try again later.<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">entry</span>&gt;
                  &lt;<span class="pl-ent">entry</span> <span class="pl-e">key</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>EasyLockIPException<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>IP temporarily locking two hours, please try again later.<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">entry</span>&gt;
              &lt;/<span class="pl-ent">map</span>&gt;
          &lt;/<span class="pl-ent">property</span>&gt;
-
-        <span class="pl-c">&lt;!-- ************ Customize interceptor, implements EasyAuthenticationInterceptor interface************ --&gt;</span>
-        &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>interceptor<span class="pl-pds">&quot;</span></span> <span class="pl-e">ref</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>authenticationInterceptor<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
+     	
+     	<span class="pl-c"><span class="pl-c">&lt;!--</span> ************ Customize interceptor, implements EasyAuthenticationInterceptor interface************ <span class="pl-c">--&gt;</span></span>
+     	&lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>interceptor<span class="pl-pds">&quot;</span></span> <span class="pl-e">ref</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>authenticationInterceptor<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
     &lt;/<span class="pl-ent">bean</span>&gt;
-
-    <span class="pl-c">&lt;!-- Specify LogoutFilter  (**USER DEFINED**) --&gt;</span>
-    <span class="pl-c">&lt;!-- Enables session security information (Subject / Session), RememberMe information and AutoLogin automatic login logoff information --&gt;</span>
+    
+    <span class="pl-c"><span class="pl-c">&lt;!--</span> Specify LogoutFilter  (**USER DEFINED**) <span class="pl-c">--&gt;</span></span>
+    <span class="pl-c"><span class="pl-c">&lt;!--</span> Enables session security information (Subject / Session), RememberMe information and AutoLogin automatic login logoff information <span class="pl-c">--&gt;</span></span>
     &lt;<span class="pl-ent">bean</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>logout<span class="pl-pds">&quot;</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>cn.easyproject.easyshiro.EasyLogoutFilter<span class="pl-pds">&quot;</span></span>&gt;
-        <span class="pl-c">&lt;!-- specify logout redirectUrl --&gt;</span>
-        &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>redirectUrl<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>/toLogin.action<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
-        <span class="pl-c">&lt;!-- EasyFormAuthenticationFilter --&gt;</span>
-        &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>easyFormAuthenticationFilter<span class="pl-pds">&quot;</span></span> <span class="pl-e">ref</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>auth<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
+    	<span class="pl-c"><span class="pl-c">&lt;!--</span> specify logout redirectUrl <span class="pl-c">--&gt;</span></span>
+    	&lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>redirectUrl<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>/toLogin.action<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
+    	<span class="pl-c"><span class="pl-c">&lt;!--</span> EasyFormAuthenticationFilter <span class="pl-c">--&gt;</span></span>
+    	&lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>easyFormAuthenticationFilter<span class="pl-pds">&quot;</span></span> <span class="pl-e">ref</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>auth<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
     &lt;/<span class="pl-ent">bean</span>&gt;
-
-    <span class="pl-c">&lt;!-- perms  (**USER DEFINED**) --&gt;</span>
+    
+    <span class="pl-c"><span class="pl-c">&lt;!--</span> perms  (**USER DEFINED**) <span class="pl-c">--&gt;</span></span>
     &lt;<span class="pl-ent">bean</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>perms<span class="pl-pds">&quot;</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>cn.easyproject.easyshiro.EasyURLPermissionFilter<span class="pl-pds">&quot;</span></span>&gt;
-        <span class="pl-c">&lt;!-- Authentication failed steering url --&gt;</span>
-        &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>unauthorizedUrl<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>/toLogin.action<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
-        <span class="pl-c">&lt;!-- Login timeout detection is turned on; default is 'true'--&gt;</span>
-        &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>authenticationTimeoutCheck<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>true<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
-        <span class="pl-c">&lt;!-- Authentication failed message key; default is 'MSG'  --&gt;</span>
-        &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>msgKey<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>msg<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
-        <span class="pl-c">&lt;!-- Authentication failed status code key: 301, login timeout; 401 Permission Denied; default is 'statusCode'  --&gt;</span>
-        &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>statusCode<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>statusCode<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
-        <span class="pl-c">&lt;!-- The message is stored session，session.setAttribute(MsgKey,xxxErrorMsg); default is 'false' --&gt;</span>
-        &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>sessionMsg<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>true<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
-        <span class="pl-c">&lt;!-- The message is stored request，request.setAttribute(MsgKey,xxxErrorMsg); default is 'false' --&gt;</span>
-        &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>requestMsg<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>true<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
-        <span class="pl-c">&lt;!-- Authentication failed Tips content;  default is 'Permission denied!' --&gt;</span>
-        &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>permissionDeniedMsg<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>You do not have permission!<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
-        <span class="pl-c">&lt;!-- Login timeout prompt content; default is 'Your login has expired, please login again!' --&gt;</span>
-        &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>authenticationTimeoutMsg<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>Your login has expired, please login again!<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
+    	<span class="pl-c"><span class="pl-c">&lt;!--</span> Authentication failed steering url <span class="pl-c">--&gt;</span></span>
+    	&lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>unauthorizedUrl<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>/toLogin.action<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
+    	<span class="pl-c"><span class="pl-c">&lt;!--</span> Login timeout detection is turned on; default is 'true'<span class="pl-c">--&gt;</span></span>
+    	&lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>authenticationTimeoutCheck<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>true<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
+    	<span class="pl-c"><span class="pl-c">&lt;!--</span> Authentication failed message key; default is 'MSG'  <span class="pl-c">--&gt;</span></span>
+    	&lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>msgKey<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>msg<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
+    	<span class="pl-c"><span class="pl-c">&lt;!--</span> Authentication failed status code key: 301, login timeout; 401 Permission Denied; default is 'statusCode'  <span class="pl-c">--&gt;</span></span>
+    	&lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>statusCode<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>statusCode<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
+    	<span class="pl-c"><span class="pl-c">&lt;!--</span> The message is stored session，session.setAttribute(MsgKey,xxxErrorMsg); default is 'false' <span class="pl-c">--&gt;</span></span>
+    	&lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>sessionMsg<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>true<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
+    	<span class="pl-c"><span class="pl-c">&lt;!--</span> The message is stored request，request.setAttribute(MsgKey,xxxErrorMsg); default is 'false' <span class="pl-c">--&gt;</span></span>
+    	&lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>requestMsg<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>true<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
+    	<span class="pl-c"><span class="pl-c">&lt;!--</span> Authentication failed Tips content;  default is 'Permission denied!' <span class="pl-c">--&gt;</span></span>
+    	&lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>permissionDeniedMsg<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>You do not have permission!<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
+    	<span class="pl-c"><span class="pl-c">&lt;!--</span> Login timeout prompt content; default is 'Your login has expired, please login again!' <span class="pl-c">--&gt;</span></span>
+    	&lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>authenticationTimeoutMsg<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>Your login has expired, please login again!<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
     &lt;/<span class="pl-ent">bean</span>&gt;
-
-    <span class="pl-c">&lt;!-- Shiro Native SessionManager  (DEFAULT) --&gt;</span>
+    
+    <span class="pl-c"><span class="pl-c">&lt;!--</span> Shiro Native SessionManager  (DEFAULT) <span class="pl-c">--&gt;</span></span>
     &lt;<span class="pl-ent">bean</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>securityManager<span class="pl-pds">&quot;</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>org.apache.shiro.web.mgt.DefaultWebSecurityManager<span class="pl-pds">&quot;</span></span>&gt;
-        <span class="pl-c">&lt;!-- &lt;property name=&quot;sessionMode&quot; value=&quot;native&quot;&gt;&lt;/property&gt; --&gt;</span>
-        &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>sessionManager<span class="pl-pds">&quot;</span></span> <span class="pl-e">ref</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>sessionManager<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
-        <span class="pl-c">&lt;!-- Cache: EhCache--&gt;</span>
-        &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>cacheManager<span class="pl-pds">&quot;</span></span> <span class="pl-e">ref</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>shiroCacheManager<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
-        &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>rememberMeManager<span class="pl-pds">&quot;</span></span> <span class="pl-e">ref</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>rememberMeManager<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
-        &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>realms<span class="pl-pds">&quot;</span></span>&gt;
-            &lt;<span class="pl-ent">list</span>&gt;
-                &lt;<span class="pl-ent">ref</span> <span class="pl-e">bean</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>jdbcRealm<span class="pl-pds">&quot;</span></span>/&gt;
-            &lt;/<span class="pl-ent">list</span>&gt;
-        &lt;/<span class="pl-ent">property</span>&gt;
+    	<span class="pl-c"><span class="pl-c">&lt;!--</span> &lt;property name=&quot;sessionMode&quot; value=&quot;native&quot;&gt;&lt;/property&gt; <span class="pl-c">--&gt;</span></span>
+    	&lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>sessionManager<span class="pl-pds">&quot;</span></span> <span class="pl-e">ref</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>sessionManager<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
+    	<span class="pl-c"><span class="pl-c">&lt;!--</span> Cache: EhCache<span class="pl-c">--&gt;</span></span>
+    	&lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>cacheManager<span class="pl-pds">&quot;</span></span> <span class="pl-e">ref</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>shiroCacheManager<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
+    	&lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>rememberMeManager<span class="pl-pds">&quot;</span></span> <span class="pl-e">ref</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>rememberMeManager<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
+    	&lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>realms<span class="pl-pds">&quot;</span></span>&gt;
+    		&lt;<span class="pl-ent">list</span>&gt;
+    			&lt;<span class="pl-ent">ref</span> <span class="pl-e">bean</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>jdbcRealm<span class="pl-pds">&quot;</span></span>/&gt;
+    		&lt;/<span class="pl-ent">list</span>&gt;
+    	&lt;/<span class="pl-ent">property</span>&gt;
     &lt;/<span class="pl-ent">bean</span>&gt;
-
-    <span class="pl-c">&lt;!-- shiroFilter (**USER DEFINED**) --&gt;</span>
+    
+    <span class="pl-c"><span class="pl-c">&lt;!--</span> shiroFilter (**USER DEFINED**) <span class="pl-c">--&gt;</span></span>
     &lt;<span class="pl-ent">bean</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>shiroFilter<span class="pl-pds">&quot;</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>org.apache.shiro.spring.web.ShiroFilterFactoryBean<span class="pl-pds">&quot;</span></span>&gt;
         &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>securityManager<span class="pl-pds">&quot;</span></span> <span class="pl-e">ref</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>securityManager<span class="pl-pds">&quot;</span></span>/&gt;
-        <span class="pl-c">&lt;!-- override these for application-specific URLs if you like:--&gt;</span>
+        <span class="pl-c"><span class="pl-c">&lt;!--</span> override these for application-specific URLs if you like:<span class="pl-c">--&gt;</span></span>
         &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>loginUrl<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>/toLogin.action<span class="pl-pds">&quot;</span></span>/&gt;
         &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>successUrl<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>/toMain.action<span class="pl-pds">&quot;</span></span>/&gt;
         &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>unauthorizedUrl<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>/toLogin.action<span class="pl-pds">&quot;</span></span>/&gt; 
         &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>filterChainDefinitions<span class="pl-pds">&quot;</span></span>&gt;
             &lt;<span class="pl-ent">value</span>&gt;
                 # anonymous
-                /checkCaptcha.action = anon
-                /notFound.action = anon
-
+    			/checkCaptcha.action = anon
+    			/notFound.action = anon
+    			
                 # requests to /DoLogout will be handled by the ‘logout’ filter
-                /logout.action = logout
-
-                # requests to /toLogin.action will be handled by the ‘auth’ filter
-                /toLogin.action = auth
-
-                # doc page need auth
-                /doc/** = auth
-
-                # need to permission
-                /toMain.action = auth
-                /*.action =  perms
+    			/logout.action = logout
+    			
+    			# requests to /toLogin.action will be handled by the ‘auth’ filter
+    			/toLogin.action = auth
+    			
+    			# doc page need auth
+    			/doc/** = auth
+    			
+    			# need to permission
+    			/toMain.action = auth
+    			/*.action =  perms
             &lt;/<span class="pl-ent">value</span>&gt;
         &lt;/<span class="pl-ent">property</span>&gt;
     &lt;/<span class="pl-ent">bean</span>&gt;
-
-    <span class="pl-c">&lt;!-- DEFAULT --&gt;</span>
+    
+    <span class="pl-c"><span class="pl-c">&lt;!--</span> DEFAULT <span class="pl-c">--&gt;</span></span>
     &lt;<span class="pl-ent">bean</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>lifecycleBeanPostProcessor<span class="pl-pds">&quot;</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>org.apache.shiro.spring.LifecycleBeanPostProcessor<span class="pl-pds">&quot;</span></span>/&gt;
 &lt;/<span class="pl-ent">beans</span>&gt;</pre>
 </div> 
 <h4> <a id="32-shiro-ini-configuration-templates-shiroini" class="anchor" href="#32-shiro-ini-configuration-templates-shiroini" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3.2 Shiro INI Configuration Templates shiro.ini</h4> 
 <div class="highlight highlight-source-ini">
- <pre><span class="pl-c"># -----------------------------------------------------------------------------</span>
-<span class="pl-c"># Users and their (optional) assigned roles</span>
-<span class="pl-c"># username = password, role1, role2, ..., roleN</span>
-<span class="pl-c"># -----------------------------------------------------------------------------</span>
+ <pre><span class="pl-c"><span class="pl-c">#</span> -----------------------------------------------------------------------------</span>
+<span class="pl-c"><span class="pl-c">#</span> Users and their (optional) assigned roles</span>
+<span class="pl-c"><span class="pl-c">#</span> username = password, role1, role2, ..., roleN</span>
+<span class="pl-c"><span class="pl-c">#</span> -----------------------------------------------------------------------------</span>
 <span class="pl-en">[users]</span>
-<span class="pl-c">#admin = admin123, admin</span>
-<span class="pl-c">#jay = 123, user</span>
-<span class="pl-c">#guest = guest, guest</span>
+<span class="pl-c"><span class="pl-c">#</span>admin = admin123, admin</span>
+<span class="pl-c"><span class="pl-c">#</span>jay = 123, user</span>
+<span class="pl-c"><span class="pl-c">#</span>guest = guest, guest</span>
 
-<span class="pl-c"># -----------------------------------------------------------------------------</span>
-<span class="pl-c"># Roles with assigned permissions</span>
-<span class="pl-c"># roleName = perm1, perm2, ..., permN</span>
-<span class="pl-c"># -----------------------------------------------------------------------------</span>
+<span class="pl-c"><span class="pl-c">#</span> -----------------------------------------------------------------------------</span>
+<span class="pl-c"><span class="pl-c">#</span> Roles with assigned permissions</span>
+<span class="pl-c"><span class="pl-c">#</span> roleName = perm1, perm2, ..., permN</span>
+<span class="pl-c"><span class="pl-c">#</span> -----------------------------------------------------------------------------</span>
 <span class="pl-en">[roles]</span>
-<span class="pl-c">#admin = *</span>
-<span class="pl-c">#user = log:*</span>
+<span class="pl-c"><span class="pl-c">#</span>admin = *</span>
+<span class="pl-c"><span class="pl-c">#</span>user = log:*</span>
 
 
-<span class="pl-c"># -----------------------------------------------------------------------------</span>
-<span class="pl-c"># Configuration SessionManager, Cache, Filter</span>
-<span class="pl-c"># myFilter = com.company.web.some.FilterImplementation</span>
-<span class="pl-c"># myFilter.property1 = value1</span>
-<span class="pl-c"># -----------------------------------------------------------------------------</span>
+<span class="pl-c"><span class="pl-c">#</span> -----------------------------------------------------------------------------</span>
+<span class="pl-c"><span class="pl-c">#</span> Configuration SessionManager, Cache, Filter</span>
+<span class="pl-c"><span class="pl-c">#</span> myFilter = com.company.web.some.FilterImplementation</span>
+<span class="pl-c"><span class="pl-c">#</span> myFilter.property1 = value1</span>
+<span class="pl-c"><span class="pl-c">#</span> -----------------------------------------------------------------------------</span>
 
 <span class="pl-en">[main]</span>
-<span class="pl-c">#- Session Manager (DEFAULT)</span>
-<span class="pl-c"># securityManager.sessionManager.xxxx=xxxx</span>
+<span class="pl-c"><span class="pl-c">#</span>- Session Manager (DEFAULT)</span>
+<span class="pl-c"><span class="pl-c">#</span> securityManager.sessionManager.xxxx=xxxx</span>
 
-<span class="pl-c">#-- Shiro Native SessionManager (DEFAULT)</span>
+<span class="pl-c"><span class="pl-c">#</span>-- Shiro Native SessionManager (DEFAULT)</span>
 <span class="pl-k">sessionManager</span> = org.apache.shiro.web.session.mgt.DefaultWebSessionManager
-<span class="pl-c"># Use the configured native session manager:</span>
+<span class="pl-c"><span class="pl-c">#</span> Use the configured native session manager:</span>
 <span class="pl-k">securityManager.sessionManager</span> = $sessionManager
 
-<span class="pl-c">#-- Session Timeout (DEFAULT)</span>
-<span class="pl-c"># 3,600,000 milliseconds = 1 hour</span>
+<span class="pl-c"><span class="pl-c">#</span>-- Session Timeout (DEFAULT)</span>
+<span class="pl-c"><span class="pl-c">#</span> 3,600,000 milliseconds = 1 hour</span>
 <span class="pl-k">securityManager.sessionManager.globalSessionTimeout</span> = 3600000
 
-<span class="pl-c">#-- Session Listeners</span>
-<span class="pl-c"># implement the SessionListener interface (or extend the convenience SessionListenerAdapter) </span>
-<span class="pl-c"># As the default SessionManager sessionListeners property is a collection, you can configure the SessionManager with one or more of your listener implementations like any other collection in shiro.ini:</span>
-<span class="pl-c">#aSessionListener = com.foo.my.SessionListener</span>
-<span class="pl-c">#anotherSessionListener = com.foo.my.OtherSessionListener</span>
-<span class="pl-c">#securityManager.sessionManager.sessionListeners = $aSessionListener, $anotherSessionListener, etc.</span>
+<span class="pl-c"><span class="pl-c">#</span>-- Session Listeners</span>
+<span class="pl-c"><span class="pl-c">#</span> implement the SessionListener interface (or extend the convenience SessionListenerAdapter) </span>
+<span class="pl-c"><span class="pl-c">#</span> As the default SessionManager sessionListeners property is a collection, you can configure the SessionManager with one or more of your listener implementations like any other collection in shiro.ini:</span>
+<span class="pl-c"><span class="pl-c">#</span>aSessionListener = com.foo.my.SessionListener</span>
+<span class="pl-c"><span class="pl-c">#</span>anotherSessionListener = com.foo.my.OtherSessionListener</span>
+<span class="pl-c"><span class="pl-c">#</span>securityManager.sessionManager.sessionListeners = $aSessionListener, $anotherSessionListener, etc.</span>
 
 
-<span class="pl-c">#-- Custom Session IDs</span>
-<span class="pl-c"># The default SessionIdGenerator is a JavaUuidSessionIdGenerator, </span>
-<span class="pl-c"># which generates String IDs based on Java UUIDs. </span>
-<span class="pl-c">#sessionIdGenerator = com.my.session.SessionIdGenerator</span>
-<span class="pl-c">#securityManager.sessionManager.sessionDAO.sessionIdGenerator = $sessionIdGenerator</span>
+<span class="pl-c"><span class="pl-c">#</span>-- Custom Session IDs</span>
+<span class="pl-c"><span class="pl-c">#</span> The default SessionIdGenerator is a JavaUuidSessionIdGenerator, </span>
+<span class="pl-c"><span class="pl-c">#</span> which generates String IDs based on Java UUIDs. </span>
+<span class="pl-c"><span class="pl-c">#</span>sessionIdGenerator = com.my.session.SessionIdGenerator</span>
+<span class="pl-c"><span class="pl-c">#</span>securityManager.sessionManager.sessionDAO.sessionIdGenerator = $sessionIdGenerator</span>
 
 
-<span class="pl-c">#-- SessionValidationScheduler (DEFAULT)</span>
-<span class="pl-c"># Sessions are only validated to see </span>
-<span class="pl-c"># if they have been stopped or expired at the time they are accessed, </span>
-<span class="pl-c"># A SessionValidationScheduler is responsible for validating sessions </span>
-<span class="pl-c"># at a periodic rate to ensure they are cleaned up as necessary.</span>
-<span class="pl-c"># You can custom SessionValidationScheduler implementation class.</span>
+<span class="pl-c"><span class="pl-c">#</span>-- SessionValidationScheduler (DEFAULT)</span>
+<span class="pl-c"><span class="pl-c">#</span> Sessions are only validated to see </span>
+<span class="pl-c"><span class="pl-c">#</span> if they have been stopped or expired at the time they are accessed, </span>
+<span class="pl-c"><span class="pl-c">#</span> A SessionValidationScheduler is responsible for validating sessions </span>
+<span class="pl-c"><span class="pl-c">#</span> at a periodic rate to ensure they are cleaned up as necessary.</span>
+<span class="pl-c"><span class="pl-c">#</span> You can custom SessionValidationScheduler implementation class.</span>
 <span class="pl-k">sessionValidationScheduler</span> = org.apache.shiro.session.mgt.ExecutorServiceSessionValidationScheduler
-<span class="pl-c"># Default is 3,600,000 millis = 1 hour:</span>
+<span class="pl-c"><span class="pl-c">#</span> Default is 3,600,000 millis = 1 hour:</span>
 <span class="pl-k">sessionValidationScheduler.interval</span> = 3600000
 <span class="pl-k">securityManager.sessionManager.sessionValidationScheduler</span> = $sessionValidationScheduler
-<span class="pl-c">#securityManager.sessionManager.sessionValidationSchedulerEnabled = false</span>
+<span class="pl-c"><span class="pl-c">#</span>securityManager.sessionManager.sessionValidationSchedulerEnabled = false</span>
 
 
-<span class="pl-c">#-- Session DAO (DEFAULT)</span>
-<span class="pl-c"># cache in the CacheManager should be used to store active sessions:</span>
+<span class="pl-c"><span class="pl-c">#</span>-- Session DAO (DEFAULT)</span>
+<span class="pl-c"><span class="pl-c">#</span> cache in the CacheManager should be used to store active sessions:</span>
 <span class="pl-k">sessionDAO</span> = org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO
 <span class="pl-k">securityManager.sessionManager.sessionDAO</span> = $sessionDAO
-<span class="pl-c"># By default, the EnterpriseCacheSessionDAO asks the CacheManager </span>
-<span class="pl-c"># for a Cache named &quot;shiro-activeSessionCache&quot;</span>
-<span class="pl-c">#sessionDAO.activeSessionsCacheName = ehcache_region_name</span>
+<span class="pl-c"><span class="pl-c">#</span> By default, the EnterpriseCacheSessionDAO asks the CacheManager </span>
+<span class="pl-c"><span class="pl-c">#</span> for a Cache named &quot;shiro-activeSessionCache&quot;</span>
+<span class="pl-c"><span class="pl-c">#</span>sessionDAO.activeSessionsCacheName = ehcache_region_name</span>
 
 
-<span class="pl-c">#- Cache</span>
-<span class="pl-c"># securityManager.cacheManager</span>
+<span class="pl-c"><span class="pl-c">#</span>- Cache</span>
+<span class="pl-c"><span class="pl-c">#</span> securityManager.cacheManager</span>
 
-<span class="pl-c">#-- EhCache (DEFAULT)</span>
+<span class="pl-c"><span class="pl-c">#</span>-- EhCache (DEFAULT)</span>
 <span class="pl-k">cacheManager</span> = org.apache.shiro.cache.ehcache.EhCacheManager
 <span class="pl-k">cacheManager.cacheManagerConfigFile</span> = classpath:ehcache.xml
-<span class="pl-c">##-- in-memory-only Cache</span>
-<span class="pl-c">#cacheManager = org.apache.shiro.cache.MemoryConstrainedCacheManager</span>
+<span class="pl-c"><span class="pl-c">#</span>#-- in-memory-only Cache</span>
+<span class="pl-c"><span class="pl-c">#</span>cacheManager = org.apache.shiro.cache.MemoryConstrainedCacheManager</span>
 <span class="pl-k">securityManager.cacheManager</span> = $cacheManager
 
-<span class="pl-c">#- RememeberMe(org.apache.shiro.web.mgt.CookieRememberMeManager) (DEFAULT)</span>
+<span class="pl-c"><span class="pl-c">#</span>- RememeberMe(org.apache.shiro.web.mgt.CookieRememberMeManager) (DEFAULT)</span>
 <span class="pl-k">securityManager.rememberMeManager.cookie.name</span> = rememberMe
-<span class="pl-c"># default is /request.getContextPath()</span>
+<span class="pl-c"><span class="pl-c">#</span> default is /request.getContextPath()</span>
 <span class="pl-k">securityManager.rememberMeManager.cookie.path</span> = /
-<span class="pl-c"># default is ONE_YEAR</span>
+<span class="pl-c"><span class="pl-c">#</span> default is ONE_YEAR</span>
 <span class="pl-k">securityManager.rememberMeManager.cookie.maxAge</span> = 31536000
 
 
-<span class="pl-c">#------------------------------ When use Session Clustering: Ehcache + Terracotta</span>
-<span class="pl-c">#sessionDAO = org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO</span>
-<span class="pl-c">## This name matches a cache name in ehcache.xml:</span>
-<span class="pl-c">#sessionDAO.activeSessionsCacheName = shiro-activeSessionsCache</span>
-<span class="pl-c">#securityManager.sessionManager.sessionDAO = $sessionDAO</span>
-<span class="pl-c">#</span>
-<span class="pl-c">## Configure The EhCacheManager:</span>
-<span class="pl-c">#cacheManager = org.apache.shiro.cache.ehcache.EhCacheManager</span>
-<span class="pl-c">#cacheManager.cacheManagerConfigFile = classpath:ehcache.xml</span>
-<span class="pl-c">#</span>
-<span class="pl-c">## Configure the above CacheManager on Shiro's SecurityManager</span>
-<span class="pl-c">## to use it for all of Shiro's caching needs:</span>
-<span class="pl-c">#securityManager.cacheManager = $cacheManager</span>
-<span class="pl-c">#------------------------------ When use Session Clustering: Ehcache + Terracotta</span>
+<span class="pl-c"><span class="pl-c">#</span>------------------------------ When use Session Clustering: Ehcache + Terracotta</span>
+<span class="pl-c"><span class="pl-c">#</span>sessionDAO = org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO</span>
+<span class="pl-c"><span class="pl-c">#</span># This name matches a cache name in ehcache.xml:</span>
+<span class="pl-c"><span class="pl-c">#</span>sessionDAO.activeSessionsCacheName = shiro-activeSessionsCache</span>
+<span class="pl-c"><span class="pl-c">#</span>securityManager.sessionManager.sessionDAO = $sessionDAO</span>
+<span class="pl-c"><span class="pl-c">#</span></span>
+<span class="pl-c"><span class="pl-c">#</span># Configure The EhCacheManager:</span>
+<span class="pl-c"><span class="pl-c">#</span>cacheManager = org.apache.shiro.cache.ehcache.EhCacheManager</span>
+<span class="pl-c"><span class="pl-c">#</span>cacheManager.cacheManagerConfigFile = classpath:ehcache.xml</span>
+<span class="pl-c"><span class="pl-c">#</span></span>
+<span class="pl-c"><span class="pl-c">#</span># Configure the above CacheManager on Shiro's SecurityManager</span>
+<span class="pl-c"><span class="pl-c">#</span># to use it for all of Shiro's caching needs:</span>
+<span class="pl-c"><span class="pl-c">#</span>securityManager.cacheManager = $cacheManager</span>
+<span class="pl-c"><span class="pl-c">#</span>------------------------------ When use Session Clustering: Ehcache + Terracotta</span>
 
-<span class="pl-c">#- Realm</span>
+<span class="pl-c"><span class="pl-c">#</span>- Realm</span>
 
-<span class="pl-c">#-- DataSource (**USER DEFINED**) </span>
+<span class="pl-c"><span class="pl-c">#</span>-- DataSource (**USER DEFINED**) </span>
 <span class="pl-k">dataSource</span>=com.alibaba.druid.pool.DruidDataSource  
 <span class="pl-k">dataSource.url</span>=jdbc:mysql://127.0.0.1:3306/easyssh
 <span class="pl-k">dataSource.username</span>=root  
@@ -1185,184 +1179,182 @@ function setDocumentScrollTop(ypos)
 <span class="pl-k">dataSource.poolPreparedStatements</span>=false
 <span class="pl-k">dataSource.maxPoolPreparedStatementPerConnectionSize</span>=20
 
-<span class="pl-c">#-- EasyJdbcRealm (**USER DEFINED**) </span>
-<span class="pl-c">#jdbcRealm=org.apache.shiro.realm.jdbc.JdbcRealm</span>
+<span class="pl-c"><span class="pl-c">#</span>-- EasyJdbcRealm (**USER DEFINED**) </span>
+<span class="pl-c"><span class="pl-c">#</span>jdbcRealm=org.apache.shiro.realm.jdbc.JdbcRealm</span>
 <span class="pl-k">jdbcRealm</span>=cn.easyproject.easyshiro.EasyJdbcRealm
 <span class="pl-k">jdbcRealm.dataSource</span>=$dataSource  
-<span class="pl-c"># Authentication information query; default: select * from users where username = ?</span>
+<span class="pl-c"><span class="pl-c">#</span> Authentication information query; default: select * from users where username = ?</span>
 <span class="pl-k">jdbcRealm.authenticationQuery</span>=select user_id as userid,name,password,status,real_name as realname from sys_user where <span class="pl-k">name</span>=? and status in(0,1)
-<span class="pl-c"># Password columns Column name;  default: password</span>
+<span class="pl-c"><span class="pl-c">#</span> Password columns Column name;  default: password</span>
 <span class="pl-k">jdbcRealm.passwordColumn</span>=password
-<span class="pl-c"># Roles query (supports multiple username =?); default: select role_name from user_roles where username = ? </span>
+<span class="pl-c"><span class="pl-c">#</span> Roles query (supports multiple username =?); default: select role_name from user_roles where username = ? </span>
 <span class="pl-k">jdbcRealm.userRolesQuery</span>=select name from sys_role where role_id in (select role_id from sys_user_role where <span class="pl-k">user_id</span>=(select user_id from sys_user where <span class="pl-k">name</span>=?)) and <span class="pl-k">status</span>=0 
-<span class="pl-c"># Whether to execute permissions Query permission to query; default: true</span>
+<span class="pl-c"><span class="pl-c">#</span> Whether to execute permissions Query permission to query; default: true</span>
 <span class="pl-k">jdbcRealm.permissionsLookupEnabled</span>=true
-<span class="pl-c"># Permissions query (supports multiple username =?); default: select permission from roles_permissions where role_name = ?&quot; </span>
+<span class="pl-c"><span class="pl-c">#</span> Permissions query (supports multiple username =?); default: select permission from roles_permissions where role_name = ?&quot; </span>
 <span class="pl-k">jdbcRealm.permissionsQuery</span>=select action from sys_menu_permission where MENU_PERMISSION_ID in( select MENU_PERMISSION_ID from sys_role_menu_permission where ROLE_ID in(select role_id from sys_user_role where <span class="pl-k">user_id</span>=(select user_id from sys_user where <span class="pl-k">name</span>=?))) UNION select action from sys_operation_permission where OPERATION_PERMISSION_ID in(select OPERATION_PERMISSION_ID from sys_role_operation_permission where ROLE_ID in(select role_id from sys_user_role where <span class="pl-k">user_id</span>=(select user_id from sys_user where <span class="pl-k">name</span>=?)))  
-<span class="pl-c"># EasyJdbcRealm Interceptor, after authentication and authorization information can be obtained, for SimpleAuthenticationInfo authentication and authorization information SimpleAuthorizationInfo additional processing</span>
+<span class="pl-c"><span class="pl-c">#</span> EasyJdbcRealm Interceptor, after authentication and authorization information can be obtained, for SimpleAuthenticationInfo authentication and authorization information SimpleAuthorizationInfo additional processing</span>
 <span class="pl-k">jdbcRealm.interceptor</span>=$realmInterceptor
-<span class="pl-c"># customize EasyJdbcRealm Interceptor, after authentication and authorization information can be obtained, for SimpleAuthenticationInfo authentication and authorization information SimpleAuthorizationInfo additional processing</span>
+<span class="pl-c"><span class="pl-c">#</span> customize EasyJdbcRealm Interceptor, after authentication and authorization information can be obtained, for SimpleAuthenticationInfo authentication and authorization information SimpleAuthorizationInfo additional processing</span>
 <span class="pl-k">realmInterceptor</span>=cn.easyproject.easyee.ssh.sys.shiro.RealmInterceptor
 <span class="pl-k">jdbcRealm.interceptor</span>=$realmInterceptor
 
 <span class="pl-k">securityManager.realms</span>=$jdbcRealm 
 
 
-<span class="pl-c">#- auth Login Authentication (**USER DEFINED**) </span>
+<span class="pl-c"><span class="pl-c">#</span>- auth Login Authentication (**USER DEFINED**) </span>
 
-<span class="pl-c">#-- customize auth</span>
-<span class="pl-c">#auth=cn.easyproject.easyshiro.EasyFormAuthenticationFilter</span>
+<span class="pl-c"><span class="pl-c">#</span>-- customize auth</span>
+<span class="pl-c"><span class="pl-c">#</span>auth=cn.easyproject.easyshiro.EasyFormAuthenticationFilter</span>
 <span class="pl-k">auth</span>=cn.easyproject.easyshiro.EasyFormAuthenticationFilter
-<span class="pl-c"># specify login form page</span>
-<span class="pl-c"># when request method is post execute login, else to login page view</span>
+<span class="pl-c"><span class="pl-c">#</span> specify login form page</span>
+<span class="pl-c"><span class="pl-c">#</span> when request method is post execute login, else to login page view</span>
 <span class="pl-k">auth.loginUrl</span> = /toLogin.action
-<span class="pl-c"># redirect after successful login</span>
+<span class="pl-c"><span class="pl-c">#</span> redirect after successful login</span>
 <span class="pl-k">auth.successUrl</span> = /toMain.action
-<span class="pl-c"># name of request parameter with username; if not present filter assumes 'username'</span>
+<span class="pl-c"><span class="pl-c">#</span> name of request parameter with username; if not present filter assumes 'username'</span>
 <span class="pl-k">auth.usernameParam</span> = name
-<span class="pl-c"># name of request parameter with password; if not present filter assumes 'password'</span>
+<span class="pl-c"><span class="pl-c">#</span> name of request parameter with password; if not present filter assumes 'password'</span>
 <span class="pl-k">auth.passwordParam</span> = password
-<span class="pl-c"># does the user wish to be remembered?; if not present filter assumes 'rememberMe'</span>
+<span class="pl-c"><span class="pl-c">#</span> does the user wish to be remembered?; if not present filter assumes 'rememberMe'</span>
 <span class="pl-k">auth.rememberMeParam</span> = rememberMe
 
-<span class="pl-c">#-- EasyFormAuthenticationFilter customize Extended Attributes  (**USER DEFINED**) </span>
-<span class="pl-c">#---- Login Configuration</span>
-<span class="pl-c">#Login is successful, the token is stored in the session key;default is 'TOKEN'</span>
-<span class="pl-c"># session.setAttribute(sessionTokenName,tokenObject); </span>
+<span class="pl-c"><span class="pl-c">#</span>-- EasyFormAuthenticationFilter customize Extended Attributes  (**USER DEFINED**) </span>
+<span class="pl-c"><span class="pl-c">#</span>---- Login Configuration</span>
+<span class="pl-c"><span class="pl-c">#</span>Login is successful, the token is stored in the session key;default is 'TOKEN'</span>
+<span class="pl-c"><span class="pl-c">#</span> session.setAttribute(sessionTokenName,tokenObject); </span>
 <span class="pl-k">auth.sessionTokenKey</span>= TOKEN
-<span class="pl-c"># Whether to use the login fails to redirect the way to jump back to the login page;default is 'false'</span>
+<span class="pl-c"><span class="pl-c">#</span> Whether to use the login fails to redirect the way to jump back to the login page;default is 'false'</span>
 <span class="pl-k">auth.loginFailureRedirectToLogin</span> = true
 
-<span class="pl-c">#---- User defined UsernamePasswordToken Configuration (**USER DEFINED**) </span>
-<span class="pl-c"># customize UsernamePasswordToken; Default is 'org.apache.shiro.auth.UsernamePasswordToken'</span>
+<span class="pl-c"><span class="pl-c">#</span>---- User defined UsernamePasswordToken Configuration (**USER DEFINED**) </span>
+<span class="pl-c"><span class="pl-c">#</span> customize UsernamePasswordToken; Default is 'org.apache.shiro.auth.UsernamePasswordToken'</span>
 <span class="pl-k">auth.tokenClassName</span>=cn.easyproject.easyee.ssh.sys.shiro.UsernamePasswordEncodeToken
 
-<span class="pl-c">#---- CAPTCHA Configuration (**USER DEFINED**) </span>
-<span class="pl-c"># Whether to open the CAPTCHA; default 'true'</span>
+<span class="pl-c"><span class="pl-c">#</span>---- CAPTCHA Configuration (**USER DEFINED**) </span>
+<span class="pl-c"><span class="pl-c">#</span> Whether to open the CAPTCHA; default 'true'</span>
 <span class="pl-k">auth.enableCaptcha</span>=true
-<span class="pl-c"># CAPTCHA parameter name default 'captcha'</span>
+<span class="pl-c"><span class="pl-c">#</span> CAPTCHA parameter name default 'captcha'</span>
 <span class="pl-k">auth.captchaParam</span> = captcha
-<span class="pl-c"># CAPTCHA nanme in Session; default 'captcha'</span>
+<span class="pl-c"><span class="pl-c">#</span> CAPTCHA nanme in Session; default 'captcha'</span>
 <span class="pl-k">auth.sessionCaptchaKey</span> = rand
 
 
-<span class="pl-c">#---------  AutoLogin Configuration  (**USER DEFINED**) </span>
-<span class="pl-c"># Are open Auto Login </span>
+<span class="pl-c"><span class="pl-c">#</span>---------  AutoLogin Configuration  (**USER DEFINED**) </span>
+<span class="pl-c"><span class="pl-c">#</span> Are open Auto Login </span>
 <span class="pl-k">auth.enableAutoLogin</span>=false
-<span class="pl-c"># Auto Login parameter name </span>
+<span class="pl-c"><span class="pl-c">#</span> Auto Login parameter name </span>
 <span class="pl-k">auth.autoLoginParam</span>=autoLogin
-<span class="pl-c"># Cookie maxAge ，default is ONE_YEAR </span>
+<span class="pl-c"><span class="pl-c">#</span> Cookie maxAge ，default is ONE_YEAR </span>
 <span class="pl-k">auth.autoLoginMaxAge</span>=31536000
-<span class="pl-c"># Cookie path，default is &quot;&quot; </span>
+<span class="pl-c"><span class="pl-c">#</span> Cookie path，default is &quot;&quot; </span>
 <span class="pl-k">auth.autoLoginPath</span>=/
-<span class="pl-c"># Cookie domain，empty or default is your current domain name </span>
-<span class="pl-c">#auth.autoLoginDomain=</span>
+<span class="pl-c"><span class="pl-c">#</span> Cookie domain，empty or default is your current domain name </span>
+<span class="pl-c"><span class="pl-c">#</span>auth.autoLoginDomain=</span>
 
-<span class="pl-c">#---- LockLogin Configuration Logon failure related error messages (**USER DEFINED**) </span>
-<span class="pl-c"># Are oepn LockLogin; default is false,off</span>
+<span class="pl-c"><span class="pl-c">#</span>---- LockLogin Configuration Logon failure related error messages (**USER DEFINED**) </span>
+<span class="pl-c"><span class="pl-c">#</span> Are oepn LockLogin; default is false,off</span>
 <span class="pl-k">auth.enableLockLogin</span>=false
-<span class="pl-c"># Shiro CacheManager </span>
+<span class="pl-c"><span class="pl-c">#</span> Shiro CacheManager </span>
 <span class="pl-k">auth.ehCacheManager</span>=$cacheManager
-<span class="pl-c"># LockLogin Management locked EHCache name cache time period; default shiro-lockLoginCache</span>
+<span class="pl-c"><span class="pl-c">#</span> LockLogin Management locked EHCache name cache time period; default shiro-lockLoginCache</span>
 <span class="pl-k">auth.lockLoginCacheName</span>=shiro-lockLoginCache
-<span class="pl-c"># LockLogin Statistics Log error count time period EHCache cache name; defaults to shiro-lockCheckCache </span>
+<span class="pl-c"><span class="pl-c">#</span> LockLogin Statistics Log error count time period EHCache cache name; defaults to shiro-lockCheckCache </span>
 <span class="pl-k">auth.lockCheckCacheName</span>=shiro-lockCheckCache
-<span class="pl-c">#To achieve the same user name to log the number of login errors, login lockout; 0 for no limit; default is 6 </span>
+<span class="pl-c"><span class="pl-c">#</span>To achieve the same user name to log the number of login errors, login lockout; 0 for no limit; default is 6 </span>
 <span class="pl-k">auth.userLock</span>=4
-<span class="pl-c">#  Login achieve the same IP number of errors, login lockout; 0 for no limit; default is 15 </span>
+<span class="pl-c"><span class="pl-c">#</span>  Login achieve the same IP number of errors, login lockout; 0 for no limit; default is 15 </span>
 <span class="pl-k">auth.ipLock</span>=6
-<span class="pl-c"># The specified number of login errors, display codes; -1 does not control verification code display; the default is 1 </span>
+<span class="pl-c"><span class="pl-c">#</span> The specified number of login errors, display codes; -1 does not control verification code display; the default is 1 </span>
 <span class="pl-k">auth.showCaptcha</span>=2
 
-<span class="pl-c">#---- Logon failure related error messages (**USER DEFINED**) </span>
-<span class="pl-c"># Login failed message key </span>
+<span class="pl-c"><span class="pl-c">#</span>---- Logon failure related error messages (**USER DEFINED**) </span>
+<span class="pl-c"><span class="pl-c">#</span> Login failed message key </span>
 <span class="pl-k">auth.msgKey</span> = MSG
-<span class="pl-c"># The message is stored session，session.setAttribute(MsgKey,xxxErrorMsg); default is 'false'</span>
+<span class="pl-c"><span class="pl-c">#</span> The message is stored session，session.setAttribute(MsgKey,xxxErrorMsg); default is 'false'</span>
 <span class="pl-k">auth.sessionMsg</span> = true
-<span class="pl-c"># The message is stored request，request.setAttribute(MsgKey,xxxErrorMsg); default is 'false'</span>
+<span class="pl-c"><span class="pl-c">#</span> The message is stored request，request.setAttribute(MsgKey,xxxErrorMsg); default is 'false'</span>
 <span class="pl-k">auth.requestMsg</span> = true
-<span class="pl-c"># Login error, an exception in content  Map</span>
-<span class="pl-c"># ExceptionClassName:&quot;Message&quot;, ExceptionClassName2:&quot;Message2&quot;, ...</span>
+<span class="pl-c"><span class="pl-c">#</span> Login error, an exception in content  Map</span>
+<span class="pl-c"><span class="pl-c">#</span> ExceptionClassName:&quot;Message&quot;, ExceptionClassName2:&quot;Message2&quot;, ...</span>
 <span class="pl-k">auth.exceptionMsg</span> = LockedAccountException:<span class="pl-s"><span class="pl-pds">&quot;</span>Account lockout, please contact the administrator to unlock.<span class="pl-pds">&quot;</span></span>, AuthenticationException:<span class="pl-s"><span class="pl-pds">&quot;</span>User name or password is incorrect!<span class="pl-pds">&quot;</span></span>, EasyIncorrectCaptchaException:<span class="pl-s"><span class="pl-pds">&quot;</span>CAPTCHA is incorrect!<span class="pl-pds">&quot;</span></span>, EasyLockUserException:<span class="pl-s"><span class="pl-pds">&quot;</span>User temporarily locking two hours, please try again later.<span class="pl-pds">&quot;</span></span>, EasyLockIPException:<span class="pl-s"><span class="pl-pds">&quot;</span>IP temporarily locking two hours, please try again later.<span class="pl-pds">&quot;</span></span>
 
-<span class="pl-c">#---- customize EasyJdbcRealmInterceptor  interceptor, You can customize the code after the authentication process succeeds or fails (**USER DEFINED**) </span>
+<span class="pl-c"><span class="pl-c">#</span>---- customize EasyJdbcRealmInterceptor  interceptor, You can customize the code after the authentication process succeeds or fails (**USER DEFINED**) </span>
 <span class="pl-k">authenticationInterceptor</span>=cn.easyproject.easyee.ssh.sys.shiro.AuthenticationInterceptor
 <span class="pl-k">auth.interceptor</span>=$authenticationInterceptor
 
 
-<span class="pl-c">#- user Authentication (**USER DEFINED**) </span>
-<span class="pl-c"># user filter, if not remeberMe redirected to the url, default is '/login.jsp'</span>
+<span class="pl-c"><span class="pl-c">#</span>- user Authentication (**USER DEFINED**) </span>
+<span class="pl-c"><span class="pl-c">#</span> user filter, if not remeberMe redirected to the url, default is '/login.jsp'</span>
 <span class="pl-k">user.loginUrl</span>=/login.jsp
 
-<span class="pl-c">#- Logout (**USER DEFINED**) </span>
-<span class="pl-c"># specify LogoutFilter</span>
-<span class="pl-c"># logout = org.apache.shiro.web.filter.authc.LogoutFilter</span>
-<span class="pl-c"># specify logout redirectUrl</span>
+<span class="pl-c"><span class="pl-c">#</span>- Logout (**USER DEFINED**) </span>
+<span class="pl-c"><span class="pl-c">#</span> specify LogoutFilter</span>
+<span class="pl-c"><span class="pl-c">#</span> logout = org.apache.shiro.web.filter.authc.LogoutFilter</span>
+<span class="pl-c"><span class="pl-c">#</span> specify logout redirectUrl</span>
 <span class="pl-k">logout</span>=cn.easyproject.easyshiro.EasyLogoutFilter
 <span class="pl-k">logout.redirectUrl</span> = /login.jsp
-<span class="pl-c"># EasyFormAuthenticationFilter</span>
+<span class="pl-c"><span class="pl-c">#</span> EasyFormAuthenticationFilter</span>
 <span class="pl-k">logout.easyFormAuthenticationFilter</span>=$auth
 
-<span class="pl-c">#- perms  (**USER DEFINED**) </span>
-<span class="pl-c">## Authorization filter rules based on URL</span>
+<span class="pl-c"><span class="pl-c">#</span>- perms  (**USER DEFINED**) </span>
+<span class="pl-c"><span class="pl-c">#</span># Authorization filter rules based on URL</span>
 <span class="pl-k">perms</span>=cn.easyproject.easyshiro.EasyURLPermissionFilter
-<span class="pl-c"># Authentication failed steering url</span>
+<span class="pl-c"><span class="pl-c">#</span> Authentication failed steering url</span>
 <span class="pl-k">perms.unauthorizedUrl</span>=/login.jsp
-<span class="pl-c"># Login timeout detection is turned on; default is 'true'</span>
+<span class="pl-c"><span class="pl-c">#</span> Login timeout detection is turned on; default is 'true'</span>
 <span class="pl-k">perms.authenticationTimeoutCheck</span>= true
 
-<span class="pl-c">## Authorization failed related error messages (**USER DEFINED**) </span>
-<span class="pl-c"># Authentication failed message key; default is 'msg' </span>
+<span class="pl-c"><span class="pl-c">#</span># Authorization failed related error messages (**USER DEFINED**) </span>
+<span class="pl-c"><span class="pl-c">#</span> Authentication failed message key; default is 'msg' </span>
 <span class="pl-k">perms.msgKey</span> = msg
-<span class="pl-c"># Authentication failed status code key: 301, login timeout; 401 Permission Denied; default is 'statusCode' </span>
+<span class="pl-c"><span class="pl-c">#</span> Authentication failed status code key: 301, login timeout; 401 Permission Denied; default is 'statusCode' </span>
 <span class="pl-k">perms.statusCode</span> = statusCode
-<span class="pl-c"># The message is stored session，session.setAttribute(MsgKey,xxxErrorMsg); default is 'false'</span>
+<span class="pl-c"><span class="pl-c">#</span> The message is stored session，session.setAttribute(MsgKey,xxxErrorMsg); default is 'false'</span>
 <span class="pl-k">perms.sessionMsg</span> = true
-<span class="pl-c"># The message is stored request，request.setAttribute(MsgKey,xxxErrorMsg); default is 'false'</span>
+<span class="pl-c"><span class="pl-c">#</span> The message is stored request，request.setAttribute(MsgKey,xxxErrorMsg); default is 'false'</span>
 <span class="pl-k">perms.requestMsg</span> = true
-<span class="pl-c"># Authentication failed Tips content;  default is 'Permission denied!'</span>
+<span class="pl-c"><span class="pl-c">#</span> Authentication failed Tips content;  default is 'Permission denied!'</span>
 <span class="pl-k">perms.permissionDeniedMsg</span> = You do not have permission!
-<span class="pl-c"># Login timeout prompt content; default is 'Your login has expired, please login again!'</span>
+<span class="pl-c"><span class="pl-c">#</span> Login timeout prompt content; default is 'Your login has expired, please login again!'</span>
 <span class="pl-k">perms.authenticationTimeoutMsg</span> = Your login has expired, please login again!
 
 
-<span class="pl-c"># -----------------------------------------------------------------------------</span>
-<span class="pl-c"># Urls and their filter</span>
-<span class="pl-c"># URL_Ant_Path_Expression = Path_Specific_Filter_Chain</span>
-<span class="pl-c"># filter1[optional_config1], filter2[optional_config2], ..., filterN[optional_configN]</span>
-<span class="pl-c"># -----------------------------------------------------------------------------</span>
+<span class="pl-c"><span class="pl-c">#</span> -----------------------------------------------------------------------------</span>
+<span class="pl-c"><span class="pl-c">#</span> Urls and their filter</span>
+<span class="pl-c"><span class="pl-c">#</span> URL_Ant_Path_Expression = Path_Specific_Filter_Chain</span>
+<span class="pl-c"><span class="pl-c">#</span> filter1[optional_config1], filter2[optional_config2], ..., filterN[optional_configN]</span>
+<span class="pl-c"><span class="pl-c">#</span> -----------------------------------------------------------------------------</span>
 <span class="pl-en">[urls]</span> (**USER DEFINED**) 
- <span class="pl-c"># anonymous</span>
+ <span class="pl-c"><span class="pl-c">#</span> anonymous</span>
 /<span class="pl-k">checkCaptcha.action</span> = anon
 /<span class="pl-k">notFound.action</span> = anon
 
-<span class="pl-c"># requests to /DoLogout will be handled by the ‘logout’ filter</span>
+<span class="pl-c"><span class="pl-c">#</span> requests to /DoLogout will be handled by the ‘logout’ filter</span>
 /<span class="pl-k">logout.action</span> = logout
 
-<span class="pl-c"># requests to /toLogin.action will be handled by the ‘auth’ filter</span>
+<span class="pl-c"><span class="pl-c">#</span> requests to /toLogin.action will be handled by the ‘auth’ filter</span>
 /<span class="pl-k">toLogin.action</span> = auth
 
-<span class="pl-c"># doc page need auth</span>
+<span class="pl-c"><span class="pl-c">#</span> doc page need auth</span>
 /doc/** = auth
 
-<span class="pl-c"># need to permission</span>
+<span class="pl-c"><span class="pl-c">#</span> need to permission</span>
 /<span class="pl-k">toMain.action</span> = auth
 /*.<span class="pl-k">action</span> =  perms</pre>
 </div> 
 <h2> <a id="detailed-functional-components" class="anchor" href="#detailed-functional-components" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Detailed functional components</h2> 
 <h4> <a id="1-easyformauthenticationfilterfully-functional-form-login-authentication-filter-extends-the-formauthenticationfilter" class="anchor" href="#1-easyformauthenticationfilterfully-functional-form-login-authentication-filter-extends-the-formauthenticationfilter" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1. EasyFormAuthenticationFilter：Fully functional form login authentication filter extends the <code>FormAuthenticationFilter</code>。</h4> 
 <ul> 
- <li><p>Token successful login into the Session</p></li> 
- <li><p>Redirect Jump Support (after successful login or avoid failure caused by repeated submission to refresh invalid login request)</p></li> 
- <li><p>Sign exception messages configuration support (for different custom exception error message, and save the error messages to request and session (redirect) Scope)</p></li> 
- <li><p>CAPTCHA codes support</p></li> 
- <li><p>AutoLogin automatic login support</p></li> 
- <li> <p>LockLogin login lockout support</p> 
-  <ul> 
-   <li><p><code>EasyAuthenticationInterceptor</code> Authentication success and failure interceptors support (for example, after a successful user authentication lock detection, or query initialization menu extension work.)</p></li> 
-   <li><p>Logged-in users to re-login account (Shiro default browser has logged the case, landing new accounts will automatically jump to the original login page)</p></li> 
-   <li><p>Inherited RememberMe support (using the built-in user filter implementation, Shiro default RememberMe not used to automatically log on, but for the user filters)</p></li> 
-  </ul> </li> 
+ <li> <p>Token successful login into the Session</p> </li> 
+ <li> <p>Redirect Jump Support (after successful login or avoid failure caused by repeated submission to refresh invalid login request)</p> </li> 
+ <li> <p>Sign exception messages configuration support (for different custom exception error message, and save the error messages to request and session (redirect) Scope)</p> </li> 
+ <li> <p>CAPTCHA codes support</p> </li> 
+ <li> <p>AutoLogin automatic login support</p> </li> 
+ <li> <p>LockLogin login lockout support</p> </li> 
+ <li> <p><code>EasyAuthenticationInterceptor</code> Authentication success and failure interceptors support (for example, after a successful user authentication lock detection, or query initialization menu extension work.)</p> </li> 
+ <li> <p>Logged-in users to re-login account (Shiro default browser has logged the case, landing new accounts will automatically jump to the original login page)</p> </li> 
+ <li> <p>Inherited RememberMe support (using the built-in user filter implementation, Shiro default RememberMe not used to automatically log on, but for the user filters)</p> </li> 
 </ul> 
 <h4> <a id="2-easylogoutfilter-the-user-logout-filter-extends-the-logoutfilter" class="anchor" href="#2-easylogoutfilter-the-user-logout-filter-extends-the-logoutfilter" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2. EasyLogoutFilter: The user logout filter extends the <code>LogoutFilter</code>.</h4> 
 <ul> 
@@ -1370,22 +1362,22 @@ function setDocumentScrollTop(ypos)
 </ul> 
 <h4> <a id="3-easyusernamepasswordendcodetoken-simplified-and-more-flexible-password-encryption-scheme-token-extends-the-usernamepasswordtoken" class="anchor" href="#3-easyusernamepasswordendcodetoken-simplified-and-more-flexible-password-encryption-scheme-token-extends-the-usernamepasswordtoken" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3. EasyUsernamePasswordEndcodeToken: Simplified and more flexible password encryption scheme Token, extends the <code>UsernamePasswordToken</code>.</h4> 
 <ul> 
- <li><p>Results simplifies password encrypted login, simply inherit <code>EasyUsernamePasswordEndcodeToken</code>, self-fulfilling<code>encodePassword ()</code>password encryption logic to return the encrypted password</p></li> 
- <li><p>Can add custom properties when using <code>EasyJdbcRealm</code> login authentication, auto-login queries with the same name attribute statements related user database column value assigned to the class (<code>encodePassword()</code>can be used to encrypt the database column encryption attributes as<code>salt</code>)</p></li> 
+ <li> <p>Results simplifies password encrypted login, simply inherit <code>EasyUsernamePasswordEndcodeToken</code>, self-fulfilling<code>encodePassword ()</code>password encryption logic to return the encrypted password</p> </li> 
+ <li> <p>Can add custom properties when using <code>EasyJdbcRealm</code> login authentication, auto-login queries with the same name attribute statements related user database column value assigned to the class (<code>encodePassword()</code>can be used to encrypt the database column encryption attributes as<code>salt</code>)</p> </li> 
 </ul> 
 <h4> <a id="4-easyjdbcrealm-general-database-authentication-roles-permissions-inquiry-realm-extends-the-authorizingrealm" class="anchor" href="#4-easyjdbcrealm-general-database-authentication-roles-permissions-inquiry-realm-extends-the-authorizingrealm" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4. EasyJdbcRealm: General database authentication, roles, permissions inquiry Realm, extends the <code>AuthorizingRealm</code>。</h4> 
 <ul> 
- <li><p>When <code>doGetAuthenticationInfo</code> user login authentication, users can query statement to query the information in the database, all automatically initialized to login authentication Token<code>UsernamePasswordToken</code> extension of the same name attribute subclass solve the authentication information does not contain a database of user attributes problem</p></li> 
- <li><p>Provides a static <code>reloadPermissions</code> method ** can refresh permissions after successful authentication ** (example: re-assign user permissions, user permissions to refresh the current date.)</p></li> 
- <li><p><code>EasyJdbcRealmInterceptor</code> authentication and authorization information interceptors (re-deposited after example, after obtaining authorization or authentication information, for secondary processing, such as permission for a particular character string segmentation segmentation<code>StringPermissions</code> and so on.)</p></li> 
- <li><p>Compatible with <code>UsernamePasswordToken</code> and<code>EasyUsernamePasswordEndcodeToken</code> login authentication</p></li> 
- <li><p>Provide EasyJdbcRealm, extended JdbcRealm, solve the problem of authentication information database does not contain user attributes. Able to login authentication, user information in the database, all automatically packaged into a user login authentication Token (EasyUsernamePasswordToken) in.</p></li> 
+ <li> <p>When <code>doGetAuthenticationInfo</code> user login authentication, users can query statement to query the information in the database, all automatically initialized to login authentication Token<code>UsernamePasswordToken</code> extension of the same name attribute subclass solve the authentication information does not contain a database of user attributes problem</p> </li> 
+ <li> <p>Provides a static <code>reloadPermissions</code> method ** can refresh permissions after successful authentication ** (example: re-assign user permissions, user permissions to refresh the current date.)</p> </li> 
+ <li> <p><code>EasyJdbcRealmInterceptor</code> authentication and authorization information interceptors (re-deposited after example, after obtaining authorization or authentication information, for secondary processing, such as permission for a particular character string segmentation segmentation<code>StringPermissions</code> and so on.)</p> </li> 
+ <li> <p>Compatible with <code>UsernamePasswordToken</code> and<code>EasyUsernamePasswordEndcodeToken</code> login authentication</p> </li> 
+ <li> <p>Provide EasyJdbcRealm, extended JdbcRealm, solve the problem of authentication information database does not contain user attributes. Able to login authentication, user information in the database, all automatically packaged into a user login authentication Token (EasyUsernamePasswordToken) in.</p> </li> 
 </ul> 
 <h4> <a id="5-easyurlpermissionfilter-based-on-the-url-authorization-rule-matches-judge-perms-extends-the-permissionsauthorizationfilter" class="anchor" href="#5-easyurlpermissionfilter-based-on-the-url-authorization-rule-matches-judge-perms-extends-the-permissionsauthorizationfilter" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5. EasyURLPermissionFilter: Based on the URL authorization rule matches judge Perms, extends the <code>PermissionsAuthorizationFilter</code>.</h4> 
 <ul> 
- <li>If the URL string permissions string ( <code>String Permissions</code>), the access is allowed, otherwise not allowed</li> 
- <li><p>Support Login Timeout detection</p></li> 
- <li><p>Support <strong>Ajax response</strong>, use Ajax requests to insufficient permissions or login timeout JSON output (messages can be custom configured by <code>permissionDeniedMsg</code>, <code>authenticationTimeoutMsg</code>):</p></li> 
+ <li> <p>If the URL string permissions string ( <code>String Permissions</code>), the access is allowed, otherwise not allowed</p> </li> 
+ <li> <p>Support Login Timeout detection</p> </li> 
+ <li> <p>Support <strong>Ajax response</strong>, use Ajax requests to insufficient permissions or login timeout JSON output (messages can be custom configured by <code>permissionDeniedMsg</code>, <code>authenticationTimeoutMsg</code>):</p> </li> 
 </ul> 
 <div class="highlight highlight-source-json">
  <pre>{ <span class="pl-s"><span class="pl-pds">&quot;</span>MSG<span class="pl-pds">&quot;</span></span>:<span class="pl-s"><span class="pl-pds">&quot;</span>You do not have permission!<span class="pl-pds">&quot;</span></span>,<span class="pl-s"><span class="pl-pds">&quot;</span>statusCode<span class="pl-pds">&quot;</span></span>:<span class="pl-s"><span class="pl-pds">&quot;</span>401<span class="pl-pds">&quot;</span></span> }
@@ -1393,42 +1385,143 @@ function setDocumentScrollTop(ypos)
 </div> 
 <h4> <a id="6-login-authentication-related-custom-exception" class="anchor" href="#6-login-authentication-related-custom-exception" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>6. Login authentication related custom exception</h4> 
 <ul> 
- <li><p><code>EasyIncorrectCaptchaException</code>, Verification code error exceptions, extends <code>AuthenticationException</code></p></li> 
- <li><p><code>EasyLockLoginException</code>, Login lockout exception parent class, extends <code>AuthenticationException</code></p></li> 
- <li><p><code>EasyLockIPException</code>, IP lock exception, extends <code>EasyLockLoginException</code></p></li> 
- <li><p><code>EasyLockUserException</code>, User lock exception, extends <code>EasyLockLoginException</code></p></li> 
+ <li> <p><code>EasyIncorrectCaptchaException</code>, Verification code error exceptions, extends <code>AuthenticationException</code></p> </li> 
+ <li> <p><code>EasyLockLoginException</code>, Login lockout exception parent class, extends <code>AuthenticationException</code></p> </li> 
+ <li> <p><code>EasyLockIPException</code>, IP lock exception, extends <code>EasyLockLoginException</code></p> </li> 
+ <li> <p><code>EasyLockUserException</code>, User lock exception, extends <code>EasyLockLoginException</code></p> </li> 
 </ul> 
 <h4> <a id="7-interceptor-support" class="anchor" href="#7-interceptor-support" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>7. Interceptor support</h4> 
 <ul> 
- <li><p><code>EasyAuthenticationInterceptor</code>, User authentication or identification blocker (for example, after a user authentication lock detection, or query initialization menu extension work.)</p></li> 
- <li><p><code>EasyJdbcRealmInterceptor</code>, Authentication and authorization information interceptors(For example, after obtaining authorization or authentication information, for secondary processing, such as permission for a particular string of characters will be split after split again into the <code>StringPermissions</code> like.)</p></li> 
+ <li> <p><code>EasyAuthenticationInterceptor</code>, User authentication or identification blocker (for example, after a user authentication lock detection, or query initialization menu extension work.)</p> </li> 
+ <li> <p><code>EasyJdbcRealmInterceptor</code>, Authentication and authorization information interceptors(For example, after obtaining authorization or authentication information, for secondary processing, such as permission for a particular string of characters will be split after split again into the <code>StringPermissions</code> like.)</p> </li> 
 </ul> 
+<h2> <a id="easyshiro-redis-cache" class="anchor" href="#easyshiro-redis-cache" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>EasyShiro Redis Cache</h2> 
+<p><a href="https://github.com/ushelp/EasyShiro-Redis-Cache">EasyShiro-Redis-Cache</a> is an implement of redis cache can be used by shiro, Support Jedis direct connect and Spring-Data-Redis RedisTemplate.</p> 
+<h3> <a id="maven" class="anchor" href="#maven" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Maven</h3> 
+<div class="highlight highlight-text-xml">
+ <pre>&lt;<span class="pl-ent">dependency</span>&gt;
+	&lt;<span class="pl-ent">groupId</span>&gt;cn.easyproject&lt;/<span class="pl-ent">groupId</span>&gt;
+	&lt;<span class="pl-ent">artifactId</span>&gt;easyshiro-redis-cache&lt;/<span class="pl-ent">artifactId</span>&gt;
+	&lt;<span class="pl-ent">version</span>&gt;2.6.0-RELEASE&lt;/<span class="pl-ent">version</span>&gt;
+&lt;/<span class="pl-ent">dependency</span>&gt;</pre>
+</div> 
+<h3> <a id="configure" class="anchor" href="#configure" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Configure</h3> 
+<p>Configure RedisManager(Jedis) or RedisTemplate redis connect.</p> 
+<div class="highlight highlight-text-xml">
+ <pre>	<span class="pl-c"><span class="pl-c">&lt;!--</span> RedisTemplate Start <span class="pl-c">--&gt;</span></span>
+	<span class="pl-c"><span class="pl-c">&lt;!--</span> JedisPool <span class="pl-c">--&gt;</span></span>
+	&lt;<span class="pl-ent">bean</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>jedisPoolConfig<span class="pl-pds">&quot;</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>redis.clients.jedis.JedisPoolConfig<span class="pl-pds">&quot;</span></span>&gt;
+		&lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>maxTotal<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>${redis.pool.maxTotal}<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
+		&lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>maxIdle<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>${redis.pool.maxIdle}<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
+		&lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>maxWaitMillis<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>${redis.pool.maxWaitMillis}<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
+		&lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>testOnBorrow<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>${redis.pool.testOnBorrow}<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
+		&lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>testOnReturn<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>${redis.pool.testOnReturn}<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
+	&lt;/<span class="pl-ent">bean</span>&gt;
+	
+	&lt;<span class="pl-ent">bean</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>jedisConnFactory<span class="pl-pds">&quot;</span></span>
+		class=<span class="pl-s"><span class="pl-pds">&quot;</span>org.springframework.data.redis.connection.jedis.JedisConnectionFactory<span class="pl-pds">&quot;</span></span>
+		p:use-pool=<span class="pl-s"><span class="pl-pds">&quot;</span>true<span class="pl-pds">&quot;</span></span>&gt;
+		&lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>hostName<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>${redis.host}<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
+		&lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>port<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>${redis.port}<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
+		&lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>database<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>${redis.database}<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
+		<span class="pl-c"><span class="pl-c">&lt;!--</span> &lt;property name=&quot;password&quot; value=&quot;pwd456&quot;&gt;&lt;/property&gt; <span class="pl-c">--&gt;</span></span>
+		&lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>poolConfig<span class="pl-pds">&quot;</span></span> <span class="pl-e">ref</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>jedisPoolConfig<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
+	&lt;/<span class="pl-ent">bean</span>&gt;
+	
+	<span class="pl-c"><span class="pl-c">&lt;!--</span> Redis template definition <span class="pl-c">--&gt;</span></span>
+	&lt;<span class="pl-ent">bean</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>redisTemplate<span class="pl-pds">&quot;</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>org.springframework.data.redis.core.RedisTemplate<span class="pl-pds">&quot;</span></span>
+		p:connection-factory-ref=<span class="pl-s"><span class="pl-pds">&quot;</span>jedisConnFactory<span class="pl-pds">&quot;</span></span>&gt;
+		
+		<span class="pl-c"><span class="pl-c">&lt;!--</span> !IMPORTANT: key is must 'StringRedisSerializer' <span class="pl-c">--&gt;</span></span>
+		&lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>keySerializer<span class="pl-pds">&quot;</span></span>&gt;
+			&lt;<span class="pl-ent">bean</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>org.springframework.data.redis.serializer.StringRedisSerializer<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">bean</span>&gt;
+		&lt;/<span class="pl-ent">property</span>&gt;
+		&lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>hashKeySerializer<span class="pl-pds">&quot;</span></span>&gt;
+			&lt;<span class="pl-ent">bean</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>org.springframework.data.redis.serializer.StringRedisSerializer<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">bean</span>&gt;
+		&lt;/<span class="pl-ent">property</span>&gt;
+		&lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>valueSerializer<span class="pl-pds">&quot;</span></span>&gt;
+			&lt;<span class="pl-ent">bean</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>org.springframework.data.redis.serializer.JdkSerializationRedisSerializer<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">bean</span>&gt;
+		&lt;/<span class="pl-ent">property</span>&gt;
+		&lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>hashValueSerializer<span class="pl-pds">&quot;</span></span>&gt;
+			&lt;<span class="pl-ent">bean</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>org.springframework.data.redis.serializer.JdkSerializationRedisSerializer<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">bean</span>&gt;
+		&lt;/<span class="pl-ent">property</span>&gt;
+	&lt;/<span class="pl-ent">bean</span>&gt;
+	<span class="pl-c"><span class="pl-c">&lt;!--</span> RedisTemplate End<span class="pl-c">--&gt;</span></span>
+	
+
+	<span class="pl-c"><span class="pl-c">&lt;!--</span> shiro redisManager <span class="pl-c">--&gt;</span></span>
+<span class="pl-c"><span class="pl-c">&lt;!--</span> 	&lt;bean id=&quot;redisManager&quot; class=&quot;cn.easyproject.shirorediscache.RedisManager&quot;&gt;</span>
+<span class="pl-c">		&lt;property name=&quot;host&quot; value=&quot;127.0.0.1&quot;/&gt;</span>
+<span class="pl-c">		&lt;property name=&quot;port&quot; value=&quot;6379&quot;/&gt;</span>
+<span class="pl-c">		optional properties:</span>
+<span class="pl-c">		&lt;property name=&quot;timeout&quot; value=&quot;10000&quot;/&gt;</span>
+<span class="pl-c">		&lt;property name=&quot;password&quot; value=&quot;123456&quot;/&gt;</span>
+<span class="pl-c">	&lt;/bean&gt; <span class="pl-c">--&gt;</span></span>
+	
+	
+	<span class="pl-c"><span class="pl-c">&lt;!--</span> Session DAO (Redis)<span class="pl-c">--&gt;</span></span>
+	&lt;<span class="pl-ent">bean</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>sessionDAO<span class="pl-pds">&quot;</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>cn.easyproject.shirorediscache.RedisSessionDAO<span class="pl-pds">&quot;</span></span>&gt;
+		<span class="pl-c"><span class="pl-c">&lt;!--</span>  0 - never expire <span class="pl-c">--&gt;</span></span>
+		&lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>expire<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>1800<span class="pl-pds">&quot;</span></span>/&gt;
+		&lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>redisTemplate<span class="pl-pds">&quot;</span></span> <span class="pl-e">ref</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>redisTemplate<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
+	<span class="pl-c"><span class="pl-c">&lt;!--</span> 	&lt;property name=&quot;redisManager&quot; ref=&quot;redisManager&quot;&gt;&lt;/property&gt; <span class="pl-c">--&gt;</span></span>
+	&lt;/<span class="pl-ent">bean</span>&gt;
+	
+	<span class="pl-c"><span class="pl-c">&lt;!--</span> Cache: Redis (securityManager) <span class="pl-c">--&gt;</span></span>
+	&lt;<span class="pl-ent">bean</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>shiroCacheManagerRedis<span class="pl-pds">&quot;</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>cn.easyproject.shirorediscache.RedisCacheManager<span class="pl-pds">&quot;</span></span>&gt;
+		&lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>redisTemplate<span class="pl-pds">&quot;</span></span> <span class="pl-e">ref</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>redisTemplate<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
+<span class="pl-c"><span class="pl-c">&lt;!--</span> 		&lt;property name=&quot;redisManager&quot; ref=&quot;redisManager&quot;&gt;&lt;/property&gt; <span class="pl-c">--&gt;</span></span>
+	&lt;/<span class="pl-ent">bean</span>&gt;
+	
+	<span class="pl-c"><span class="pl-c">&lt;!--</span> SecurityManager <span class="pl-c">--&gt;</span></span>
+	&lt;<span class="pl-ent">bean</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>securityManager<span class="pl-pds">&quot;</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>org.apache.shiro.web.mgt.DefaultWebSecurityManager<span class="pl-pds">&quot;</span></span>&gt;
+		<span class="pl-c"><span class="pl-c">&lt;!--</span> &lt;property name=&quot;sessionMode&quot; value=&quot;native&quot;&gt;&lt;/property&gt; <span class="pl-c">--&gt;</span></span>
+		&lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>sessionManager<span class="pl-pds">&quot;</span></span> <span class="pl-e">ref</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>sessionManager<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
+		<span class="pl-c"><span class="pl-c">&lt;!--</span> Cache: Redis<span class="pl-c">--&gt;</span></span>
+		&lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>cacheManager<span class="pl-pds">&quot;</span></span> <span class="pl-e">ref</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>shiroCacheManagerRedis<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
+		&lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>rememberMeManager<span class="pl-pds">&quot;</span></span> <span class="pl-e">ref</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>rememberMeManager<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
+		&lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>realms<span class="pl-pds">&quot;</span></span>&gt;
+			&lt;<span class="pl-ent">list</span>&gt;
+				&lt;<span class="pl-ent">ref</span> <span class="pl-e">bean</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>jdbcRealm<span class="pl-pds">&quot;</span></span>/&gt;
+			&lt;/<span class="pl-ent">list</span>&gt;
+		&lt;/<span class="pl-ent">property</span>&gt;
+	&lt;/<span class="pl-ent">bean</span>&gt;
+	
+	<span class="pl-c"><span class="pl-c">&lt;!--</span> ... <span class="pl-c">--&gt;</span></span></pre>
+</div> 
 <h2> <a id="other-features-configuration" class="anchor" href="#other-features-configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Other features configuration</h2> 
 <ul> 
- <li> <h3> <a id="rights-to-refresh" class="anchor" href="#rights-to-refresh" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Rights to refresh</h3> <p><code>EasyJdbcRealm</code> It provides a static <code>reloadPermissions</code> method can refresh permission after successful authentication (for example: re-assign user permissions, user permissions to refresh the current date.)</p> </li> 
- <li> <h3> <a id="log-message-prompts-management" class="anchor" href="#log-message-prompts-management" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Log message prompts management</h3> <p>EasyFormAuthenticationFilter In accordance with the appropriate configuration exception error message, and depending on the configuration into the request or session to save.</p> <h4> <a id="1-error-message-custom-configuration" class="anchor" href="#1-error-message-custom-configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1. Error Message Custom Configuration</h4> 
-  <div class="highlight highlight-text-xml">
-   <pre><span class="pl-c">&lt;!-- ## Logon failure related error messages ## --&gt;</span>
-<span class="pl-c">&lt;!-- Login failed message key  --&gt;</span>
+ <li> <h3> <a id="rights-to-refresh" class="anchor" href="#rights-to-refresh" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Rights to refresh</h3> </li> 
+</ul> 
+<p><code>EasyJdbcRealm</code> It provides a static <code>reloadPermissions</code> method can refresh permission after successful authentication (for example: re-assign user permissions, user permissions to refresh the current date.)</p> 
+<ul> 
+ <li> <h3> <a id="log-message-prompts-management" class="anchor" href="#log-message-prompts-management" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Log message prompts management</h3> </li> 
+</ul> 
+<p>EasyFormAuthenticationFilter In accordance with the appropriate configuration exception error message, and depending on the configuration into the request or session to save.</p> 
+<h4> <a id="1-error-message-custom-configuration" class="anchor" href="#1-error-message-custom-configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1. Error Message Custom Configuration</h4> 
+<div class="highlight highlight-text-xml">
+ <pre><span class="pl-c"><span class="pl-c">&lt;!--</span> ## Logon failure related error messages ## <span class="pl-c">--&gt;</span></span>
+<span class="pl-c"><span class="pl-c">&lt;!--</span> Login failed message key  <span class="pl-c">--&gt;</span></span>
 &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>msgKey<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>MSG<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
-<span class="pl-c">&lt;!-- The message is stored session，session.setAttribute(MsgKey,xxxErrorMsg); default is 'false' --&gt;</span>
+<span class="pl-c"><span class="pl-c">&lt;!--</span> The message is stored session，session.setAttribute(MsgKey,xxxErrorMsg); default is 'false' <span class="pl-c">--&gt;</span></span>
 &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>sessionMsg<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>true<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
-<span class="pl-c">&lt;!-- The message is stored request，request.setAttribute(MsgKey,xxxErrorMsg); default is 'false' --&gt;</span>
+<span class="pl-c"><span class="pl-c">&lt;!--</span> The message is stored request，request.setAttribute(MsgKey,xxxErrorMsg); default is 'false' <span class="pl-c">--&gt;</span></span>
 &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>requestMsg<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>true<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
-<span class="pl-c">&lt;!-- # Login error, an exception in the content Map--&gt;</span>
+<span class="pl-c"><span class="pl-c">&lt;!--</span> # Login error, an exception in the content Map<span class="pl-c">--&gt;</span></span>
 &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>exceptionMsg<span class="pl-pds">&quot;</span></span>&gt;
-   &lt;<span class="pl-ent">map</span>&gt;
-       <span class="pl-c">&lt;!-- ExceptionClassName:&quot;Message&quot;, ExceptionClassName2:&quot;Message2&quot;, ... --&gt;</span>
-       &lt;<span class="pl-ent">entry</span> <span class="pl-e">key</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>LockedAccountException<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>Account lockout, please contact the administrator to unlock.<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">entry</span>&gt;
-
-       &lt;<span class="pl-ent">entry</span> <span class="pl-e">key</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>AuthenticationException<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>Username or password is incorrect!<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">entry</span>&gt;
-
-       &lt;<span class="pl-ent">entry</span> <span class="pl-e">key</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>EasyIncorrectCaptchaException<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>Code is incorrect!<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">entry</span>&gt;
-       &lt;<span class="pl-ent">entry</span> <span class="pl-e">key</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>EasyLockUserException<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>user temporarily locking two hours, please try again later.<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">entry</span>&gt;
-       &lt;<span class="pl-ent">entry</span> <span class="pl-e">key</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>EasyLockIPException<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>IP temporarily locking two hours, please try again later.<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">entry</span>&gt;
-   &lt;/<span class="pl-ent">map</span>&gt;
+    &lt;<span class="pl-ent">map</span>&gt;
+        <span class="pl-c"><span class="pl-c">&lt;!--</span> ExceptionClassName:&quot;Message&quot;, ExceptionClassName2:&quot;Message2&quot;, ... <span class="pl-c">--&gt;</span></span>
+        &lt;<span class="pl-ent">entry</span> <span class="pl-e">key</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>LockedAccountException<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>Account lockout, please contact the administrator to unlock.<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">entry</span>&gt;
+        
+        &lt;<span class="pl-ent">entry</span> <span class="pl-e">key</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>AuthenticationException<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>Username or password is incorrect!<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">entry</span>&gt;
+        
+        &lt;<span class="pl-ent">entry</span> <span class="pl-e">key</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>EasyIncorrectCaptchaException<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>Code is incorrect!<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">entry</span>&gt;
+        &lt;<span class="pl-ent">entry</span> <span class="pl-e">key</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>EasyLockUserException<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>user temporarily locking two hours, please try again later.<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">entry</span>&gt;
+        &lt;<span class="pl-ent">entry</span> <span class="pl-e">key</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>EasyLockIPException<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>IP temporarily locking two hours, please try again later.<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">entry</span>&gt;
+    &lt;/<span class="pl-ent">map</span>&gt;
 &lt;/<span class="pl-ent">property</span>&gt;</pre>
-  </div> <pre><code>#---- Error Message Custom Configuration
+</div> 
+<pre><code>#---- Error Message Custom Configuration
 # Login failed message key
 auth.msgKey = MSG
 # The message is stored session，session.setAttribute(MsgKey,xxxErrorMsg); default is 'false'
@@ -1438,72 +1531,75 @@ auth.requestMsg = true
 # Login error, an exception in the content Map
 # ExceptionClassName:&quot;Message&quot;, ExceptionClassName2:&quot;Message2&quot;, ...
 auth.exceptionMsg = LockedAccountException:&quot;Account lockout, please contact the administrator to unlock.&quot;, AuthenticationException:&quot;Username or password is incorrect!&quot;, EasyIncorrectCaptchaException:&quot;Code is incorrect!&quot;, EasyLockUserException:&quot;user temporarily locking two hours, please try again later.&quot;, EasyLockIPException:&quot;IP temporarily locking two hours, please try again later.&quot;
-</code></pre> <h4> <a id="2-page-message-reminding-examples" class="anchor" href="#2-page-message-reminding-examples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2. Page message reminding examples</h4> <pre><code>&lt;!-- Log message prompts JS --&gt;
+</code></pre> 
+<h4> <a id="2-page-message-reminding-examples" class="anchor" href="#2-page-message-reminding-examples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2. Page message reminding examples</h4> 
+<pre><code>&lt;!-- Log message prompts JS --&gt;
 &lt;s:if test=&quot;#session.MSG!=null&quot;&gt;
-  &lt;script type=&quot;text/javascript&quot;&gt;
-      $(function() {
-          uiEx.alert(&quot;${MSG }&quot;, &quot;info&quot;);
-      })
-  &lt;/script&gt;
-  &lt;s:set name=&quot;MSG&quot; scope=&quot;session&quot; value=&quot;&quot;&gt;&lt;/s:set&gt;
+	&lt;script type=&quot;text/javascript&quot;&gt;
+		$(function() {
+			uiEx.alert(&quot;${MSG }&quot;, &quot;info&quot;);
+		})
+	&lt;/script&gt;
+	&lt;s:set name=&quot;MSG&quot; scope=&quot;session&quot; value=&quot;&quot;&gt;&lt;/s:set&gt;
 &lt;/s:if&gt;
-</code></pre> </li> 
-</ul> 
+</code></pre> 
 <h2> <a id="locklogin" class="anchor" href="#locklogin" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>LockLogin</h2> 
 <p><code>EasyFormAuthenticationFilter</code> providing lock-based <code>EhCache</code> of Lock Login login.</p> 
 <h3> <a id="1-ehcachexml-configuration" class="anchor" href="#1-ehcachexml-configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1. ehcache.xml Configuration</h3> 
 <p>Use Lock Login, you must configure the login lockout-related EhCache cache configuration <code>shiro-lockLoginCache</code>，<code>shiro-lockCheckCache</code>。</p> 
 <div class="highlight highlight-text-xml">
- <pre>  <span class="pl-c">&lt;!-- ## LockLogin Configuration ## --&gt;</span>
-  <span class="pl-c">&lt;!-- LockLogin name cache management locks EHCache time period--&gt;</span>
-  <span class="pl-c">&lt;!-- Simply adjust timeToIdleSeconds, the default number of times to reach the login lockout, login lockout 2 Hours--&gt;</span>
-  &lt;<span class="pl-ent">cache</span>
-            <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>shiro-lockLoginCache<span class="pl-pds">&quot;</span></span>
-          <span class="pl-e">maxElementsInMemory</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>100000<span class="pl-pds">&quot;</span></span>
-          <span class="pl-e">eternal</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>false<span class="pl-pds">&quot;</span></span>
-          <span class="pl-e">timeToIdleSeconds</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>0<span class="pl-pds">&quot;</span></span>
-          <span class="pl-e">timeToLiveSeconds</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>7200<span class="pl-pds">&quot;</span></span>
-          <span class="pl-e">diskExpiryThreadIntervalSeconds</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>600<span class="pl-pds">&quot;</span></span>
-          <span class="pl-e">memoryStoreEvictionPolicy</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>LRU<span class="pl-pds">&quot;</span></span>
-          <span class="pl-e">overflowToDisk</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>true<span class="pl-pds">&quot;</span></span>
-          <span class="pl-e">diskPersistent</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>true<span class="pl-pds">&quot;</span></span>&gt;
-  &lt;/<span class="pl-ent">cache</span>&gt;
-
-   <span class="pl-c">&lt;!-- EHCache caching name Lock Login login error statistics of the number of time periods --&gt;</span>
-   <span class="pl-c">&lt;!-- Simply adjust timeToIdleSeconds, default statistics the number of errors in 10 minutes --&gt;</span>
-   &lt;<span class="pl-ent">cache</span>
-        <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>shiro-lockCheckCache<span class="pl-pds">&quot;</span></span>
+ <pre><span class="pl-c"><span class="pl-c">&lt;!--</span> ## LockLogin Configuration ## <span class="pl-c">--&gt;</span></span>
+<span class="pl-c"><span class="pl-c">&lt;!--</span> LockLogin name cache management locks EHCache time period<span class="pl-c">--&gt;</span></span>
+<span class="pl-c"><span class="pl-c">&lt;!--</span> Simply adjust timeToIdleSeconds, the default number of times to reach the login lockout, login lockout 2 Hours<span class="pl-c">--&gt;</span></span>
+&lt;<span class="pl-ent">cache</span>
+   	    <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>shiro-lockLoginCache<span class="pl-pds">&quot;</span></span>
         <span class="pl-e">maxElementsInMemory</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>100000<span class="pl-pds">&quot;</span></span>
         <span class="pl-e">eternal</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>false<span class="pl-pds">&quot;</span></span>
         <span class="pl-e">timeToIdleSeconds</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>0<span class="pl-pds">&quot;</span></span>
-        <span class="pl-e">timeToLiveSeconds</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>600<span class="pl-pds">&quot;</span></span>
+        <span class="pl-e">timeToLiveSeconds</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>7200<span class="pl-pds">&quot;</span></span>
         <span class="pl-e">diskExpiryThreadIntervalSeconds</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>600<span class="pl-pds">&quot;</span></span>
         <span class="pl-e">memoryStoreEvictionPolicy</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>LRU<span class="pl-pds">&quot;</span></span>
         <span class="pl-e">overflowToDisk</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>true<span class="pl-pds">&quot;</span></span>
         <span class="pl-e">diskPersistent</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>true<span class="pl-pds">&quot;</span></span>&gt;
-    &lt;/<span class="pl-ent">cache</span>&gt;</pre>
+&lt;/<span class="pl-ent">cache</span>&gt;
+  
+ <span class="pl-c"><span class="pl-c">&lt;!--</span> EHCache caching name Lock Login login error statistics of the number of time periods <span class="pl-c">--&gt;</span></span>
+ <span class="pl-c"><span class="pl-c">&lt;!--</span> Simply adjust timeToIdleSeconds, default statistics the number of errors in 10 minutes <span class="pl-c">--&gt;</span></span>
+ &lt;<span class="pl-ent">cache</span>
+ 	    <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>shiro-lockCheckCache<span class="pl-pds">&quot;</span></span>
+      <span class="pl-e">maxElementsInMemory</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>100000<span class="pl-pds">&quot;</span></span>
+      <span class="pl-e">eternal</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>false<span class="pl-pds">&quot;</span></span>
+      <span class="pl-e">timeToIdleSeconds</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>0<span class="pl-pds">&quot;</span></span>
+      <span class="pl-e">timeToLiveSeconds</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>600<span class="pl-pds">&quot;</span></span>
+      <span class="pl-e">diskExpiryThreadIntervalSeconds</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>600<span class="pl-pds">&quot;</span></span>
+      <span class="pl-e">memoryStoreEvictionPolicy</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>LRU<span class="pl-pds">&quot;</span></span>
+      <span class="pl-e">overflowToDisk</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>true<span class="pl-pds">&quot;</span></span>
+      <span class="pl-e">diskPersistent</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>true<span class="pl-pds">&quot;</span></span>&gt;
+  &lt;/<span class="pl-ent">cache</span>&gt;</pre>
 </div> 
 <h3> <a id="2-locklogin-controller" class="anchor" href="#2-locklogin-controller" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2. LockLogin Controller</h3> 
 <ul> 
  <li>Lock control based on the user name (User) of</li> 
  <li>IP-based lock control</li> 
- <li> <p>IP-based control codes is displayed</p> 
-  <div class="highlight highlight-text-xml">
-   <pre><span class="pl-c">&lt;!--Whether to open the LockLogin ; default is false, do not open --&gt;</span>
+ <li>IP-based control codes is displayed</li> 
+</ul> 
+<div class="highlight highlight-text-xml">
+ <pre><span class="pl-c"><span class="pl-c">&lt;!--</span>Whether to open the LockLogin ; default is false, do not open <span class="pl-c">--&gt;</span></span>
 &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>enableLockLogin<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>false<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
-<span class="pl-c">&lt;!-- Shiro CacheManager --&gt;</span>
+<span class="pl-c"><span class="pl-c">&lt;!--</span> Shiro CacheManager <span class="pl-c">--&gt;</span></span>
 &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>ehCacheManager<span class="pl-pds">&quot;</span></span> <span class="pl-e">ref</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>shiroCacheManager<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
-<span class="pl-c">&lt;!-- LockLogin Management locked EHCache name cache time period; default shiro-lockLoginCache --&gt;</span>
+<span class="pl-c"><span class="pl-c">&lt;!--</span> LockLogin Management locked EHCache name cache time period; default shiro-lockLoginCache <span class="pl-c">--&gt;</span></span>
 &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>lockLoginCacheName<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>shiro-lockLoginCache<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
-<span class="pl-c">&lt;!-- LockLogin Statistics Log error count time period EHCache cache name; defaults to shiro-lockCheckCache --&gt;</span>
+<span class="pl-c"><span class="pl-c">&lt;!--</span> LockLogin Statistics Log error count time period EHCache cache name; defaults to shiro-lockCheckCache <span class="pl-c">--&gt;</span></span>
 &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>lockCheckCacheName<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>shiro-lockCheckCache<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
-<span class="pl-c">&lt;!--To achieve the same user name to log the number of login errors, login lockout; 0 for no limit; default is 6 --&gt;</span>
+<span class="pl-c"><span class="pl-c">&lt;!--</span>To achieve the same user name to log the number of login errors, login lockout; 0 for no limit; default is 6 <span class="pl-c">--&gt;</span></span>
 &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>userLock<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>4<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
-<span class="pl-c">&lt;!-- Login achieve the same IP number of errors, login lockout; 0 for no limit; default is 15 --&gt;</span>
+<span class="pl-c"><span class="pl-c">&lt;!--</span> Login achieve the same IP number of errors, login lockout; 0 for no limit; default is 15 <span class="pl-c">--&gt;</span></span>
 &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>ipLock<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>6<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;
-<span class="pl-c">&lt;!-- The specified number of login errors, display codes; -1 does not control verification code display; the default is 1 --&gt;</span>
+<span class="pl-c"><span class="pl-c">&lt;!--</span> The specified number of login errors, display codes; -1 does not control verification code display; the default is 1 <span class="pl-c">--&gt;</span></span>
 &lt;<span class="pl-ent">property</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>showCaptcha<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>4<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">property</span>&gt;</pre>
-  </div> <pre><code>#---- LockLogin Configuration Logon failure related error messages
+</div> 
+<pre><code>#---- LockLogin Configuration Logon failure related error messages
 # Are oepn LockLogin; default is false,off
 auth.enableLockLogin=false
 # Shiro CacheManager 
@@ -1518,15 +1614,14 @@ auth.userLock=4
 auth.ipLock=6
 # The specified number of login errors, display codes; -1 does not control verification code display; the default is 1 
 auth.showCaptcha=2
-</code></pre> </li> 
-</ul> 
+</code></pre> 
 <h3> <a id="3-lock-determination" class="anchor" href="#3-lock-determination" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3. Lock determination</h3> 
 <p>EasyShiro of <code>EasyFormAuthenticationFilter</code> filter jump to the login page has examined whether to display a verification code or IP is locked, and the information is stored in<code>Session</code>. Analyzing information can be obtained from the <code>Session</code> in page.</p> 
 <ul> 
  <li>IP is locked <code>session.IPLock</code> </li> 
 </ul> 
 <pre><code>&lt;s:if test=&quot;#session.IPLock!=null&quot;&gt;
-    &lt;span style=&quot;color:#ff0000; font-weight:bold&quot;&gt;您的 IP 地址由于连续登录错误过多，已被锁定 2 小时，请稍后再试。&lt;/span&gt;
+	&lt;span style=&quot;color:#ff0000; font-weight:bold&quot;&gt;您的 IP 地址由于连续登录错误过多，已被锁定 2 小时，请稍后再试。&lt;/span&gt;
 &lt;/s:if&gt;
 </code></pre> 
 <ul> 
@@ -1561,19 +1656,24 @@ auth.showCaptcha=2
 String lockLCheck=&quot;shiro-lockCheckCache&quot;;
 </code></pre> 
 <ul> 
- <li> <p><code>locklogin/admin.jsp</code> Note that there is no access control</p> <p><a href="images/locklogin1.png" target="_blank"><img src="images/locklogin1.png" alt="LockLogin" style="max-width:100%;" /></a></p> <p><a href="images/locklogin2.png" target="_blank"><img src="images/locklogin2.png" alt="LockLogin" style="max-width:100%;" /></a></p> <p><a href="images/locklogin3.png" target="_blank"><img src="images/locklogin3.png" alt="LockLogin" style="max-width:100%;" /></a></p> <p><a href="images/locklogin4.png" target="_blank"><img src="images/locklogin4.png" alt="LockLogin" style="max-width:100%;" /></a></p> <p><a href="images/locklogin5.png" target="_blank"><img src="images/locklogin5.png" alt="LockLogin" style="max-width:100%;" /></a></p> </li> 
+ <li> <code>locklogin/admin.jsp</code> Note that there is no access control</li> 
 </ul> 
+<p><a href="images/locklogin1.png" target="_blank"><img src="images/locklogin1.png" alt="LockLogin" style="max-width:100%;" /></a></p> 
+<p><a href="images/locklogin2.png" target="_blank"><img src="images/locklogin2.png" alt="LockLogin" style="max-width:100%;" /></a></p> 
+<p><a href="images/locklogin3.png" target="_blank"><img src="images/locklogin3.png" alt="LockLogin" style="max-width:100%;" /></a></p> 
+<p><a href="images/locklogin4.png" target="_blank"><img src="images/locklogin4.png" alt="LockLogin" style="max-width:100%;" /></a></p> 
+<p><a href="images/locklogin5.png" target="_blank"><img src="images/locklogin5.png" alt="LockLogin" style="max-width:100%;" /></a></p> 
 <h2> <a id="end" class="anchor" href="#end" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>END</h2> 
-<h3> <a id="the-official-home-page" class="anchor" href="#the-official-home-page" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="http://www.easyproject.cn/easyshiro/en/index.jsp" title="The official home page">The official home page</a> </h3> 
-<p><a href="http://www.easyproject.cn/easyshiro/en/index.jsp#donation" title="Comments">Comments</a></p> 
+<h3> <a id="the-official-home-page" class="anchor" href="#the-official-home-page" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="http://www.easyproject.cn/easyshiro/en/index.jsp" title="The official home page" rel="nofollow">The official home page</a> </h3> 
+<p><a href="http://www.easyproject.cn/easyshiro/en/index.jsp#donation" title="Comments" rel="nofollow">Comments</a></p> 
 <p>If you have more comments, suggestions or ideas, please contact me.</p> 
-<h3> <a id="官方主页" class="anchor" href="#%E5%AE%98%E6%96%B9%E4%B8%BB%E9%A1%B5" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="http://www.easyproject.cn/easyshiro/zh-cn/index.jsp" title="官方主页">官方主页</a> </h3> 
-<p><a href="http://www.easyproject.cn/easyshiro/zh-cn/index.jsp#donation" title="留言评论">留言评论</a></p> 
+<h3> <a id="官方主页" class="anchor" href="#%E5%AE%98%E6%96%B9%E4%B8%BB%E9%A1%B5" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="http://www.easyproject.cn/easyshiro/zh-cn/index.jsp" title="官方主页" rel="nofollow">官方主页</a> </h3> 
+<p><a href="http://www.easyproject.cn/easyshiro/zh-cn/index.jsp#donation" title="留言评论" rel="nofollow">留言评论</a></p> 
 <p>如果您有更好意见，建议或想法，请联系我。</p> 
 <p>Email：<a href="mailto:inthinkcolor@gmail.com">inthinkcolor@gmail.com</a></p> 
-<p><a href="http://www.easyproject.cn" title="EasyProject Home">http://www.easyproject.cn</a></p> 
+<p><a href="http://www.easyproject.cn" title="EasyProject Home" rel="nofollow">http://www.easyproject.cn</a></p> 
 <p>We believe that the contribution of each bit by bit, will be driven to produce more and better free and open source products a big step.</p> 
 <p><strong>Thank you donation to support the server running and encourage more community members.</strong></p> 
-<p><a href="https://www.paypal.me/easyproject/10" title="Make payments with PayPal - it's fast, free and secure!"><img src="https://camo.githubusercontent.com/25fd45a9c199091fd684c9f11b37c386b4301087/687474703a2f2f7777772e6561737970726f6a6563742e636e2f696d616765732f70617970616c646f6e6174696f6e352e6a7067" alt="PayPal" data-canonical-src="http://www.easyproject.cn/images/paypaldonation5.jpg" style="max-width:100%;" /></a></p>
+<p><a href="https://www.paypal.me/easyproject/10" title="Make payments with PayPal - it's fast, free and secure!" rel="nofollow"><img src="https://camo.githubusercontent.com/25fd45a9c199091fd684c9f11b37c386b4301087/687474703a2f2f7777772e6561737970726f6a6563742e636e2f696d616765732f70617970616c646f6e6174696f6e352e6a7067" alt="PayPal" data-canonical-src="http://www.easyproject.cn/images/paypaldonation5.jpg" style="max-width:100%;" /></a></p>
 </body>
 </html>
