@@ -4,6 +4,8 @@
 
 EasyShiro is a security extension components based Shiro. Based on the RBAC (Role Based Access Control) Web permission model based on database rights management and **Web URL authorization**, provides general Shiro security management support, as well as richer and more powerful function options.
 
+Support version: `Shiro 1.2.X`, `Shiro 1.3.X`, `Shiro 1.4.X`
+
 
 ## Introduction
 
@@ -36,19 +38,19 @@ EasyShiro is a security extension components based Shiro. Based on the RBAC (Rol
 
 ### 1. Enhanced Simplified Shiro unified component support
 
-- **Auth **: `EasyFormAuthenticationFilter`, full-featured authentication filter, a verification code (CAPTCHA), automatic login (AutoLogin), the login lockout (LockLogin), custom exception message (exceptionMsg), redirect the jump, block , a function of multiple logins, etc.
+- **Auth**: `EasyFormAuthenticationFilter`, full-featured authentication filter, a verification code (CAPTCHA), automatic login (AutoLogin), the login lockout (LockLogin), custom exception message (exceptionMsg), redirect the jump, block , a function of multiple logins, etc.
 
-- ** Realm **: `EasyJdbcRealm`, based Realm database to automatically obtain authentication and authorization data from the database, support rights to refresh
+- **Realm**: `EasyJdbcRealm`, based Realm database to automatically obtain authentication and authorization data from the database, support rights to refresh
 
 - ** Perms **: `EasyURLPermissionFilter`, Authorization Manager filters, Web-based management URL requesting authorization to support Ajax response
 
-- ** Logout **: `EasyLogoutFilter`, the user logs off the filter to provide automatic login-related write-offs
+- **Logout**: `EasyLogoutFilter`, the user logs off the filter to provide automatic login-related write-offs
 
-- ** Interceptor **: Certification and Realm interceptors support ( `EasyAuthenticationInterceptor`,` EasyJdbcRealmInterceptor`), support to expand when the authentication success or failure
+- **Interceptor**: Certification and Realm interceptors support ( `EasyAuthenticationInterceptor`,` EasyJdbcRealmInterceptor`), support to expand when the authentication success or failure
 
 - **EasyUsernamePasswordEndcodeToken**: Simplified and more flexible password encryption scheme Token, implement `encodePassword ()`, returns the result of the encrypted password
 
-- ** Exception **: custom login authentication related exception ( `EasyIncorrectCaptchaException`,` EasyLockIPException`, `EasyLockUserException`,` EasyLockLoginException`)
+- **Exception**: custom login authentication related exception ( `EasyIncorrectCaptchaException`,` EasyLockIPException`, `EasyLockUserException`,` EasyLockLoginException`)
 
 
 ### 2. LockLoginManagement
@@ -80,6 +82,45 @@ The following display and provides a common database authorization based rights 
     <artifactId>easyshiro</artifactId>
     <version>2.6.0-RELEASE</version>
 </dependency>
+<!-- EasyShiro default dependency shiro version 1.2.6, you can change shiro version, like these: -->
+<!--
+<dependency>
+    <groupId>org.apache.shiro</groupId>
+    <artifactId>shiro-core</artifactId>
+    <version>${shiro.version}</version>
+</dependency>
+<dependency>
+    <groupId>org.apache.shiro</groupId>
+    <artifactId>shiro-web</artifactId>
+    <version>${shiro.version}</version>
+</dependency>
+<dependency>
+    <groupId>org.apache.shiro</groupId>
+    <artifactId>shiro-ehcache</artifactId>
+    <version>${shiro.version}</version>
+    <exclusions>
+        <exclusion>
+            <artifactId>ehcache-core</artifactId>
+            <groupId>net.sf.ehcache</groupId>
+        </exclusion>
+    </exclusions>
+</dependency>
+<dependency>
+    <groupId>org.apache.shiro</groupId>
+    <artifactId>shiro-spring</artifactId>
+    <version>${shiro.version}</version>
+</dependency>
+<dependency>
+    <groupId>org.apache.shiro</groupId>
+    <artifactId>shiro-cas</artifactId>
+    <version>${shiro.version}</version>
+</dependency>
+<dependency>
+    <groupId>org.apache.shiro</groupId>
+    <artifactId>shiro-quartz</artifactId>
+    <version>${shiro.version}</version>
+</dependency>
+-->
 ```
 
 ### 2. Configure the Filter in `web.xml`

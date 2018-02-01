@@ -642,6 +642,7 @@ function setDocumentScrollTop(ypos)
 <h1> <a id="easyshiro" class="anchor" href="#easyshiro" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>EasyShiro</h1> 
 <hr /> 
 <p>EasyShiro is a security extension components based Shiro. Based on the RBAC (Role Based Access Control) Web permission model based on database rights management and <strong>Web URL authorization</strong>, provides general Shiro security management support, as well as richer and more powerful function options.</p> 
+<p>Support version: <code>Shiro 1.2.X</code>, <code>Shiro 1.3.X</code>, <code>Shiro 1.4.X</code></p> 
 <h2> <a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Introduction</h2> 
 <ul> 
  <li> <p><strong>Apache Shiro</strong></p> <p><a href="http://shiro.apache.org/" title=" Apache Shiro " rel="nofollow">Apache Shiro</a> is the most powerful and comprehensive Java security management framework that provides user authentication, authorization (based on roles and permissions), Session management, encryption, Web and third-party integration, and so on. But Apache Shiro just a security engine, not a rights management system, rights management system daily projects still need to achieve their own, different projects often need to customize a number of different security components, and the configuration is complicated.</p> </li> 
@@ -658,13 +659,13 @@ function setDocumentScrollTop(ypos)
 <h2> <a id="main-module" class="anchor" href="#main-module" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Main module</h2> 
 <h3> <a id="1-enhanced-simplified-shiro-unified-component-support" class="anchor" href="#1-enhanced-simplified-shiro-unified-component-support" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1. Enhanced Simplified Shiro unified component support</h3> 
 <ul> 
- <li> <p>**Auth **: <code>EasyFormAuthenticationFilter</code>, full-featured authentication filter, a verification code (CAPTCHA), automatic login (AutoLogin), the login lockout (LockLogin), custom exception message (exceptionMsg), redirect the jump, block , a function of multiple logins, etc.</p> </li> 
- <li> <p>** Realm **: <code>EasyJdbcRealm</code>, based Realm database to automatically obtain authentication and authorization data from the database, support rights to refresh</p> </li> 
+ <li> <p><strong>Auth</strong>: <code>EasyFormAuthenticationFilter</code>, full-featured authentication filter, a verification code (CAPTCHA), automatic login (AutoLogin), the login lockout (LockLogin), custom exception message (exceptionMsg), redirect the jump, block , a function of multiple logins, etc.</p> </li> 
+ <li> <p><strong>Realm</strong>: <code>EasyJdbcRealm</code>, based Realm database to automatically obtain authentication and authorization data from the database, support rights to refresh</p> </li> 
  <li> <p>** Perms **: <code>EasyURLPermissionFilter</code>, Authorization Manager filters, Web-based management URL requesting authorization to support Ajax response</p> </li> 
- <li> <p>** Logout **: <code>EasyLogoutFilter</code>, the user logs off the filter to provide automatic login-related write-offs</p> </li> 
- <li> <p>** Interceptor **: Certification and Realm interceptors support ( <code>EasyAuthenticationInterceptor</code>,<code>EasyJdbcRealmInterceptor</code>), support to expand when the authentication success or failure</p> </li> 
+ <li> <p><strong>Logout</strong>: <code>EasyLogoutFilter</code>, the user logs off the filter to provide automatic login-related write-offs</p> </li> 
+ <li> <p><strong>Interceptor</strong>: Certification and Realm interceptors support ( <code>EasyAuthenticationInterceptor</code>,<code>EasyJdbcRealmInterceptor</code>), support to expand when the authentication success or failure</p> </li> 
  <li> <p><strong>EasyUsernamePasswordEndcodeToken</strong>: Simplified and more flexible password encryption scheme Token, implement <code>encodePassword ()</code>, returns the result of the encrypted password</p> </li> 
- <li> <p>** Exception **: custom login authentication related exception ( <code>EasyIncorrectCaptchaException</code>,<code>EasyLockIPException</code>, <code>EasyLockUserException</code>,<code>EasyLockLoginException</code>)</p> </li> 
+ <li> <p><strong>Exception</strong>: custom login authentication related exception ( <code>EasyIncorrectCaptchaException</code>,<code>EasyLockIPException</code>, <code>EasyLockUserException</code>,<code>EasyLockLoginException</code>)</p> </li> 
 </ul> 
 <h3> <a id="2-lockloginmanagement" class="anchor" href="#2-lockloginmanagement" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2. LockLoginManagement</h3> 
 <p><a href="images/locklogin1.png" target="_blank"><img src="images/locklogin1.png" alt="LockLogin" style="max-width:100%;" /></a></p> 
@@ -683,7 +684,46 @@ function setDocumentScrollTop(ypos)
     &lt;<span class="pl-ent">groupId</span>&gt;cn.easyproject&lt;/<span class="pl-ent">groupId</span>&gt;
     &lt;<span class="pl-ent">artifactId</span>&gt;easyshiro&lt;/<span class="pl-ent">artifactId</span>&gt;
     &lt;<span class="pl-ent">version</span>&gt;2.6.0-RELEASE&lt;/<span class="pl-ent">version</span>&gt;
-&lt;/<span class="pl-ent">dependency</span>&gt;</pre>
+&lt;/<span class="pl-ent">dependency</span>&gt;
+<span class="pl-c"><span class="pl-c">&lt;!--</span> EasyShiro default dependency shiro version 1.2.6, you can change shiro version, like these: <span class="pl-c">--&gt;</span></span>
+<span class="pl-c"><span class="pl-c">&lt;!--</span></span>
+<span class="pl-c">&lt;dependency&gt;</span>
+<span class="pl-c">    &lt;groupId&gt;org.apache.shiro&lt;/groupId&gt;</span>
+<span class="pl-c">    &lt;artifactId&gt;shiro-core&lt;/artifactId&gt;</span>
+<span class="pl-c">    &lt;version&gt;${shiro.version}&lt;/version&gt;</span>
+<span class="pl-c">&lt;/dependency&gt;</span>
+<span class="pl-c">&lt;dependency&gt;</span>
+<span class="pl-c">    &lt;groupId&gt;org.apache.shiro&lt;/groupId&gt;</span>
+<span class="pl-c">    &lt;artifactId&gt;shiro-web&lt;/artifactId&gt;</span>
+<span class="pl-c">    &lt;version&gt;${shiro.version}&lt;/version&gt;</span>
+<span class="pl-c">&lt;/dependency&gt;</span>
+<span class="pl-c">&lt;dependency&gt;</span>
+<span class="pl-c">    &lt;groupId&gt;org.apache.shiro&lt;/groupId&gt;</span>
+<span class="pl-c">    &lt;artifactId&gt;shiro-ehcache&lt;/artifactId&gt;</span>
+<span class="pl-c">    &lt;version&gt;${shiro.version}&lt;/version&gt;</span>
+<span class="pl-c">    &lt;exclusions&gt;</span>
+<span class="pl-c">        &lt;exclusion&gt;</span>
+<span class="pl-c">            &lt;artifactId&gt;ehcache-core&lt;/artifactId&gt;</span>
+<span class="pl-c">            &lt;groupId&gt;net.sf.ehcache&lt;/groupId&gt;</span>
+<span class="pl-c">        &lt;/exclusion&gt;</span>
+<span class="pl-c">    &lt;/exclusions&gt;</span>
+<span class="pl-c">&lt;/dependency&gt;</span>
+<span class="pl-c">&lt;dependency&gt;</span>
+<span class="pl-c">    &lt;groupId&gt;org.apache.shiro&lt;/groupId&gt;</span>
+<span class="pl-c">    &lt;artifactId&gt;shiro-spring&lt;/artifactId&gt;</span>
+<span class="pl-c">    &lt;version&gt;${shiro.version}&lt;/version&gt;</span>
+<span class="pl-c">&lt;/dependency&gt;</span>
+<span class="pl-c">&lt;dependency&gt;</span>
+<span class="pl-c">    &lt;groupId&gt;org.apache.shiro&lt;/groupId&gt;</span>
+<span class="pl-c">    &lt;artifactId&gt;shiro-cas&lt;/artifactId&gt;</span>
+<span class="pl-c">    &lt;version&gt;${shiro.version}&lt;/version&gt;</span>
+<span class="pl-c">&lt;/dependency&gt;</span>
+<span class="pl-c">&lt;dependency&gt;</span>
+<span class="pl-c">    &lt;groupId&gt;org.apache.shiro&lt;/groupId&gt;</span>
+<span class="pl-c">    &lt;artifactId&gt;shiro-quartz&lt;/artifactId&gt;</span>
+<span class="pl-c">    &lt;version&gt;${shiro.version}&lt;/version&gt;</span>
+<span class="pl-c">&lt;/dependency&gt;</span>
+<span class="pl-c"><span class="pl-c">--&gt;</span></span></pre>
 </div> 
 <h3> <a id="2-configure-the-filter-in-webxml" class="anchor" href="#2-configure-the-filter-in-webxml" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2. Configure the Filter in <code>web.xml</code> </h3> 
 <pre><code>&lt;!-- Shiro Spring Intergation --&gt;

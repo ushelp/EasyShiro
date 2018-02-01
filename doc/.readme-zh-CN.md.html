@@ -642,6 +642,7 @@ function setDocumentScrollTop(ypos)
 <h1> <a id="easyshiro" class="anchor" href="#easyshiro" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>EasyShiro</h1> 
 <hr /> 
 <p>EasyShiro 是一个基于 Shiro 的安全扩展组件。为基于数据库权限管理和 <strong>Web URL 授权</strong> 的 RBAC（Role Based Access Control） Web 权限模型，提供通用的 Shiro 安全管理支持，以及更加丰富强大的功能选项。</p> 
+<p>支持版本: <code>Shiro 1.2.X</code>, <code>Shiro 1.3.X</code>, <code>Shiro 1.4.X</code></p> 
 <h2> <a id="简介" class="anchor" href="#%E7%AE%80%E4%BB%8B" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>简介</h2> 
 <ul> 
  <li> <p><strong>Apache Shiro</strong></p> <p><a href="http://shiro.apache.org/" title=" Apache Shiro " rel="nofollow">Apache Shiro</a> 是目前最为强大和全面的 Java 安全管理框架，提供用户认证，授权（基于角色和权限），Session 管理，加密，Web及第三方集成等等。但 Apache Shiro 只是一个安全引擎，并非一个权限管理系统，日常项目的权限管理系统仍需自行实现，不同的项目往往需要自定义众多不同的安全组件，而且配置繁复。</p> </li> 
@@ -683,7 +684,46 @@ function setDocumentScrollTop(ypos)
     &lt;<span class="pl-ent">groupId</span>&gt;cn.easyproject&lt;/<span class="pl-ent">groupId</span>&gt;
     &lt;<span class="pl-ent">artifactId</span>&gt;easyshiro&lt;/<span class="pl-ent">artifactId</span>&gt;
     &lt;<span class="pl-ent">version</span>&gt;2.6.0-RELEASE&lt;/<span class="pl-ent">version</span>&gt;
-&lt;/<span class="pl-ent">dependency</span>&gt;</pre>
+&lt;/<span class="pl-ent">dependency</span>&gt;
+<span class="pl-c"><span class="pl-c">&lt;!--</span> EasyShiro default dependency shiro version 1.2.6, you can change shiro version, like these: <span class="pl-c">--&gt;</span></span>
+<span class="pl-c"><span class="pl-c">&lt;!--</span></span>
+<span class="pl-c">&lt;dependency&gt;</span>
+<span class="pl-c">    &lt;groupId&gt;org.apache.shiro&lt;/groupId&gt;</span>
+<span class="pl-c">    &lt;artifactId&gt;shiro-core&lt;/artifactId&gt;</span>
+<span class="pl-c">    &lt;version&gt;${shiro.version}&lt;/version&gt;</span>
+<span class="pl-c">&lt;/dependency&gt;</span>
+<span class="pl-c">&lt;dependency&gt;</span>
+<span class="pl-c">    &lt;groupId&gt;org.apache.shiro&lt;/groupId&gt;</span>
+<span class="pl-c">    &lt;artifactId&gt;shiro-web&lt;/artifactId&gt;</span>
+<span class="pl-c">    &lt;version&gt;${shiro.version}&lt;/version&gt;</span>
+<span class="pl-c">&lt;/dependency&gt;</span>
+<span class="pl-c">&lt;dependency&gt;</span>
+<span class="pl-c">    &lt;groupId&gt;org.apache.shiro&lt;/groupId&gt;</span>
+<span class="pl-c">    &lt;artifactId&gt;shiro-ehcache&lt;/artifactId&gt;</span>
+<span class="pl-c">    &lt;version&gt;${shiro.version}&lt;/version&gt;</span>
+<span class="pl-c">    &lt;exclusions&gt;</span>
+<span class="pl-c">        &lt;exclusion&gt;</span>
+<span class="pl-c">            &lt;artifactId&gt;ehcache-core&lt;/artifactId&gt;</span>
+<span class="pl-c">            &lt;groupId&gt;net.sf.ehcache&lt;/groupId&gt;</span>
+<span class="pl-c">        &lt;/exclusion&gt;</span>
+<span class="pl-c">    &lt;/exclusions&gt;</span>
+<span class="pl-c">&lt;/dependency&gt;</span>
+<span class="pl-c">&lt;dependency&gt;</span>
+<span class="pl-c">    &lt;groupId&gt;org.apache.shiro&lt;/groupId&gt;</span>
+<span class="pl-c">    &lt;artifactId&gt;shiro-spring&lt;/artifactId&gt;</span>
+<span class="pl-c">    &lt;version&gt;${shiro.version}&lt;/version&gt;</span>
+<span class="pl-c">&lt;/dependency&gt;</span>
+<span class="pl-c">&lt;dependency&gt;</span>
+<span class="pl-c">    &lt;groupId&gt;org.apache.shiro&lt;/groupId&gt;</span>
+<span class="pl-c">    &lt;artifactId&gt;shiro-cas&lt;/artifactId&gt;</span>
+<span class="pl-c">    &lt;version&gt;${shiro.version}&lt;/version&gt;</span>
+<span class="pl-c">&lt;/dependency&gt;</span>
+<span class="pl-c">&lt;dependency&gt;</span>
+<span class="pl-c">    &lt;groupId&gt;org.apache.shiro&lt;/groupId&gt;</span>
+<span class="pl-c">    &lt;artifactId&gt;shiro-quartz&lt;/artifactId&gt;</span>
+<span class="pl-c">    &lt;version&gt;${shiro.version}&lt;/version&gt;</span>
+<span class="pl-c">&lt;/dependency&gt;</span>
+<span class="pl-c"><span class="pl-c">--&gt;</span></span></pre>
 </div> 
 <h3> <a id="2-在-webxml-配置过滤器" class="anchor" href="#2-%E5%9C%A8-webxml-%E9%85%8D%E7%BD%AE%E8%BF%87%E6%BB%A4%E5%99%A8" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2. 在 <code>web.xml</code> 配置过滤器</h3> 
 <pre><code>&lt;!-- Shiro Spring Intergation --&gt;

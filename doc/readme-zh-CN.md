@@ -4,6 +4,8 @@
 
 EasyShiro 是一个基于 Shiro 的安全扩展组件。为基于数据库权限管理和 **Web URL 授权** 的 RBAC（Role Based Access Control） Web 权限模型，提供通用的 Shiro 安全管理支持，以及更加丰富强大的功能选项。
 
+支持版本: `Shiro 1.2.X`, `Shiro 1.3.X`, `Shiro 1.4.X`
+
 
 ## 简介
 
@@ -81,6 +83,45 @@ EasyShiro 是一个基于 Shiro 的安全扩展组件。为基于数据库权限
     <artifactId>easyshiro</artifactId>
     <version>2.6.0-RELEASE</version>
 </dependency>
+<!-- EasyShiro default dependency shiro version 1.2.6, you can change shiro version, like these: -->
+<!--
+<dependency>
+    <groupId>org.apache.shiro</groupId>
+    <artifactId>shiro-core</artifactId>
+    <version>${shiro.version}</version>
+</dependency>
+<dependency>
+    <groupId>org.apache.shiro</groupId>
+    <artifactId>shiro-web</artifactId>
+    <version>${shiro.version}</version>
+</dependency>
+<dependency>
+    <groupId>org.apache.shiro</groupId>
+    <artifactId>shiro-ehcache</artifactId>
+    <version>${shiro.version}</version>
+    <exclusions>
+        <exclusion>
+            <artifactId>ehcache-core</artifactId>
+            <groupId>net.sf.ehcache</groupId>
+        </exclusion>
+    </exclusions>
+</dependency>
+<dependency>
+    <groupId>org.apache.shiro</groupId>
+    <artifactId>shiro-spring</artifactId>
+    <version>${shiro.version}</version>
+</dependency>
+<dependency>
+    <groupId>org.apache.shiro</groupId>
+    <artifactId>shiro-cas</artifactId>
+    <version>${shiro.version}</version>
+</dependency>
+<dependency>
+    <groupId>org.apache.shiro</groupId>
+    <artifactId>shiro-quartz</artifactId>
+    <version>${shiro.version}</version>
+</dependency>
+-->
 ```
 
 
